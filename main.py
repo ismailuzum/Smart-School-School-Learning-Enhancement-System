@@ -36,20 +36,6 @@ class LogSignWindow(QMainWindow):
         
         self.sign_result_label.setText("Sign up succesfull!")
         self.sign_result_label.show()
-    def log_in(self):
-
-        email = self.log_email_lineEdit.text()
-        password = self.log_password_lineEdit.text()
-        
-    def checkCredentials(self, email, password):
-        try:
-            with open("users.json", "r") as userFile:
-                existing_data = json.load(userFile)
-                for i in existing_data:
-                    if i["email"] == email and i["password"] == password:
-                        return True
-        except (json.JSONDecodeError, FileNotFoundError):
-            pass
     
 
 if __name__ == "__main__":
