@@ -1,0 +1,26 @@
+[
+  {
+    "first_name": "Kemal ",
+    "last_name": "Mert",
+    "email": "kmert@gmail.com",
+    "password": "Infotech.1",
+    "user_status": "student",
+    "student_id": 1
+  },
+  {
+    "first_name": "Durukan",
+    "last_name": "Mert",
+    "email": "admert@gmail.com",
+    "password": "Infotech.1",
+    "user_status": "admin",
+    "admin_id": 1
+  },
+  {
+    "first_name": "Serkan",
+    "last_name": "Dogan",
+    "email": "sdogan@gmail.com",
+    "password": "Infotech.1",
+    "user_status": "teacher",
+    "teacher_id": 1
+  }
+]
