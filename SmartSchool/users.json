@@ -1,0 +1,10 @@
+[
+    {
+        "email": "admin@admin.com",
+        "password": "Infotech1+",
+        "name": "admin",
+        "surname": "admin",
+        "phone": "+31623644423",
+        "type": "admin"
+    }
+]
