@@ -8,11 +8,25 @@
         "type": "admin"
     },
     {
-        "email": "seanalone@alone.com",
-        "password": "Carry4@56",
+        "studentId": "1",
+        "email": "sean@alone.com",
+        "password": "InfoTech1@",
         "name": "Sean",
         "surname": "Alone",
-        "phone": "+31683456789",
+        "gender": "Male",
+        "date_of_birth": "01-01-2000",
+        "phone": "+316324565654",
         "type": "student"
+    },
+    {
+        "teacherId": "1",
+        "email": "mark@alone.com",
+        "password": "InfoTech1@",
+        "name": "Mark",
+        "surname": "Alone",
+        "gender": "Male",
+        "date_of_birth": "01-01-1986",
+        "phone": "+31682344663",
+        "type": "teacher"
     }
 ]

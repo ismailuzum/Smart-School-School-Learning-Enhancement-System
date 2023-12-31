@@ -37,6 +37,9 @@ def is_valid_phone(phone):
 def is_admin(user):
     return user.get('type') == 'admin'
 
+def is_student(user):
+    return user.get('type') == 'student'
+
 # Application Classes
 ###########################################################################################
 class AdminApp(QMainWindow):
@@ -53,6 +56,8 @@ class AdminApp(QMainWindow):
         
 # Make sure to connect the signal after initializing the combo box
         self.cb21.currentIndexChanged.connect(self.on_teacher_selected)  # cb21 is your QComboBox for teacher IDs
+
+#############################################################################################
 
     def add_teacher_tab(self):
         self.tabWidget.setCurrentIndex(1)
@@ -172,6 +177,7 @@ class AdminApp(QMainWindow):
         self.cb11.setCurrentIndex(0)
         self.tb15.clear()
         self.tb16.clear()
+        
 #######################################################################################################################
     def edit_teacher_tab(self):
         self.tabWidget.setCurrentIndex(2)
@@ -258,7 +264,8 @@ class LoginApp(QDialog):
         loadUi("login_form.ui", self)
         self.b1.clicked.connect(self.login)
         self.b2.clicked.connect(self.show_reg)
-
+        self.tb2.returnPressed.connect(self.login)
+        
     def login(self):
         email = self.tb1.text()
         password = self.tb2.text()
@@ -268,6 +275,11 @@ class LoginApp(QDialog):
             if is_admin(user):
                 self.admin_app = AdminApp()
                 self.admin_app.show()
+                
+            elif is_student(user):
+                self.student_app = StudentApp()
+                self.student_app.show()
+        
             else:
                 QMessageBox.information(self, "Login Output", "Login Successful")
         else:
@@ -283,13 +295,25 @@ class RegApp(QDialog):
         loadUi("register_form.ui", self)
         self.b3.clicked.connect(self.reg)
         self.b4.clicked.connect(self.show_login)
+        self.fill_studentId()
 
+    def fill_studentId(self):
+        users = load_users()
+        studentId = sum(1 for user in users if user.get('type') == 'student') + 1
+        self.tb_sId.setText(str(studentId))
+    
     def reg(self):
+        self.fill_studentId()
+        
+        studentId = self.tb_sId.text()
         email = self.tb3.text()
         password = self.tb4.text()
         name = self.tb5.text()
         surname = self.tb6.text()
-        phone = self.tb7.text()
+        gender = self.cb1.currentText()
+        date_of_birth = self.tb7.text()
+        phone = self.tb8.text()
+        
         if not is_valid_email(email) or not is_valid_password(password) or not is_valid_phone(phone):
             QMessageBox.warning(self, "Registration Error", "Invalid input format")
             return
@@ -298,24 +322,95 @@ class RegApp(QDialog):
             QMessageBox.warning(self, "Registration form", "User Already Exists!!")
         else:
             users.append({
+                'studentId': studentId,
                 'email': email,
                 'password': password,
                 'name': name,
                 'surname': surname,
+                'gender': gender,
+                'date_of_birth': date_of_birth,
                 'phone': phone,
                 'type': 'student'
             })
             save_users(users)
             QMessageBox.information(self, "Registration form", "User Registered Successfully, YOU CAN NOW LOGIN!!")
+            self.tb_sId.clear()
             self.tb3.clear()
             self.tb4.clear()
             self.tb5.clear()
             self.tb6.clear()
+            self.cb1.setCurrentIndex(0)
             self.tb7.clear()
+            self.tb8.clear()
 
     def show_login(self):
         global widget
         widget.setCurrentIndex(0)
+        
+###################################################################################################################################
+class StudentApp(QMainWindow):
+    def __init__(self):
+        super(StudentApp, self).__init__()
+        loadUi("student.ui", self)
+        self.tabWidget.setCurrentIndex(0)
+        self.tabWidget.tabBar().setVisible(False)
+        self.menu11.triggered.connect(self.edit_profile_tab)
+        self.menu71.triggered.connect(self.close)             #logout from student menu
+
+        self.b6.clicked.connect(self.update_student_details)
+        
+    def edit_profile_tab(self, logged_in_student):
+        self.tabWidget.setCurrentIndex(1)
+        self.b6.clicked.connect(self.update_student_details)  # b6 is your Save button
+        
+    def load_logged_in_student_details(self):
+        users = load_users()  # Load users from file
+        for user in users:
+            if user.get('type') == 'student' and user['studentId'] == self.logged_in_student_id:
+                self.display_teacher_details(user)
+                break
+    
+    def display_student_details_with_data(self, student_data):
+        if student_data:        # Set the fields with the logged-in teacher's data
+            self.tb21.setText(student_data['teacherId'])
+            self.tb22.setText(student_data['email'])
+            self.tb23.setText(student_data['name'])
+            self.tb24.setText(student_data['surname'])
+            self.cb22.setCurrentText(student_data['gender'])
+            self.tb25.setText(student_data['date_of_birth'])
+            self.tb26.setText(student_data['phone'])
+    
+
+    def update_student_details(self):
+        # Get the updated details from the form
+        studentId = self.tb21.text()
+        email = self.tb22.text()
+        name = self.tb23.text()
+        surname = self.tb24.text()
+        gender = self.cb22.currentText()
+        date_of_birth = self.tb25.text()
+        phone = self.tb26.text()
+        password = self.tb27.text()
+
+        # Perform validations here
+        users = load_users()
+        for i, user in enumerate(users):
+            if user.get('type') == 'student' and user['studentId'] == studentId:
+                users[i].update({
+                    'studentId': studentId,
+                    'email': email,
+                    'name': name,
+                    'surname': surname,
+                    'gender': gender,
+                    'date_of_birth': date_of_birth,
+                    'phone': phone
+                })
+                break
+        save_users(users)
+        QMessageBox.information(self, "Update Success", "You student details updated successfully.")
+        self.load_student()          
+        
+    
 ###################################################################################################################################
 # Main Application Setup
 if __name__ == "__main__":
@@ -326,6 +421,6 @@ if __name__ == "__main__":
     widget.addWidget(login_form)
     widget.addWidget(registration_form)
     widget.setFixedWidth(400)
-    widget.setFixedHeight(500)
+    widget.setFixedHeight(650)
     widget.show()
     sys.exit(app.exec_())

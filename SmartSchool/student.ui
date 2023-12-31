@@ -93,9 +93,9 @@ background-color: rgb(40, 41, 44);</string>
      <widget class="QLabel" name="label_14">
       <property name="geometry">
        <rect>
-        <x>240</x>
-        <y>50</y>
-        <width>161</width>
+        <x>230</x>
+        <y>60</y>
+        <width>181</width>
         <height>20</height>
        </rect>
       </property>
@@ -111,408 +111,20 @@ background-color: rgb(40, 41, 44);</string>
        <string notr="true">color: rgb(255, 191, 16);</string>
       </property>
       <property name="text">
-       <string>You login as admin !!!</string>
-      </property>
-     </widget>
-    </widget>
-    <widget class="QWidget" name="tab">
-     <attribute name="title">
-      <string>Add Teacher</string>
-     </attribute>
-     <widget class="QLabel" name="label">
-      <property name="geometry">
-       <rect>
-        <x>250</x>
-        <y>10</y>
-        <width>171</width>
-        <height>21</height>
-       </rect>
-      </property>
-      <property name="font">
-       <font>
-        <pointsize>14</pointsize>
-        <weight>75</weight>
-        <bold>true</bold>
-       </font>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">color: rgb(255, 191, 16);</string>
-      </property>
-      <property name="text">
-       <string>Add New Teacher</string>
-      </property>
-     </widget>
-     <widget class="QLabel" name="label_4">
-      <property name="geometry">
-       <rect>
-        <x>20</x>
-        <y>40</y>
-        <width>161</width>
-        <height>20</height>
-       </rect>
-      </property>
-      <property name="font">
-       <font>
-        <pointsize>11</pointsize>
-        <weight>75</weight>
-        <bold>true</bold>
-        <underline>true</underline>
-       </font>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">color: rgb(255, 191, 16);</string>
-      </property>
-      <property name="text">
-       <string>Enter Teacher Details</string>
-      </property>
-     </widget>
-     <widget class="QLabel" name="label_5">
-      <property name="geometry">
-       <rect>
-        <x>20</x>
-        <y>80</y>
-        <width>111</width>
-        <height>20</height>
-       </rect>
-      </property>
-      <property name="font">
-       <font>
-        <pointsize>11</pointsize>
-       </font>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">color: rgb(255, 255, 255);</string>
-      </property>
-      <property name="text">
-       <string>Teacher ID</string>
-      </property>
-     </widget>
-     <widget class="QLineEdit" name="tb11">
-      <property name="geometry">
-       <rect>
-        <x>140</x>
-        <y>70</y>
-        <width>271</width>
-        <height>31</height>
-       </rect>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">background-color: rgb(255, 255, 255);</string>
-      </property>
-     </widget>
-     <widget class="QLabel" name="label_6">
-      <property name="geometry">
-       <rect>
-        <x>20</x>
-        <y>130</y>
-        <width>111</width>
-        <height>20</height>
-       </rect>
-      </property>
-      <property name="font">
-       <font>
-        <pointsize>11</pointsize>
-       </font>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">color: rgb(255, 255, 255);</string>
-      </property>
-      <property name="text">
-       <string>Email</string>
-      </property>
-     </widget>
-     <widget class="QLineEdit" name="tb12">
-      <property name="geometry">
-       <rect>
-        <x>140</x>
-        <y>120</y>
-        <width>271</width>
-        <height>31</height>
-       </rect>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">background-color: rgb(255, 255, 255);</string>
-      </property>
-     </widget>
-     <widget class="QLabel" name="label_7">
-      <property name="geometry">
-       <rect>
-        <x>20</x>
-        <y>180</y>
-        <width>111</width>
-        <height>20</height>
-       </rect>
-      </property>
-      <property name="font">
-       <font>
-        <pointsize>11</pointsize>
-       </font>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">color: rgb(255, 255, 255);</string>
-      </property>
-      <property name="text">
-       <string>Name</string>
-      </property>
-     </widget>
-     <widget class="QLineEdit" name="tb13">
-      <property name="geometry">
-       <rect>
-        <x>140</x>
-        <y>170</y>
-        <width>271</width>
-        <height>31</height>
-       </rect>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">background-color: rgb(255, 255, 255);</string>
-      </property>
-     </widget>
-     <widget class="QLabel" name="label_8">
-      <property name="geometry">
-       <rect>
-        <x>20</x>
-        <y>230</y>
-        <width>111</width>
-        <height>20</height>
-       </rect>
-      </property>
-      <property name="font">
-       <font>
-        <pointsize>11</pointsize>
-       </font>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">color: rgb(255, 255, 255);</string>
-      </property>
-      <property name="text">
-       <string>Surname</string>
-      </property>
-     </widget>
-     <widget class="QLineEdit" name="tb14">
-      <property name="geometry">
-       <rect>
-        <x>140</x>
-        <y>220</y>
-        <width>271</width>
-        <height>31</height>
-       </rect>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">background-color: rgb(255, 255, 255);</string>
-      </property>
-     </widget>
-     <widget class="QLabel" name="label_9">
-      <property name="geometry">
-       <rect>
-        <x>20</x>
-        <y>280</y>
-        <width>111</width>
-        <height>20</height>
-       </rect>
-      </property>
-      <property name="font">
-       <font>
-        <pointsize>11</pointsize>
-       </font>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">color: rgb(255, 255, 255);</string>
-      </property>
-      <property name="text">
-       <string>Gender</string>
-      </property>
-     </widget>
-     <widget class="QLabel" name="label_10">
-      <property name="geometry">
-       <rect>
-        <x>20</x>
-        <y>330</y>
-        <width>111</width>
-        <height>20</height>
-       </rect>
-      </property>
-      <property name="font">
-       <font>
-        <pointsize>11</pointsize>
-       </font>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">color: rgb(255, 255, 255);</string>
-      </property>
-      <property name="text">
-       <string>Date of Birth</string>
-      </property>
-     </widget>
-     <widget class="QLineEdit" name="tb15">
-      <property name="geometry">
-       <rect>
-        <x>140</x>
-        <y>320</y>
-        <width>271</width>
-        <height>31</height>
-       </rect>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">background-color: rgb(255, 255, 255);</string>
-      </property>
-     </widget>
-     <widget class="QComboBox" name="cb11">
-      <property name="geometry">
-       <rect>
-        <x>140</x>
-        <y>270</y>
-        <width>271</width>
-        <height>31</height>
-       </rect>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">background-color: rgb(255, 255, 255);
-font: 12pt &quot;MS Shell Dlg 2&quot;;
-</string>
-      </property>
-      <property name="currentIndex">
-       <number>-1</number>
-      </property>
-      <property name="maxVisibleItems">
-       <number>8</number>
-      </property>
-      <property name="sizeAdjustPolicy">
-       <enum>QComboBox::AdjustToContentsOnFirstShow</enum>
-      </property>
-      <property name="placeholderText">
-       <string>Add/Select Teacher</string>
-      </property>
-      <item>
-       <property name="text">
-        <string>Male</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>Female</string>
-       </property>
-      </item>
-     </widget>
-     <widget class="QLineEdit" name="tb16">
-      <property name="geometry">
-       <rect>
-        <x>140</x>
-        <y>370</y>
-        <width>271</width>
-        <height>31</height>
-       </rect>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">background-color: rgb(255, 255, 255);</string>
-      </property>
-     </widget>
-     <widget class="QLabel" name="label_11">
-      <property name="geometry">
-       <rect>
-        <x>20</x>
-        <y>380</y>
-        <width>111</width>
-        <height>20</height>
-       </rect>
-      </property>
-      <property name="font">
-       <font>
-        <pointsize>11</pointsize>
-       </font>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">color: rgb(255, 255, 255);</string>
-      </property>
-      <property name="text">
-       <string>Phone</string>
-      </property>
-     </widget>
-     <widget class="QPushButton" name="b5">
-      <property name="geometry">
-       <rect>
-        <x>140</x>
-        <y>420</y>
-        <width>271</width>
-        <height>41</height>
-       </rect>
-      </property>
-      <property name="font">
-       <font>
-        <pointsize>11</pointsize>
-        <weight>75</weight>
-        <bold>true</bold>
-       </font>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">background-color: rgb(255, 191, 16);</string>
-      </property>
-      <property name="text">
-       <string>Save Teacher Details</string>
-      </property>
-     </widget>
-     <widget class="QLineEdit" name="tb17">
-      <property name="geometry">
-       <rect>
-        <x>430</x>
-        <y>370</y>
-        <width>211</width>
-        <height>31</height>
-       </rect>
-      </property>
-      <property name="font">
-       <font>
-        <pointsize>10</pointsize>
-       </font>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">background-color: rgb(255, 255, 255);</string>
-      </property>
-      <property name="echoMode">
-       <enum>QLineEdit::Password</enum>
-      </property>
-      <property name="placeholderText">
-       <string>Set password for new teacher</string>
-      </property>
-      <property name="clearButtonEnabled">
-       <bool>true</bool>
-      </property>
-     </widget>
-     <widget class="QLabel" name="label_15">
-      <property name="geometry">
-       <rect>
-        <x>490</x>
-        <y>340</y>
-        <width>111</width>
-        <height>20</height>
-       </rect>
-      </property>
-      <property name="font">
-       <font>
-        <pointsize>11</pointsize>
-        <weight>75</weight>
-        <bold>true</bold>
-        <underline>true</underline>
-       </font>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">color: rgb(255, 191, 16);</string>
-      </property>
-      <property name="text">
-       <string>Set Password</string>
+       <string>You login as student !!!</string>
       </property>
      </widget>
     </widget>
     <widget class="QWidget" name="tab_2">
      <attribute name="title">
-      <string>Edit Teacher</string>
+      <string>Edit Student</string>
      </attribute>
      <widget class="QLabel" name="label_2">
       <property name="geometry">
        <rect>
-        <x>210</x>
-        <y>0</y>
-        <width>231</width>
+        <x>260</x>
+        <y>10</y>
+        <width>121</width>
         <height>21</height>
        </rect>
       </property>
@@ -527,14 +139,14 @@ font: 12pt &quot;MS Shell Dlg 2&quot;;
        <string notr="true">color: rgb(255, 191, 16);</string>
       </property>
       <property name="text">
-       <string>Edit or Delete Teacher</string>
+       <string>Edit Profile</string>
       </property>
      </widget>
      <widget class="QLabel" name="label_12">
       <property name="geometry">
        <rect>
         <x>20</x>
-        <y>40</y>
+        <y>30</y>
         <width>161</width>
         <height>20</height>
        </rect>
@@ -551,7 +163,7 @@ font: 12pt &quot;MS Shell Dlg 2&quot;;
        <string notr="true">color: rgb(255, 191, 16);</string>
       </property>
       <property name="text">
-       <string>SelectTeacheID</string>
+       <string>Edit your profile</string>
       </property>
      </widget>
      <widget class="QLabel" name="label_24">
@@ -593,7 +205,7 @@ font: 12pt &quot;MS Shell Dlg 2&quot;;
        <string notr="true">color: rgb(255, 255, 255);</string>
       </property>
       <property name="text">
-       <string>Teacher ID</string>
+       <string>Student ID</string>
       </property>
      </widget>
      <widget class="QLabel" name="label_26">
@@ -810,7 +422,7 @@ font: 12pt &quot;MS Shell Dlg 2&quot;;
        <string notr="true">background-color: rgb(255, 191, 16);</string>
       </property>
       <property name="text">
-       <string>Save Teacher Details</string>
+       <string>Save your details</string>
       </property>
      </widget>
      <widget class="QLineEdit" name="tb23">
@@ -824,43 +436,6 @@ font: 12pt &quot;MS Shell Dlg 2&quot;;
       </property>
       <property name="styleSheet">
        <string notr="true">background-color: rgb(255, 255, 255);</string>
-      </property>
-     </widget>
-     <widget class="QComboBox" name="cb21">
-      <property name="geometry">
-       <rect>
-        <x>140</x>
-        <y>30</y>
-        <width>271</width>
-        <height>31</height>
-       </rect>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">background-color: rgb(255, 255, 255);
-font: 12pt &quot;MS Shell Dlg 2&quot;;</string>
-      </property>
-     </widget>
-     <widget class="QPushButton" name="b7">
-      <property name="geometry">
-       <rect>
-        <x>220</x>
-        <y>420</y>
-        <width>191</width>
-        <height>41</height>
-       </rect>
-      </property>
-      <property name="font">
-       <font>
-        <pointsize>11</pointsize>
-        <weight>75</weight>
-        <bold>true</bold>
-       </font>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">background-color: rgb(255, 85, 0);</string>
-      </property>
-      <property name="text">
-       <string>Delete Teacher Details</string>
       </property>
      </widget>
      <widget class="QLineEdit" name="tb27">
@@ -945,26 +520,16 @@ font: 12pt &quot;MS Shell Dlg 2&quot;;</string>
 color: rgb(255, 191, 16);
 font: 12pt &quot;MS Shell Dlg 2&quot;;</string>
    </property>
-   <widget class="QMenu" name="menuTeacher">
+   <widget class="QMenu" name="menuStudent">
     <property name="title">
-     <string>Teachers</string>
+     <string>Student</string>
     </property>
     <addaction name="menu11"/>
-    <addaction name="menu12"/>
-   </widget>
-   <widget class="QMenu" name="menuStudents">
-    <property name="title">
-     <string>Students</string>
-    </property>
-    <addaction name="separator"/>
-    <addaction name="menu21"/>
-    <addaction name="menu22"/>
    </widget>
    <widget class="QMenu" name="menuAttandance">
     <property name="title">
      <string>Courses</string>
     </property>
-    <addaction name="menu31"/>
     <addaction name="menu32"/>
     <addaction name="menu33"/>
    </widget>
@@ -985,6 +550,7 @@ font: 12pt &quot;MS Shell Dlg 2&quot;;</string>
     <property name="title">
      <string>Message Box</string>
     </property>
+    <addaction name="actionDSADADAD"/>
     <addaction name="menu61"/>
    </widget>
    <widget class="QMenu" name="menuExit">
@@ -993,17 +559,23 @@ font: 12pt &quot;MS Shell Dlg 2&quot;;</string>
     </property>
     <addaction name="menu71"/>
    </widget>
-   <addaction name="menuTeacher"/>
-   <addaction name="menuStudents"/>
+   <widget class="QMenu" name="menuAnnouncements">
+    <property name="title">
+     <string>Announcements</string>
+    </property>
+    <addaction name="actionView_Announcements"/>
+   </widget>
+   <addaction name="menuStudent"/>
    <addaction name="menuAttandance"/>
    <addaction name="menuMeetings"/>
    <addaction name="menuTo_Do_List"/>
    <addaction name="menuMessage_Box"/>
+   <addaction name="menuAnnouncements"/>
    <addaction name="menuExit"/>
   </widget>
   <action name="menu11">
    <property name="text">
-    <string>Add Teacher</string>
+    <string>Edit Profile</string>
    </property>
   </action>
   <action name="menu12">
@@ -1028,37 +600,47 @@ font: 12pt &quot;MS Shell Dlg 2&quot;;</string>
   </action>
   <action name="menu41">
    <property name="text">
-    <string>Add/Edit Meeting</string>
+    <string>View Mentor Meeting Schedule</string>
    </property>
   </action>
   <action name="menu42">
    <property name="text">
-    <string>Add/Edit Meeting Attandance</string>
+    <string>View Mentor Meeting Attandance</string>
    </property>
   </action>
   <action name="menu32">
    <property name="text">
-    <string>Add/Edit Course Schedule</string>
+    <string>View Course Schedule</string>
    </property>
   </action>
   <action name="menu33">
    <property name="text">
-    <string>Add/Edit Course Attandance</string>
+    <string>View Course Attandance</string>
    </property>
   </action>
   <action name="menu51">
    <property name="text">
-    <string>Add/Edit To Do List</string>
+    <string>View/React To Do List</string>
    </property>
   </action>
   <action name="menu61">
    <property name="text">
-    <string>Add/Edit Message</string>
+    <string>Send Message</string>
    </property>
   </action>
   <action name="menu71">
    <property name="text">
     <string>Logout</string>
+   </property>
+  </action>
+  <action name="actionDSADADAD">
+   <property name="text">
+    <string>View Messages</string>
+   </property>
+  </action>
+  <action name="actionView_Announcements">
+   <property name="text">
+    <string>View Announcements</string>
    </property>
   </action>
  </widget>
