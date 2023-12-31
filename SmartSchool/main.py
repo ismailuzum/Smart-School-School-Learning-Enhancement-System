@@ -5,6 +5,7 @@ from PyQt5 import QtWidgets
 from PyQt5.QtWidgets import QDialog, QApplication, QMessageBox, QMainWindow
 from PyQt5.uic import loadUi
 
+#############################################################################################
 # Utility functions
 def load_users():
     try:
@@ -37,6 +38,7 @@ def is_admin(user):
     return user.get('type') == 'admin'
 
 # Application Classes
+###########################################################################################
 class AdminApp(QMainWindow):
     def __init__(self):
         super(AdminApp, self).__init__()
@@ -48,6 +50,9 @@ class AdminApp(QMainWindow):
         self.menu71.triggered.connect(self.close)             #logout from admin menu
 
         self.b5.clicked.connect(self.handle_teacher_registration)
+        
+# Make sure to connect the signal after initializing the combo box
+        self.cb21.currentIndexChanged.connect(self.on_teacher_selected)  # cb21 is your QComboBox for teacher IDs
 
     def add_teacher_tab(self):
         self.tabWidget.setCurrentIndex(1)
@@ -167,10 +172,86 @@ class AdminApp(QMainWindow):
         self.cb11.setCurrentIndex(0)
         self.tb15.clear()
         self.tb16.clear()
-
+#######################################################################################################################
     def edit_teacher_tab(self):
         self.tabWidget.setCurrentIndex(2)
+        self.load_teachers_into_combobox()
+        self.b6.clicked.connect(self.update_teacher_details)  # b6 is your Save button
+        self.b7.clicked.connect(self.delete_teacher)  # b7 is your Delete button
 
+    def load_teachers_into_combobox(self):
+        self.cb21.clear()  # Clear existing items, replace cb21 with your actual QComboBox name
+        users = load_users()  # Load users from file
+        teachers = [user for user in users if user.get('type') == 'teacher']
+        for teacher in teachers:
+            self.cb21.addItem(teacher['teacherId'], teacher)  # Adding teacher ID and associate the full teacher data
+
+    def on_teacher_selected(self, index):
+            if index == -1:  # No selection or the combo box is being cleared
+                return
+
+            teacher_data = self.cb21.itemData(index)
+            if teacher_data:
+                self.tb21.setText(teacher_data['teacherId'])
+                self.tb22.setText(teacher_data['email'])
+                self.tb23.setText(teacher_data['name'])
+                self.tb24.setText(teacher_data['surname'])
+                self.cb22.setCurrentText(teacher_data['gender'])
+                self.tb25.setText(teacher_data['date_of_birth'])
+                self.tb26.setText(teacher_data['phone'])
+
+    def display_teacher_details(self, index):
+        teacher_data = self.cb21.itemData(index)  # Get the associated teacher data
+        if teacher_data:
+            # Set the fields with the selected teacher's data
+            self.tb21.setText(teacher_data['teacherId'])  
+            self.tb22.setText(teacher_data['email'])
+            self.tb23.setText(teacher_data['name'])
+            self.tb24.setText(teacher_data['surname'])
+            self.cb22.setCurrentText(teacher_data['gender'])
+            self.tb25.setText(teacher_data['date_of_birth'])
+            self.tb26.setText(teacher_data['phone'])
+            self.tb27.setText(teacher_data['password'])
+
+    def update_teacher_details(self):
+        # Get the updated details from the form
+        teacherId = self.tb21.text()
+        email = self.tb22.text()
+        name = self.tb23.text()
+        surname = self.tb24.text()
+        gender = self.cb22.currentText()
+        date_of_birth = self.tb25.text()
+        phone = self.tb26.text()
+        password = self.tb27.text()
+
+        # Perform validations here
+
+        users = load_users()
+        for i, user in enumerate(users):
+            if user.get('type') == 'teacher' and user['teacherId'] == teacherId:
+                users[i].update({
+                    'teacherId': teacherId,
+                    'email': email,
+                    'name': name,
+                    'surname': surname,
+                    'gender': gender,
+                    'date_of_birth': date_of_birth,
+                    'phone': phone
+                })
+                break
+        save_users(users)
+        QMessageBox.information(self, "Update Success", "Teacher details updated successfully.")
+        self.load_teachers_into_combobox()  # Refresh the teacher list
+
+    def delete_teacher(self):
+        teacher_id_to_delete = self.cb21.currentText()
+        users = load_users()
+        users = [user for user in users if not (user.get('type') == 'teacher' and user['teacherId'] == teacher_id_to_delete)]
+        save_users(users)
+        QMessageBox.information(self, "Deletion Success", "Teacher details deleted successfully.")
+        self.load_teachers_into_combobox()  # Refresh the teacher list
+        
+###############################################################################################################################################
 class LoginApp(QDialog):
     def __init__(self):
         super(LoginApp, self).__init__()
@@ -195,7 +276,7 @@ class LoginApp(QDialog):
     def show_reg(self):
         global widget
         widget.setCurrentIndex(1)
-
+##############################################################################################################################################
 class RegApp(QDialog):
     def __init__(self):
         super(RegApp, self).__init__()
@@ -235,7 +316,7 @@ class RegApp(QDialog):
     def show_login(self):
         global widget
         widget.setCurrentIndex(0)
-
+###################################################################################################################################
 # Main Application Setup
 if __name__ == "__main__":
     app = QApplication(sys.argv)

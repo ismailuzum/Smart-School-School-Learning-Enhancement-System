@@ -6,5 +6,13 @@
         "surname": "admin",
         "phone": "+31623644423",
         "type": "admin"
+    },
+    {
+        "email": "seanalone@alone.com",
+        "password": "Carry4@56",
+        "name": "Sean",
+        "surname": "Alone",
+        "phone": "+31683456789",
+        "type": "student"
     }
 ]
