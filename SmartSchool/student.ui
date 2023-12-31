@@ -297,7 +297,7 @@ background-color: rgb(40, 41, 44);</string>
        <string notr="true">background-color: rgb(255, 255, 255);</string>
       </property>
      </widget>
-     <widget class="QComboBox" name="cb22">
+     <widget class="QComboBox" name="cb11_st">
       <property name="geometry">
        <rect>
         <x>140</x>
@@ -308,7 +308,7 @@ background-color: rgb(40, 41, 44);</string>
       </property>
       <property name="styleSheet">
        <string notr="true">background-color: rgb(255, 255, 255);
-font: 12pt &quot;MS Shell Dlg 2&quot;;
+font: 10pt &quot;MS Shell Dlg 2&quot;;
 </string>
       </property>
       <property name="currentIndex">

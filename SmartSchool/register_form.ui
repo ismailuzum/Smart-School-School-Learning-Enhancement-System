@@ -468,7 +468,7 @@ padding-bottom:3px</string>
      <bool>true</bool>
     </property>
    </widget>
-   <widget class="QComboBox" name="cb1">
+   <widget class="QComboBox" name="cb1_reg">
     <property name="geometry">
      <rect>
       <x>10</x>
@@ -477,32 +477,17 @@ padding-bottom:3px</string>
       <height>31</height>
      </rect>
     </property>
-    <property name="font">
-     <font>
-      <family>MS Shell Dlg 2</family>
-      <pointsize>10</pointsize>
-      <weight>50</weight>
-      <italic>false</italic>
-      <bold>false</bold>
-      <kerning>true</kerning>
-     </font>
-    </property>
     <property name="styleSheet">
      <string notr="true">font: 10pt &quot;MS Shell Dlg 2&quot;;
 color: rgb(255, 255, 255);
 background-color: rgb(40, 41, 44);
-border-radius:2px;
-padding-left:10px;
-border:1px solid rgba(0,0,0);
-border-bottom-color:rgb(46,82,102,255);
-padding-bottom:3px
 </string>
     </property>
     <property name="currentIndex">
      <number>0</number>
     </property>
     <property name="maxVisibleItems">
-     <number>13</number>
+     <number>8</number>
     </property>
     <property name="sizeAdjustPolicy">
      <enum>QComboBox::AdjustToContentsOnFirstShow</enum>
