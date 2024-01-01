@@ -44,8 +44,8 @@
         "teacherId": "2",
         "email": "mark@alone.com",
         "password": "Infotech1+",
-        "name": "yyy",
-        "surname": "yyy",
+        "name": "zzz",
+        "surname": "zzz",
         "gender": "Male",
         "date_of_birth": "01012007",
         "phone": "+31623644423",
@@ -61,5 +61,16 @@
         "date_of_birth": "01-01-2005",
         "phone": "+3155667744",
         "type": "student"
+    },
+    {
+        "teacherId": "3",
+        "email": "dadaad@sfsff.com",
+        "password": "Infotech1+",
+        "name": "aaaa",
+        "surname": "aaaaa",
+        "gender": "Female",
+        "date_of_birth": "112314124",
+        "phone": "+3163234456",
+        "type": "teacher"
     }
 ]
