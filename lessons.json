@@ -1,0 +1,30 @@
+[
+    {
+        "lessonName": "iasdasd",
+        "lessonDuration": "asdasd",
+        "lessonStart": "asdasdasd",
+        "lessonEnd": "asdasd",
+        "lessonSchedule": "Morning 09:00 -12:00"
+    },
+    {
+        "lessonName": "MATEMAT\u0130K",
+        "lessonDuration": "32",
+        "lessonStart": "11",
+        "lessonEnd": "11",
+        "lessonSchedule": "Morning 09:00 -12:00"
+    },
+    {
+        "lessonName": "dasdasd",
+        "lessonDuration": "asdasd",
+        "lessonStart": "asdas",
+        "lessonEnd": "asdas",
+        "lessonSchedule": "Morning 09:00 -12:00"
+    },
+    {
+        "lessonName": "dsadasdsadasf",
+        "lessonDuration": "asdasdasdas",
+        "lessonStart": "asdasdsad",
+        "lessonEnd": "sadasd",
+        "lessonSchedule": "Morning 09:00 -12:00"
+    }
+]

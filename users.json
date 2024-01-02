@@ -1,2 +1,76 @@
-{"name": "ismail", "surname": "uzum", "email": "ismailuzum@gmail.com", "password": "1234is"}
-{"name": "admin", "surname": "admin", "email": "admin@gmail.com", "password": "admin123"}
+[
+    {
+        "email": "admin@admin.com",
+        "password": "Infotech1+",
+        "name": "admin",
+        "surname": "admin",
+        "phone": "+31623644423",
+        "type": "admin"
+    },
+    {
+        "studentId": "1",
+        "email": "sean@alone.com",
+        "password": "Infotech1+",
+        "name": "Sean",
+        "surname": "Alone",
+        "gender": "Male",
+        "date_of_birth": "01-01-2000",
+        "phone": "+316324565654",
+        "type": "student"
+    },
+    {
+        "studentId": "2",
+        "email": "khan@alone.com",
+        "password": "Infotech1+",
+        "name": "Khan",
+        "surname": "Alone",
+        "gender": "Male",
+        "date_of_birth": "01-01-2000",
+        "phone": "+316324565654",
+        "type": "student"
+    },
+    {
+        "teacherId": "1",
+        "email": "adad@dfsdfsf.com",
+        "password": "InfoTech1+",
+        "name": "xxxx",
+        "surname": "xxxx",
+        "gender": "Male",
+        "date_of_birth": "01011978",
+        "phone": "+31682354355",
+        "type": "teacher"
+    },
+    {
+        "teacherId": "2",
+        "email": "mark@alone.com",
+        "password": "Infotech1+",
+        "name": "zzz",
+        "surname": "zzz",
+        "gender": "Male",
+        "date_of_birth": "01012007",
+        "phone": "+31623644423",
+        "type": "teacher"
+    },
+    {
+        "studentId": "3",
+        "email": "can@alone.com",
+        "password": "Infotech1+",
+        "name": "Can",
+        "surname": "Alone",
+        "gender": "Male",
+        "date_of_birth": "01-01-2005",
+        "phone": "+3155667744",
+        "type": "student"
+    },
+    {
+        "teacherId": "3",
+        "email": "dadaad@sfsff.com",
+        "password": "Infotech1+",
+        "name": "aaaa",
+        "surname": "aaaaa",
+        "gender": "Female",
+        "date_of_birth": "112314124",
+        "phone": "+3163234456",
+        "type": "teacher"
+    }
+]
