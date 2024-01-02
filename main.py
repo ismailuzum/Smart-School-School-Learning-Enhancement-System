@@ -2,7 +2,7 @@ import sys
 import json
 import re
 from PyQt5 import QtWidgets
-from PyQt5.QtWidgets import QDialog, QApplication, QMessageBox, QMainWindow
+from PyQt5.QtWidgets import QComboBox, QPushButton, QDialog, QApplication, QMessageBox, QMainWindow, QVBoxLayout, QWidget, QLabel, QHBoxLayout
 from PyQt5.uic import loadUi
 
 #############################################################################################################
@@ -44,6 +44,66 @@ def save_lessons(lessons):
             print(f"Error saving to lessons.json: {e}")
 
 ###############################################################################################################
+
+def load_attendance():
+    try:
+        with open('attendance.json', 'r') as file:
+            return json.load(file)
+    except FileNotFoundError:
+        return {}
+    except Exception as e:
+        print(f"Error loading attendance.json: {e}")
+        return {}
+
+def save_attendance(attendance_data):
+    try:
+        with open('attendance.json', 'w') as file:
+            json.dump(attendance_data, file, indent=4)
+    except Exception as e:
+        print(f"Error saving to attendance.json: {e}")
+
+###############################################################################################################
+
+def load_meetings():
+        try:
+            with open('meetings.json', 'r') as meetings_file:
+                return json.load(meetings_file)
+        except FileNotFoundError:
+            return []
+        except Exception as e:
+            print(f"Error loading meetings.json: {e}")
+            return []
+        
+def save_meetings(meetings):
+        try:
+            with open('meetings.json', 'w') as meetings_file:
+                json.dump(meetings, meetings_file, indent=4)
+        except Exception as e:
+            print(f"Error saving to meetings.json: {e}")
+
+##############################################################################################################
+
+def load_meeting_attendance():
+    try:
+        with open('meeting_attendance.json', 'r') as meeting_attendance_file:
+            return json.load(meeting_attendance_file)
+    except FileNotFoundError:
+        return {}
+    except Exception as e:
+        print(f"Error loading meeting_attendance.json: {e}")
+        return {}
+
+def save_meeting_attendance(meeting_attendance_data):
+    try:
+        with open('meeting_attendance.json', 'w') as meeting_attendance_file:
+            json.dump(meeting_attendance_data, meeting_attendance_file, indent=4)
+    except Exception as e:
+        print(f"Error saving to meeting_attendance.json: {e}")
+
+
+###############################################################################################################
+
+
 
 
 def is_valid_email(email):
@@ -231,11 +291,23 @@ class TeacherApp(QMainWindow):
         self.tabWidget.tabBar().setVisible(False)
         self.menu11_t.triggered.connect(self.edit_profile_tab)
         self.menu21_t.triggered.connect(self.course_schedule_tab)
+        self.menu31_t.triggered.connect(self.meeting_schedule_tab)
+        self.menu22_t.triggered.connect(self.lesson_attendance_tab)
+        self.menu32_t_2.triggered.connect(self.meeting_attendance_tab)
         self.menu71_t.triggered.connect(self.close)  # Logout from teacher menu
 
         self.b6.clicked.connect(self.update_teacher_details)  
         self.b6_t.clicked.connect(self.save_course_schedule)
-        self.b7_t_3.clicked.connect(self.clear_schedule_form)  # Button to clear form  
+        self.b6_t_2.clicked.connect(self.save_meeting_schedule)
+        self.b7_t_3.clicked.connect(self.clear_schedule_form)  # Button to clear form 
+        self.b7_t_4.clicked.connect(self.clear_meeting_schedule_form)  # Button to clear form 
+        self.b6_4_att.clicked.connect(self.saveAttendanceDetails)
+        self.b6_4_att_2.clicked.connect(self.saveMeetingAttendanceDetails)
+
+        self.cb22_t_49.currentIndexChanged.connect(self.studentSelected)
+        self.cb22_t_49.currentIndexChanged.connect(lambda: self.loadAttendanceData(self.cb22_t_49.itemData(self.cb22_t_49.currentIndex()).get('email')))
+        self.cb22_t_76.currentIndexChanged.connect(self.studentSelected)
+        self.cb22_t_76.currentIndexChanged.connect(lambda: self.loadMeetingAttendanceData(self.cb22_t_76.itemData(self.cb22_t_76.currentIndex()).get('email')))
 
  #############################################################################################################
         
@@ -452,8 +524,709 @@ class TeacherApp(QMainWindow):
         self.tb229_course.clear()
         self.cb215_course.setCurrentIndex(0)
         self.tb230_course.clear()
+        
+        empty_schedule = {
+            'date_lesson_1' :  '',
+            'time_slot_lesson_1' :  '',
+            'lesson_subject_lesson_1' :  '',
+            'date_lesson_2' :  '',
+            'time_slot_lesson_2' :  '',
+            'lesson_subject_lesson_2' :  '',
+            'date_lesson_3' :  '',
+            'time_slot_lesson_3' :  '',
+            'lesson_subject_lesson_3' :  '',
+            'date_lesson_4' :  '',
+            'time_slot_lesson_4' :  '',
+            'lesson_subject_lesson_4' :  '',
+            'date_lesson_5' :  '',
+            'time_slot_lesson_5' :  '',
+            'lesson_subject_lesson_5' :  '',
+            'date_lesson_6' :  '',
+            'time_slot_lesson_6' :  '',
+            'lesson_subject_lesson_6' :  '',
+            'date_lesson_7' :  '',
+            'time_slot_lesson_7' :  '',
+            'lesson_subject_lesson_7' :  '',
+            'date_lesson_8' :  '',
+            'time_slot_lesson_8' :  '',
+            'lesson_subject_lesson_8' :  '',
+            'date_lesson_9' :  '',
+            'time_slot_lesson_9' :  '',
+            'lesson_subject_lesson_9' :  '',
+            'date_lesson_10' :  '',
+            'time_slot_lesson_10' :  '',
+            'lesson_subject_lesson_10' :  '',
+            'date_lesson_11' :  '',
+            'time_slot_lesson_11' :  '',
+            'lesson_subject_lesson_11' :  '',
+            'date_lesson_12' :  '',
+            'time_slot_lesson_12' :  '',
+            'lesson_subject_lesson_12' :  '',
+            'date_lesson_13' :  '',
+            'time_slot_lesson_13' :  '',
+            'lesson_subject_lesson_13' :  '',
+            'date_lesson_14' :  '',
+            'time_slot_lesson_14' :  '',
+            'lesson_subject_lesson_14' :  '',
+            'date_lesson_15' :  '',
+            'time_slot_lesson_15' :  '',
+            'lesson_subject_lesson_15' :  '',
+            
+            }
+
+        # Save the empty/default schedule
+        try:
+            save_lessons([empty_schedule])
+            QMessageBox.information(self, "Success", "Course schedule cleared and updated in file.")
+        except Exception as e:
+            QMessageBox.critical(self, "Error", f"An error occurred while saving: {e}")    
+            
+        
+        
 
 #############################################################################################################
+
+    def lesson_attendance_tab(self):
+        self.tabWidget.setCurrentIndex(3)  # Switch to the attendance tab
+        self.loadStudentList()  # Load the student list into the comboBox
+        self.loadCurrentSchedule()  # Load the current schedule dates and times
+
+    def loadStudentList(self):
+        # Load students into the studentComboBox
+        self.cb22_t_49.clear()
+        self.cb22_t_49.addItem("Select a student", None)  # Default item
+        users = load_users()
+        for user in users:
+            if is_student(user):
+                # Create a dictionary to store as item data
+                student_info = {'studentId': user['studentId'], 'email': user['email']}
+                # Add the student's name and the dictionary as the item data
+                self.cb22_t_49.addItem(f"{user['name']} {user['surname']}", student_info)
+    
+    def studentSelected(self, index):
+        if index == -1:  # No selection or the combo box is being cleared
+            return
+
+        student_data = self.cb22_t_49.itemData(index)
+        if student_data:
+            student_id = student_data.get('studentId', '')
+            student_email = student_data.get('email', '')
+
+            self.tb23_3.setText(student_id)  # Assuming tb23_3 is the QLineEdit for student ID
+            self.tb24_3.setText(student_email)  # Assuming tb24_3 is the QLineEdit for email
+        else:
+            QMessageBox.warning(self, "Error", "Student data is not in the expected format.")
+
+
+
+
+
+    
+    def loadAttendanceData(self, student_email):
+        # Load the attendance data for the selected student
+        attendance = load_attendance()
+        student_attendance = attendance.get(student_email, {})
+        
+        self.tb21_course_2.setText(student_attendance.get('date_lesson_1', ''))
+        self.cb21_course_2.setCurrentText(student_attendance.get('time_slot_lesson_1', ''))
+        self.cb22_t_50.setCurrentText(student_attendance.get('status_lesson_1', ''))
+        self.tb23_course_2.setText(student_attendance.get('date_lesson_2', ''))
+        self.cb22_course_2.setCurrentText(student_attendance.get('time_slot_lesson_2', ''))
+        self.cb22_t_51.setCurrentText(student_attendance.get('status_lesson_2', ''))
+        self.tb25_course_2.setText(student_attendance.get('date_lesson_3', ''))
+        self.cb23_course_2.setCurrentText(student_attendance.get('time_slot_lesson_3', ''))
+        self.cb22_t_52.setCurrentText(student_attendance.get('status_lesson_3', ''))
+        self.tb27_course_2.setText(student_attendance.get('date_lesson_4', ''))
+        self.cb24_course_2.setCurrentText(student_attendance.get('time_slot_lesson_4', ''))
+        self.cb22_t_53.setCurrentText(student_attendance.get('status_lesson_4', ''))
+        self.tb29_course_2.setText(student_attendance.get('date_lesson_5', ''))
+        self.cb25_course_2.setCurrentText(student_attendance.get('time_slot_lesson_5', ''))
+        self.cb22_t_54.setCurrentText(student_attendance.get('status_lesson_5', ''))
+        self.tb211_course_2.setText(student_attendance.get('date_lesson_6', ''))
+        self.cb26_course_2.setCurrentText(student_attendance.get('time_slot_lesson_6', ''))
+        self.cb22_t_55.setCurrentText(student_attendance.get('status_lesson_6', ''))
+        self.tb213_course_2.setText(student_attendance.get('date_lesson_7', ''))
+        self.cb27_course_2.setCurrentText(student_attendance.get('time_slot_lesson_7', ''))
+        self.cb22_t_56.setCurrentText(student_attendance.get('status_lesson_7', ''))
+        self.tb215_course_2.setText(student_attendance.get('date_lesson_8', ''))
+        self.cb28_course_2.setCurrentText(student_attendance.get('time_slot_lesson_8', ''))
+        self.cb22_t_57.setCurrentText(student_attendance.get('status_lesson_8', ''))
+        self.tb217_course_2.setText(student_attendance.get('date_lesson_9', ''))
+        self.cb29_course_2.setCurrentText(student_attendance.get('time_slot_lesson_9', ''))
+        self.cb22_t_58.setCurrentText(student_attendance.get('status_lesson_9', ''))
+        self.tb219_course_2.setText(student_attendance.get('date_lesson_10', ''))
+        self.cb210_course_2.setCurrentText(student_attendance.get('time_slot_lesson_10', ''))
+        self.cb22_t_59.setCurrentText(student_attendance.get('status_lesson_10', ''))
+        self.tb221_course_2.setText(student_attendance.get('date_lesson_11', ''))
+        self.cb211_course_2.setCurrentText(student_attendance.get('time_slot_lesson_11', ''))
+        self.cb22_t_60.setCurrentText(student_attendance.get('status_lesson_11', ''))
+        self.tb223_course_2.setText(student_attendance.get('date_lesson_12', ''))
+        self.cb212_course_2.setCurrentText(student_attendance.get('time_slot_lesson_12', ''))
+        self.cb22_t_61.setCurrentText(student_attendance.get('status_lesson_12', ''))
+        self.tb225_course_2.setText(student_attendance.get('date_lesson_13', ''))
+        self.cb213_course_2.setCurrentText(student_attendance.get('time_slot_lesson_13', ''))
+        self.cb22_t_62.setCurrentText(student_attendance.get('  status_lesson_13', ''))
+        self.tb227_course_2.setText(student_attendance.get('date_lesson_14', ''))
+        self.cb214_course_2.setCurrentText(student_attendance.get('time_slot_lesson_14', ''))
+        self.cb22_t_63.setCurrentText(student_attendance.get('status_lesson_14', ''))
+        self.tb229_course_2.setText(student_attendance.get('date_lesson_15', ''))
+        self.cb215_course_2.setCurrentText(student_attendance.get('time_slot_lesson_15', ''))
+        self.cb22_t_64.setCurrentText(student_attendance.get('status_lesson_15', ''))
+
+        if not student_attendance:
+            self.loadCurrentSchedule
+              
+        
+        
+    
+    def loadCurrentSchedule(self):
+        lessons = load_lessons()
+        if not lessons:
+            QMessageBox.information(self, "Load Schedule", "No existing schedule found.")
+            return
+
+        current_schedule = lessons[0]
+
+        self.tb21_course_2.setText(current_schedule.get('date_lesson_1', ''))
+        self.cb21_course_2.setCurrentText(current_schedule.get('time_slot_lesson_1', ''))
+        self.tb23_course_2.setText(current_schedule.get('date_lesson_2', ''))
+        self.cb22_course_2.setCurrentText(current_schedule.get('time_slot_lesson_2', ''))
+        self.tb25_course_2.setText(current_schedule.get('date_lesson_3', ''))
+        self.cb23_course_2.setCurrentText(current_schedule.get('time_slot_lesson_3', ''))
+        self.tb27_course_2.setText(current_schedule.get('date_lesson_4', ''))
+        self.cb24_course_2.setCurrentText(current_schedule.get('time_slot_lesson_4', ''))
+        self.tb29_course_2.setText(current_schedule.get('date_lesson_5', ''))
+        self.cb25_course_2.setCurrentText(current_schedule.get('time_slot_lesson_5', ''))
+        self.tb211_course_2.setText(current_schedule.get('date_lesson_6', ''))
+        self.cb26_course_2.setCurrentText(current_schedule.get('time_slot_lesson_6', ''))
+        self.tb213_course_2.setText(current_schedule.get('date_lesson_7', ''))
+        self.cb27_course_2.setCurrentText(current_schedule.get('time_slot_lesson_7', ''))
+        self.tb215_course_2.setText(current_schedule.get('date_lesson_8', ''))
+        self.cb28_course_2.setCurrentText(current_schedule.get('time_slot_lesson_8', ''))
+        self.tb217_course_2.setText(current_schedule.get('date_lesson_9', ''))
+        self.cb29_course_2.setCurrentText(current_schedule.get('time_slot_lesson_9', ''))
+        self.tb219_course_2.setText(current_schedule.get('date_lesson_10', ''))
+        self.cb210_course_2.setCurrentText(current_schedule.get('time_slot_lesson_10', ''))
+        self.tb221_course_2.setText(current_schedule.get('date_lesson_11', ''))
+        self.cb211_course_2.setCurrentText(current_schedule.get('time_slot_lesson_11', ''))
+        self.tb223_course_2.setText(current_schedule.get('date_lesson_12', ''))
+        self.cb212_course_2.setCurrentText(current_schedule.get('time_slot_lesson_12', ''))
+        self.tb225_course_2.setText(current_schedule.get('date_lesson_13', ''))
+        self.cb213_course_2.setCurrentText(current_schedule.get('time_slot_lesson_13', ''))
+        self.tb227_course_2.setText(current_schedule.get('date_lesson_14', ''))
+        self.cb214_course_2.setCurrentText(current_schedule.get('time_slot_lesson_14', ''))
+        self.tb229_course_2.setText(current_schedule.get('date_lesson_15', ''))
+        self.cb215_course_2.setCurrentText(current_schedule.get('time_slot_lesson_15', ''))
+
+   
+    
+        
+    
+
+    def saveAttendanceDetails(self):
+        student_index = self.cb22_t_49.currentIndex()
+        student_data = self.cb22_t_49.itemData(student_index)
+        if not student_data:
+            QMessageBox.warning(self, "Error", "No student selected")
+            return
+
+        student_email = student_data.get('email')
+        if not student_email:
+            QMessageBox.warning(self, "Error", "Invalid student email")
+            return
+
+        try:
+            new_attendance = {
+                'date_lesson_1' : self.tb21_course_2.text(),
+                'time_slot_lesson_1' : self.cb21_course_2.currentText(),
+                'status_lesson_1' : self.cb22_t_50.currentText(),
+                'date_lesson_2' : self.tb23_course_2.text(),
+                'time_slot_lesson_2' : self.cb22_course_2.currentText(),
+                'status_lesson_2' : self.cb22_t_51.currentText(),
+                'date_lesson_3' : self.tb25_course_2.text(),
+                'time_slot_lesson_3' : self.cb23_course_2.currentText(),
+                'status_lesson_3' : self.cb22_t_52.currentText(),
+                'date_lesson_4' : self.tb27_course_2.text(),
+                'time_slot_lesson_4' : self.cb24_course_2.currentText(),
+                'status_lesson_4' : self.cb22_t_53.currentText(),
+                'date_lesson_5' : self.tb29_course_2.text(),
+                'time_slot_lesson_5' : self.cb25_course_2.currentText(),
+                'status_lesson_5' : self.cb22_t_54.currentText(),
+                'date_lesson_6' : self.tb211_course_2.text(),
+                'time_slot_lesson_6' : self.cb26_course_2.currentText(),
+                'status_lesson_6' : self.cb22_t_55.currentText(),
+                'date_lesson_7' : self.tb213_course_2.text(),
+                'time_slot_lesson_7' : self.cb27_course_2.currentText(),
+                'status_lesson_7' : self.cb22_t_56.currentText(),
+                'date_lesson_8' : self.tb215_course_2.text(),
+                'time_slot_lesson_8' : self.cb28_course_2.currentText(),
+                'status_lesson_8' : self.cb22_t_57.currentText(),
+                'date_lesson_9' : self.tb217_course_2.text(),
+                'time_slot_lesson_9' : self.cb29_course_2.currentText(),
+                'status_lesson_9' : self.cb22_t_58.currentText(),
+                'date_lesson_10' : self.tb219_course_2.text(),
+                'time_slot_lesson_10' : self.cb210_course_2.currentText(),
+                'status_lesson_10' : self.cb22_t_59.currentText(),
+                'date_lesson_11' : self.tb221_course_2.text(),
+                'time_slot_lesson_11' : self.cb211_course_2.currentText(),
+                'status_lesson_11' : self.cb22_t_60.currentText(),
+                'date_lesson_12' : self.tb223_course_2.text(),
+                'time_slot_lesson_12' : self.cb212_course_2.currentText(),
+                'status_lesson_12' : self.cb22_t_61.currentText(),
+                'date_lesson_13' : self.tb225_course_2.text(),
+                'time_slot_lesson_13' : self.cb213_course_2.currentText(),
+                'status_lesson_13' : self.cb22_t_62.currentText(),
+                'date_lesson_14' : self.tb227_course_2.text(),
+                'time_slot_lesson_14' : self.cb214_course_2.currentText(),
+                'status_lesson_14' : self.cb22_t_63.currentText(),
+                'date_lesson_15' : self.tb229_course_2.text(),
+                'time_slot_lesson_15' : self.cb215_course_2.currentText(),
+                'status_lesson_15' : self.cb22_t_64.currentText(),
+
+            }
+
+        
+            attendance = load_attendance()
+            attendance[student_email] = new_attendance
+            
+            save_attendance(attendance)
+            QMessageBox.information(self, "Success", "Lesson attendance saved/updated successfully.")
+        except Exception as e:
+            QMessageBox.critical(self, "Save Error", f"An error occurred: {e}")
+
+#################################################################################################################
+        
+    def meeting_schedule_tab(self):
+        self.tabWidget.setCurrentIndex(4)
+        self.load_current_meeting_schedule()
+    
+    def load_current_meeting_schedule(self):
+        meetings = load_meetings()
+        if not meetings:
+            QMessageBox.information(self, "Load Schedule", "No existing schedule found.")
+            return
+
+        current_meeting_schedule = meetings[0]
+
+        self.tb21_course_3.setText(current_meeting_schedule.get('date_meeting_1', ''))
+        self.cb21_course_3.setCurrentText(current_meeting_schedule.get('time_slot_meeting_1', ''))
+        self.tb22_course_3.setText(current_meeting_schedule.get('meeting_subject_meeting_1', ''))
+        self.tb23_course_3.setText(current_meeting_schedule.get('date_meeting_2', ''))
+        self.cb22_course_3.setCurrentText(current_meeting_schedule.get('time_slot_meeting_2', ''))
+        self.tb24_course_3.setText(current_meeting_schedule.get('meeting_subject_meeting_2', ''))
+        self.tb25_course_3.setText(current_meeting_schedule.get('date_meeting_3', ''))
+        self.cb23_course_3.setCurrentText(current_meeting_schedule.get('time_slot_meeting_3', ''))
+        self.tb26_course_3.setText(current_meeting_schedule.get('meeting_subject_meeting_3', ''))
+        self.tb27_course_3.setText(current_meeting_schedule.get('date_meeting_4', ''))
+        self.cb24_course_3.setCurrentText(current_meeting_schedule.get('time_slot_meeting_4', ''))
+        self.tb28_course_3.setText(current_meeting_schedule.get('meeting_subject_meeting_4', ''))
+        self.tb29_course_3.setText(current_meeting_schedule.get('date_meeting_5', ''))
+        self.cb25_course_3.setCurrentText(current_meeting_schedule.get('time_slot_meeting_5', ''))
+        self.tb210_course_3.setText(current_meeting_schedule.get('meeting_subject_meeting_5', ''))
+        self.tb211_course_3.setText(current_meeting_schedule.get('date_meeting_6', ''))
+        self.cb26_course_3.setCurrentText(current_meeting_schedule.get('time_slot_meeting_6', ''))
+        self.tb212_course_3.setText(current_meeting_schedule.get('meeting_subject_meeting_6', ''))
+        self.tb213_course_3.setText(current_meeting_schedule.get('date_meeting_7', ''))
+        self.cb27_course_3.setCurrentText(current_meeting_schedule.get('time_slot_meeting_7', ''))
+        self.tb214_course_3.setText(current_meeting_schedule.get('meeting_subject_meeting_7', ''))
+        self.tb215_course_3.setText(current_meeting_schedule.get('date_meeting_8', ''))
+        self.cb28_course_3.setCurrentText(current_meeting_schedule.get('time_slot_meeting_8', ''))
+        self.tb216_course_3.setText(current_meeting_schedule.get('meeting_subject_meeting_8', ''))
+        self.tb217_course_3.setText(current_meeting_schedule.get('date_meeting_9', ''))
+        self.cb29_course_3.setCurrentText(current_meeting_schedule.get('time_slot_meeting_9', ''))
+        self.tb218_course_3.setText(current_meeting_schedule.get('meeting_subject_meeting_9', ''))
+        self.tb219_course_3.setText(current_meeting_schedule.get('date_meeting_10', ''))
+        self.cb210_course_3.setCurrentText(current_meeting_schedule.get('time_slot_meeting_10', ''))
+        self.tb220_course_3.setText(current_meeting_schedule.get('meeting_subject_meeting_10', ''))
+        self.tb221_course_3.setText(current_meeting_schedule.get('date_meeting_11', ''))
+        self.cb211_course_3.setCurrentText(current_meeting_schedule.get('time_slot_meeting_11', ''))
+        self.tb222_course_3.setText(current_meeting_schedule.get('meeting_subject_meeting_11', ''))
+        self.tb223_course_3.setText(current_meeting_schedule.get('date_meeting_12', ''))
+        self.cb212_course.setCurrentText(current_meeting_schedule.get('time_slot_meeting_12', ''))
+        self.tb224_course_3.setText(current_meeting_schedule.get('meeting_subject_meeting_12', ''))
+        self.tb225_course_3.setText(current_meeting_schedule.get('date_meeting_13', ''))
+        self.cb213_course_3.setCurrentText(current_meeting_schedule.get('time_slot_meeting_13', ''))
+        self.tb226_course_3.setText(current_meeting_schedule.get('meeting_subject_meeting_13', ''))
+        self.tb227_course_3.setText(current_meeting_schedule.get('date_meeting_14', ''))
+        self.cb214_course_3.setCurrentText(current_meeting_schedule.get('time_slot_meeting_14', ''))
+        self.tb228_course_3.setText(current_meeting_schedule.get('meeting_subject_meeting_14', ''))
+        self.tb229_course_3.setText(current_meeting_schedule.get('date_meeting_15', ''))
+        self.cb215_course_3.setCurrentText(current_meeting_schedule.get('time_slot_meeting_15', ''))
+        self.tb230_course_3.setText(current_meeting_schedule.get('meeting_subject_meeting_15', ''))    
+
+        
+    def save_meeting_schedule(self):
+        try:
+            new_meeting_schedule = {
+            'date_meeting_1': self.tb21_course_3.text(),
+            'time_slot_meeting_1': self.cb21_course_3.currentText(),
+            'meeting_subject_meeting_1': self.tb22_course_3.text(),
+            'date_meeting_2': self.tb23_course_3.text(),
+            'time_slot_meeting_2': self.cb22_course_3.currentText(),
+            'meeting_subject_meeting_2': self.tb24_course_3.text(),
+            'date_meeting_3': self.tb25_course_3.text(),
+            'time_slot_meeting_3': self.cb23_course_3.currentText(),
+            'meeting_subject_meeting_3': self.tb26_course_3.text(),
+            'date_meeting_4': self.tb27_course_3.text(),
+            'time_slot_meeting_4': self.cb24_course_3.currentText(),
+            'meeting_subject_meeting_4': self.tb28_course_3.text(),
+            'date_meeting_5': self.tb29_course_3.text(),
+            'time_slot_meeting_5': self.cb25_course_3.currentText(),
+            'meeting_subject_meeting_5': self.tb210_course_3.text(),
+            'date_meeting_6': self.tb211_course_3.text(),
+            'time_slot_meeting_6': self.cb26_course_3.currentText(),
+            'meeting_subject_meeting_6': self.tb212_course_3.text(),
+            'date_meeting_7': self.tb213_course_3.text(),
+            'time_slot_meeting_7': self.cb27_course_3.currentText(),
+            'meeting_subject_meeting_7': self.tb214_course_3.text(),
+            'date_meeting_8': self.tb215_course_3.text(),
+            'time_slot_meeting_8': self.cb28_course_3.currentText(),
+            'meeting_subject_meeting_8': self.tb216_course_3.text(),
+            'date_meeting_9': self.tb217_course_3.text(),
+            'time_slot_meeting_9': self.cb29_course_3.currentText(),
+            'meeting_subject_meeting_9': self.tb218_course_3.text(),
+            'date_meeting_10': self.tb219_course_3.text(),
+            'time_slot_meeting_10': self.cb210_course_3.currentText(),
+            'meeting_subject_meeting_10': self.tb220_course_3.text(),
+            'date_meeting_11': self.tb221_course_3.text(),
+            'time_slot_meeting_11': self.cb211_course_3.currentText(),
+            'meeting_subject_meeting_11': self.tb222_course_3.text(),
+            'date_meeting_12': self.tb223_course_3.text(),
+            'time_slot_meeting_12': self.cb212_course_3.currentText(),
+            'meeting_subject_meeting_12': self.tb224_course_3.text(),
+            'date_meeting_13': self.tb225_course_3.text(),
+            'time_slot_meeting_13': self.cb213_course_3.currentText(),
+            'meeting_subject_meeting_13': self.tb226_course_3.text(),
+            'date_meeting_14': self.tb227_course_3.text(),
+            'time_slot_meeting_14': self.cb214_course_3.currentText(),
+            'meeting_subject_meeting_14': self.tb228_course_3.text(),
+            'date_meeting_15': self.tb229_course_3.text(),
+            'time_slot_meeting_15': self.cb215_course_3.currentText(),
+            'meeting_subject_meeting_15': self.tb230_course_3.text(),
+            }
+
+        # This will overwrite the existing schedule with the new one
+            save_meetings([new_meeting_schedule])
+            QMessageBox.information(self, "Success", "Course schedule saved/updated successfully.")
+        except Exception as e:
+            QMessageBox.critical(self, "Save Error", f"An error occurred: {e}")
+
+    def clear_meeting_schedule_form(self):
+        # Clear the schedule form for all QLineEdit and QComboBox widgets
+        self.tb21_course_3.clear()
+        self.cb21_course_3.setCurrentIndex(0)
+        self.tb22_course_3.clear()
+        self.tb23_course_3.clear()
+        self.cb22_course_3.setCurrentIndex(0)
+        self.tb24_course_3.clear()
+        self.tb25_course_3.clear()
+        self.cb23_course_3.setCurrentIndex(0)
+        self.tb26_course_3.clear()
+        self.tb27_course_3.clear()
+        self.cb24_course_3.setCurrentIndex(0)
+        self.tb28_course_3.clear()
+        self.tb29_course_3.clear()
+        self.cb25_course_3.setCurrentIndex(0)
+        self.tb210_course_3.clear()
+        self.tb211_course_3.clear()
+        self.cb26_course_3.setCurrentIndex(0)
+        self.tb212_course_3.clear()
+        self.tb213_course_3.clear()
+        self.cb27_course_3.setCurrentIndex(0)
+        self.tb214_course_3.clear()
+        self.tb215_course_3.clear()
+        self.cb28_course_3.setCurrentIndex(0)
+        self.tb216_course_3.clear()
+        self.tb217_course_3.clear()
+        self.cb29_course_3.setCurrentIndex(0)
+        self.tb218_course_3.clear()
+        self.tb219_course_3.clear()
+        self.cb210_course_3.setCurrentIndex(0)
+        self.tb220_course_3.clear()
+        self.tb221_course_3.clear()
+        self.cb211_course_3.setCurrentIndex(0)
+        self.tb222_course_3.clear()
+        self.tb223_course_3.clear()
+        self.cb212_course_3.setCurrentIndex(0)
+        self.tb224_course_3.clear()
+        self.tb225_course_3.clear()
+        self.cb213_course_3.setCurrentIndex(0)
+        self.tb226_course_3.clear()
+        self.tb227_course_3.clear()
+        self.cb214_course_3.setCurrentIndex(0)
+        self.tb228_course_3.clear()
+        self.tb229_course_3.clear()
+        self.cb215_course_3.setCurrentIndex(0)
+        self.tb230_course_3.clear()
+ 
+        # Create an empty or default meeting schedule
+        empty_meeting_schedule = {
+            'date_meeting_1' :  '',
+            'time_slot_meeting_1' :  '',
+            'meeting_subject_meeting_1' :  '',
+            'date_meeting_2' :  '',
+            'time_slot_meeting_2' :  '',
+            'meeting_subject_meeting_2' :  '',
+            'date_meeting_3' :  '',
+            'time_slot_meeting_3' :  '',
+            'meeting_subject_meeting_3' :  '',
+            'date_meeting_4' :  '',
+            'time_slot_meeting_4' :  '',
+            'meeting_subject_meeting_4' :  '',
+            'date_meeting_5' :  '',
+            'time_slot_meeting_5' :  '',
+            'meeting_subject_meeting_5' :  '',
+            'date_meeting_6' :  '',
+            'time_slot_meeting_6' :  '',
+            'meeting_subject_meeting_6' :  '',
+            'date_meeting_7' :  '',
+            'time_slot_meeting_7' :  '',
+            'meeting_subject_meeting_7' :  '',
+            'date_meeting_8' :  '',
+            'time_slot_meeting_8' :  '',
+            'meeting_subject_meeting_8' :  '',
+            'date_meeting_9' :  '',
+            'time_slot_meeting_9' :  '',
+            'meeting_subject_meeting_9' :  '',
+            'date_meeting_10' :  '',
+            'time_slot_meeting_10' :  '',
+            'meeting_subject_meeting_10' :  '',
+            'date_meeting_11' :  '',
+            'time_slot_meeting_11' :  '',
+            'meeting_subject_meeting_11' :  '',
+            'date_meeting_12' :  '',
+            'time_slot_meeting_12' :  '',
+            'meeting_subject_meeting_12' :  '',
+            'date_meeting_13' :  '',
+            'time_slot_meeting_13' :  '',
+            'meeting_subject_meeting_13' :  '',
+            'date_meeting_14' :  '',
+            'time_slot_meeting_14' :  '',
+            'meeting_subject_meeting_14' :  '',
+            'date_meeting_15' :  '',
+            'time_slot_meeting_15' :  '',
+            'meeting_subject_meeting_15' :  '',
+
+        }
+
+        # Save the empty/default schedule
+        try:
+            save_meetings([empty_meeting_schedule])
+            QMessageBox.information(self, "Success", "Meeting schedule cleared and updated in file.")
+        except Exception as e:
+            QMessageBox.critical(self, "Error", f"An error occurred while saving: {e}")
+    
+ 
+        
+#############################################################################################################
+    def meeting_attendance_tab(self):
+        self.tabWidget.setCurrentIndex(5)  
+        self.loadStudentList()  
+        self.loadCurrentSchedule()  
+
+    def loadStudentList(self):
+        # Load students into the studentComboBox
+        self.cb22_t_76.clear()
+        self.cb22_t_76.addItem("Select a student", None)  # Default item
+        users = load_users()
+        for user in users:
+            if is_student(user):
+                # Create a dictionary to store as item data
+                student_info = {'studentId': user['studentId'], 'email': user['email']}
+                # Add the student's name and the dictionary as the item data
+                self.cb22_t_76.addItem(f"{user['name']} {user['surname']}", student_info)
+    
+    def studentSelected(self, index):
+        if index == -1:  # No selection or the combo box is being cleared
+            return
+
+        student_data = self.cb22_t_76.itemData(index)
+        if student_data:
+            student_id = student_data.get('studentId', '')
+            student_email = student_data.get('email', '')
+
+            self.tb23_4.setText(student_id)  # Assuming tb23_3 is the QLineEdit for student ID
+            self.tb24_4.setText(student_email)  # Assuming tb24_3 is the QLineEdit for email
+        else:
+            QMessageBox.warning(self, "Error", "Student data is not in the expected format.")
+
+   
+    def loadMeetingAttendanceData(self, student_email):
+        # Load the attendance data for the selected student
+        meeting_attendance = load_meeting_attendance()
+        student_meeting_attendance = meeting_attendance.get(student_email, {})
+        
+        self.tb21_course_4.setText(student_meeting_attendance.get('date_meeting_1', ''))
+        self.cb21_course_4.setCurrentText(student_meeting_attendance.get('time_slot_meeting_1', ''))
+        self.cb22_t_71.setCurrentText(student_meeting_attendance.get('status_meeting_1', ''))
+        self.tb23_course_4.setText(student_meeting_attendance.get('date_meeting_2', ''))
+        self.cb22_course_4.setCurrentText(student_meeting_attendance.get('time_slot_meeting_2', ''))
+        self.cb22_t_67.setCurrentText(student_meeting_attendance.get('status_meeting_2', ''))
+        self.tb25_course_4.setText(student_meeting_attendance.get('date_meeting_3', ''))
+        self.cb23_course_4.setCurrentText(student_meeting_attendance.get('time_slot_meeting_3', ''))
+        self.cb22_t_74.setCurrentText(student_meeting_attendance.get('status_meeting_3', ''))
+        self.tb27_course_4.setText(student_meeting_attendance.get('date_meeting_4', ''))
+        self.cb24_course_4.setCurrentText(student_meeting_attendance.get('time_slot_meeting_4', ''))
+        self.cb22_t_65.setCurrentText(student_meeting_attendance.get('status_meeting_4', ''))
+        self.tb29_course_4.setText(student_meeting_attendance.get('date_meeting_5', ''))
+        self.cb25_course_4.setCurrentText(student_meeting_attendance.get('time_slot_meeting_5', ''))
+        self.cb22_t_73.setCurrentText(student_meeting_attendance.get('status_meeting_5', ''))
+        self.tb211_course_4.setText(student_meeting_attendance.get('date_meeting_6', ''))
+        self.cb26_course_4.setCurrentText(student_meeting_attendance.get('time_slot_meeting_6', ''))
+        self.cb22_t_75.setCurrentText(student_meeting_attendance.get('status_meeting_6', ''))
+        self.tb213_course_4.setText(student_meeting_attendance.get('date_meeting_7', ''))
+        self.cb27_course_4.setCurrentText(student_meeting_attendance.get('time_slot_meeting_7', ''))
+        self.cb22_t_79.setCurrentText(student_meeting_attendance.get('status_meeting_7', ''))
+        self.tb215_course_4.setText(student_meeting_attendance.get('date_meeting_8', ''))
+        self.cb28_course_4.setCurrentText(student_meeting_attendance.get('time_slot_meeting_8', ''))
+        self.cb22_t_80.setCurrentText(student_meeting_attendance.get('status_meeting_8', ''))
+        self.tb217_course_4.setText(student_meeting_attendance.get('date_meeting_9', ''))
+        self.cb29_course_4.setCurrentText(student_meeting_attendance.get('time_slot_meeting_9', ''))
+        self.cb22_t_69.setCurrentText(student_meeting_attendance.get('status_meeting_9', ''))
+        self.tb219_course_4.setText(student_meeting_attendance.get('date_meeting_10', ''))
+        self.cb210_course_4.setCurrentText(student_meeting_attendance.get('time_slot_meeting_10', ''))
+        self.cb22_t_78.setCurrentText(student_meeting_attendance.get('status_meeting_10', ''))
+        self.tb221_course_4.setText(student_meeting_attendance.get('date_meeting_11', ''))
+        self.cb211_course_4.setCurrentText(student_meeting_attendance.get('time_slot_meeting_11', ''))
+        self.cb22_t_66.setCurrentText(student_meeting_attendance.get('status_meeting_11', ''))
+        self.tb223_course_4.setText(student_meeting_attendance.get('date_meeting_12', ''))
+        self.cb212_course_4.setCurrentText(student_meeting_attendance.get('time_slot_meeting_12', ''))
+        self.cb22_t_68.setCurrentText(student_meeting_attendance.get('status_meeting_12', ''))
+        self.tb225_course_4.setText(student_meeting_attendance.get('date_meeting_13', ''))
+        self.cb213_course_4.setCurrentText(student_meeting_attendance.get('time_slot_meeting_13', ''))
+        self.cb22_t_77.setCurrentText(student_meeting_attendance.get('  status_meeting_13', ''))
+        self.tb227_course_4.setText(student_meeting_attendance.get('date_meeting_14', ''))
+        self.cb214_course_4.setCurrentText(student_meeting_attendance.get('time_slot_meeting_14', ''))
+        self.cb22_t_70.setCurrentText(student_meeting_attendance.get('status_meeting_14', ''))
+        self.tb229_course_4.setText(student_meeting_attendance.get('date_meeting_15', ''))
+        self.cb215_course_4.setCurrentText(student_meeting_attendance.get('time_slot_meeting_15', ''))
+        self.cb22_t_72.setCurrentText(student_meeting_attendance.get('status_meeting_15', ''))
+
+        if not student_meeting_attendance:
+            self.loadCurrentSchedule
+              
+        
+        
+    
+    def loadCurrentMeetingSchedule(self):
+        meetings = load_meetings()
+        if not meetings:
+            QMessageBox.information(self, "Load Meeting Schedule", "No existing schedule found.")
+            return
+
+        current_meeting_schedule = meetings[0]
+
+        self.tb21_course_4.setText(current_meeting_schedule.get('date_meeting_1', ''))
+        self.cb21_course_4.setCurrentText(current_meeting_schedule.get('time_slot_meeting_1', ''))
+        self.tb23_course_4.setText(current_meeting_schedule.get('date_meeting_2', ''))
+        self.cb22_course_4.setCurrentText(current_meeting_schedule.get('time_slot_meeting_2', ''))
+        self.tb25_course_4.setText(current_meeting_schedule.get('date_meeting_3', ''))
+        self.cb23_course_4.setCurrentText(current_meeting_schedule.get('time_slot_meeting_3', ''))
+        self.tb27_course_4.setText(current_meeting_schedule.get('date_meeting_4', ''))
+        self.cb24_course_4.setCurrentText(current_meeting_schedule.get('time_slot_meeting_4', ''))
+        self.tb29_course_4.setText(current_meeting_schedule.get('date_meeting_5', ''))
+        self.cb25_course_4.setCurrentText(current_meeting_schedule.get('time_slot_meeting_5', ''))
+        self.tb211_course_4.setText(current_meeting_schedule.get('date_meeting_6', ''))
+        self.cb26_course_4.setCurrentText(current_meeting_schedule.get('time_slot_meeting_6', ''))
+        self.tb213_course_4.setText(current_meeting_schedule.get('date_meeting_7', ''))
+        self.cb27_course_4.setCurrentText(current_meeting_schedule.get('time_slot_meeting_7', ''))
+        self.tb215_course_4.setText(current_meeting_schedule.get('date_meeting_8', ''))
+        self.cb28_course_4.setCurrentText(current_meeting_schedule.get('time_slot_meeting_8', ''))
+        self.tb217_course_4.setText(current_meeting_schedule.get('date_meeting_9', ''))
+        self.cb29_course_4.setCurrentText(current_meeting_schedule.get('time_slot_meeting_9', ''))
+        self.tb219_course_4.setText(current_meeting_schedule.get('date_meeting_10', ''))
+        self.cb210_course_4.setCurrentText(current_meeting_schedule.get('time_slot_meeting_10', ''))
+        self.tb221_course_4.setText(current_meeting_schedule.get('date_meeting_11', ''))
+        self.cb211_course_4.setCurrentText(current_meeting_schedule.get('time_slot_meeting_11', ''))
+        self.tb223_course_4.setText(current_meeting_schedule.get('date_meeting_12', ''))
+        self.cb212_course_4.setCurrentText(current_meeting_schedule.get('time_slot_meeting_12', ''))
+        self.tb225_course_4.setText(current_meeting_schedule.get('date_meeting_13', ''))
+        self.cb213_course_4.setCurrentText(current_meeting_schedule.get('time_slot_meeting_13', ''))
+        self.tb227_course_4.setText(current_meeting_schedule.get('date_meeting_14', ''))
+        self.cb214_course_4.setCurrentText(current_meeting_schedule.get('time_slot_meeting_14', ''))
+        self.tb229_course_4.setText(current_meeting_schedule.get('date_meeting_15', ''))
+        self.cb215_course_4.setCurrentText(current_meeting_schedule.get('time_slot_meeting_15', ''))
+
+   
+    
+        
+    
+
+    def saveMeetingAttendanceDetails(self):
+        student_index = self.cb22_t_76.currentIndex()
+        student_data = self.cb22_t_76.itemData(student_index)
+        if not student_data:
+            QMessageBox.warning(self, "Error", "No student selected")
+            return
+
+        student_email = student_data.get('email')
+        if not student_email:
+            QMessageBox.warning(self, "Error", "Invalid student email")
+            return
+
+        try:
+            new_meeting_attendance = {
+                'date_meeting_1' : self.tb21_course_4.text(),
+                'time_slot_meeting_1' : self.cb21_course_4.currentText(),
+                'status_meeting_1' : self.cb22_t_71.currentText(),
+                'date_meeting_2' : self.tb23_course_4.text(),
+                'time_slot_meeting_2' : self.cb22_course_4.currentText(),
+                'status_meeting_2' : self.cb22_t_67.currentText(),
+                'date_meeting_3' : self.tb25_course_4.text(),
+                'time_slot_meeting_3' : self.cb23_course_4.currentText(),
+                'status_meeting_3' : self.cb22_t_74.currentText(),
+                'date_meeting_4' : self.tb27_course_4.text(),
+                'time_slot_meeting_4' : self.cb24_course_4.currentText(),
+                'status_meeting_4' : self.cb22_t_65.currentText(),
+                'date_meeting_5' : self.tb29_course_4.text(),
+                'time_slot_meeting_5' : self.cb25_course_4.currentText(),
+                'status_meeting_5' : self.cb22_t_73.currentText(),
+                'date_meeting_6' : self.tb211_course_4.text(),
+                'time_slot_meeting_6' : self.cb26_course_4.currentText(),
+                'status_meeting_6' : self.cb22_t_75.currentText(),
+                'date_meeting_7' : self.tb213_course_4.text(),
+                'time_slot_meeting_7' : self.cb27_course_4.currentText(),
+                'status_meeting_7' : self.cb22_t_79.currentText(),
+                'date_meeting_8' : self.tb215_course_4.text(),
+                'time_slot_meeting_8' : self.cb28_course_4.currentText(),
+                'status_meeting_8' : self.cb22_t_80.currentText(),
+                'date_meeting_9' : self.tb217_course_4.text(),
+                'time_slot_meeting_9' : self.cb29_course_4.currentText(),
+                'status_meeting_9' : self.cb22_t_69.currentText(),
+                'date_meeting_10' : self.tb219_course_4.text(),
+                'time_slot_meeting_10' : self.cb210_course_4.currentText(),
+                'status_meeting_10' : self.cb22_t_78.currentText(),
+                'date_meeting_11' : self.tb221_course_4.text(),
+                'time_slot_meeting_11' : self.cb211_course_4.currentText(),
+                'status_meeting_11' : self.cb22_t_66.currentText(),
+                'date_meeting_12' : self.tb223_course_4.text(),
+                'time_slot_meeting_12' : self.cb212_course_4.currentText(),
+                'status_meeting_12' : self.cb22_t_68.currentText(),
+                'date_meeting_13' : self.tb225_course_4.text(),
+                'time_slot_meeting_13' : self.cb213_course_4.currentText(),
+                'status_meeting_13' : self.cb22_t_77.currentText(),
+                'date_meeting_14' : self.tb227_course_4.text(),
+                'time_slot_meeting_14' : self.cb214_course_4.currentText(),
+                'status_meeting_14' : self.cb22_t_70.currentText(),
+                'date_meeting_15' : self.tb229_course_4.text(),
+                'time_slot_meeting_15' : self.cb215_course_4.currentText(),
+                'status_meeting_15' : self.cb22_t_72.currentText(),
+
+            }
+
+        
+            meeting_attendance = load_meeting_attendance()
+            meeting_attendance[student_email] = new_meeting_attendance
+            
+            save_meeting_attendance(meeting_attendance)
+            QMessageBox.information(self, "Success", "meeting attendance saved/updated successfully.")
+        except Exception as e:
+            QMessageBox.critical(self, "Save Error", f"An error occurred: {e}")
+
+
+
+
+###################################################################################################################################
 
 class LoginApp(QDialog):
     def __init__(self):
@@ -627,6 +1400,7 @@ if __name__ == "__main__":
     email = ""
     student_form = StudentApp(email)
     teacher_form = TeacherApp(email)
+    
 
     widget.addWidget(login_form)
     widget.addWidget(registration_form)
