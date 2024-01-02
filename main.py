@@ -46,21 +46,21 @@ def save_lessons(lessons):
 ###############################################################################################################
 
 def load_attendance():
-    try:
-        with open('attendance.json', 'r') as file:
-            return json.load(file)
-    except FileNotFoundError:
-        return {}
-    except Exception as e:
-        print(f"Error loading attendance.json: {e}")
-        return {}
+        try:
+            with open('attendance.json', 'r') as file:
+                return json.load(file)
+        except FileNotFoundError:
+            return {}
+        except Exception as e:
+            print(f"Error loading attendance.json: {e}")
+            return {}
 
 def save_attendance(attendance_data):
-    try:
-        with open('attendance.json', 'w') as file:
-            json.dump(attendance_data, file, indent=4)
-    except Exception as e:
-        print(f"Error saving to attendance.json: {e}")
+        try:
+            with open('attendance.json', 'w') as file:
+                json.dump(attendance_data, file, indent=4)
+        except Exception as e:
+            print(f"Error saving to attendance.json: {e}")
 
 ###############################################################################################################
 
@@ -1336,10 +1336,67 @@ class StudentApp(QMainWindow):
         self.tabWidget.setCurrentIndex(0)
         self.tabWidget.tabBar().setVisible(False)
         self.menu11.triggered.connect(self.edit_profile_tab)
+        self.menu21_2.triggered.connect(self.view_course_schedule)
+        self.menu22_2.triggered.connect(self.view_lesson_attendance)
+        #self.menu31_2.triggered.connect(self.view_meeting_schedule)
+        #self.menu32.triggered.connect(self.view_meeting_attendance)
         self.menu71.triggered.connect(self.close)  # Logout from student menu
 
         self.b6.clicked.connect(self.update_student_details)  
         
+        
+        # Load initial data
+        self.load_student_details()
+        self.view_course_schedule()
+        self.view_lesson_attendance()
+        #self.view_meeting_schedule()
+        #self.view_meeting_attendance()
+        self.tabWidget.setCurrentIndex(0)
+ #################################################################################################################       
+         
+        
+
+        
+# #################################################################################################################    
+#     def view_meeting_schedule(self):
+#         meetings = load_meetings()
+#         if meetings:
+#             current_meeting_schedule = meetings[0]
+#             # Assuming you have QLineEdit or QLabel for each meeting's date, time, and subject
+#             self.lineEditDateMeeting1.setText(current_meeting_schedule.get('date_meeting_1', ''))
+#             self.lineEditTimeMeeting1.setText(current_meeting_schedule.get('time_slot_meeting_1', ''))
+#             self.lineEditSubjectMeeting1.setText(current_meeting_schedule.get('meeting_subject_meeting_1', ''))
+#             # ... repeat for other meetings ...
+
+#             # Set the UI elements to read-only
+#             self.lineEditDateMeeting1.setReadOnly(True)
+#             self.lineEditTimeMeeting1.setReadOnly(True)
+#             self.lineEditSubjectMeeting1.setReadOnly(True)
+#             # ... repeat for other meetings ...
+#         else:
+#             QMessageBox.information(self, "Info", "No meeting schedule available.")
+
+        
+    
+    
+    
+    
+#  #################################################################################################################   
+#     def view_meeting_attendance(self):
+#         meeting_attendance = load_meeting_attendance()
+#         student_meeting_attendance = meeting_attendance.get(self.email, {})
+#         # Assuming you have QLineEdit or QLabel for each meeting's attendance status
+#         self.lineEditStatusMeeting1.setText(student_meeting_attendance.get('status_meeting_1', ''))
+#         # ... repeat for other meetings ...
+
+#         # Set the UI elements to read-only
+#         self.lineEditStatusMeeting1.setReadOnly(True)
+#         # ... repeat for other meetings ...
+
+        
+    
+    
+ #################################################################################################################       
     def edit_profile_tab(self):
         self.tabWidget.setCurrentIndex(1)
         self.load_student_details()
@@ -1390,7 +1447,312 @@ class StudentApp(QMainWindow):
         save_users(users)
         QMessageBox.information(self, "Update Success", "Student details updated successfully.")
 #############################################################################################################
+    def view_course_schedule(self):
+            self.tabWidget.setCurrentIndex(2)
+            lessons = load_lessons()
+            if lessons:
+                current_schedule = lessons[0]
+                self.tb21_course.setText(current_schedule.get('date_lesson_1', ''))
+                self.cb21_course.setCurrentText(current_schedule.get('time_slot_lesson_1', ''))
+                self.tb22_course.setText(current_schedule.get('lesson_subject_lesson_1', ''))
+                self.tb23_course.setText(current_schedule.get('date_lesson_2', ''))
+                self.cb22_course.setCurrentText(current_schedule.get('time_slot_lesson_2', ''))
+                self.tb24_course.setText(current_schedule.get('lesson_subject_lesson_2', ''))
+                self.tb25_course.setText(current_schedule.get('date_lesson_3', ''))
+                self.cb23_course.setCurrentText(current_schedule.get('time_slot_lesson_3', ''))
+                self.tb26_course.setText(current_schedule.get('lesson_subject_lesson_3', ''))
+                self.tb27_course.setText(current_schedule.get('date_lesson_4', ''))
+                self.cb24_course.setCurrentText(current_schedule.get('time_slot_lesson_4', ''))
+                self.tb28_course.setText(current_schedule.get('lesson_subject_lesson_4', ''))
+                self.tb29_course.setText(current_schedule.get('date_lesson_5', ''))
+                self.cb25_course.setCurrentText(current_schedule.get('time_slot_lesson_5', ''))
+                self.tb210_course.setText(current_schedule.get('lesson_subject_lesson_5', ''))
+                self.tb211_course.setText(current_schedule.get('date_lesson_6', ''))
+                self.cb26_course.setCurrentText(current_schedule.get('time_slot_lesson_6', ''))
+                self.tb212_course.setText(current_schedule.get('lesson_subject_lesson_6', ''))
+                self.tb213_course.setText(current_schedule.get('date_lesson_7', ''))
+                self.cb27_course.setCurrentText(current_schedule.get('time_slot_lesson_7', ''))
+                self.tb214_course.setText(current_schedule.get('lesson_subject_lesson_7', ''))
+                self.tb215_course.setText(current_schedule.get('date_lesson_8', ''))
+                self.cb28_course.setCurrentText(current_schedule.get('time_slot_lesson_8', ''))
+                self.tb216_course.setText(current_schedule.get('lesson_subject_lesson_8', ''))
+                self.tb217_course.setText(current_schedule.get('date_lesson_9', ''))
+                self.cb29_course.setCurrentText(current_schedule.get('time_slot_lesson_9', ''))
+                self.tb218_course.setText(current_schedule.get('lesson_subject_lesson_9', ''))
+                self.tb219_course.setText(current_schedule.get('date_lesson_10', ''))
+                self.cb210_course.setCurrentText(current_schedule.get('time_slot_lesson_10', ''))
+                self.tb220_course.setText(current_schedule.get('lesson_subject_lesson_10', ''))
+                self.tb221_course.setText(current_schedule.get('date_lesson_11', ''))
+                self.cb211_course.setCurrentText(current_schedule.get('time_slot_lesson_11', ''))
+                self.tb222_course.setText(current_schedule.get('lesson_subject_lesson_11', ''))
+                self.tb223_course.setText(current_schedule.get('date_lesson_12', ''))
+                self.cb212_course.setCurrentText(current_schedule.get('time_slot_lesson_12', ''))
+                self.tb224_course.setText(current_schedule.get('lesson_subject_lesson_12', ''))
+                self.tb225_course.setText(current_schedule.get('date_lesson_13', ''))
+                self.cb213_course.setCurrentText(current_schedule.get('time_slot_lesson_13', ''))
+                self.tb226_course.setText(current_schedule.get('lesson_subject_lesson_13', ''))
+                self.tb227_course.setText(current_schedule.get('date_lesson_14', ''))
+                self.cb214_course.setCurrentText(current_schedule.get('time_slot_lesson_14', ''))
+                self.tb228_course.setText(current_schedule.get('lesson_subject_lesson_14', ''))
+                self.tb229_course.setText(current_schedule.get('date_lesson_15', ''))
+                self.cb215_course.setCurrentText(current_schedule.get('time_slot_lesson_15', ''))
+                self.tb230_course.setText(current_schedule.get('lesson_subject_lesson_15', ''))    
 
+                # Set the UI elements to read-only
+                self.tb21_course.setReadOnly(True)
+                self.cb21_course.setDisabled(True)
+                self.tb22_course.setReadOnly(True)
+                self.tb23_course.setReadOnly(True)
+                self.cb22_course.setDisabled(True)
+                self.tb24_course.setReadOnly(True)
+                self.tb25_course.setReadOnly(True)
+                self.cb23_course.setDisabled(True)
+                self.tb26_course.setReadOnly(True)
+                self.tb27_course.setReadOnly(True)
+                self.cb24_course.setDisabled(True)
+                self.tb28_course.setReadOnly(True)
+                self.tb29_course.setReadOnly(True)
+                self.cb25_course.setDisabled(True)
+                self.tb210_course.setReadOnly(True)
+                self.tb211_course.setReadOnly(True)
+                self.cb26_course.setDisabled(True)
+                self.tb212_course.setReadOnly(True)
+                self.tb213_course.setReadOnly(True)
+                self.cb27_course.setDisabled(True)
+                self.tb214_course.setReadOnly(True)
+                self.tb215_course.setReadOnly(True)
+                self.cb28_course.setDisabled(True)
+                self.tb216_course.setReadOnly(True)
+                self.tb217_course.setReadOnly(True)
+                self.cb29_course.setDisabled(True)
+                self.tb218_course.setReadOnly(True)
+                self.tb219_course.setReadOnly(True)
+                self.cb210_course.setDisabled(True)
+                self.tb220_course.setReadOnly(True)
+                self.tb221_course.setReadOnly(True)
+                self.cb211_course.setDisabled(True)
+                self.tb222_course.setReadOnly(True)
+                self.tb223_course.setReadOnly(True)
+                self.cb212_course.setDisabled(True)
+                self.tb224_course.setReadOnly(True)
+                self.tb225_course.setReadOnly(True)
+                self.cb213_course.setDisabled(True)
+                self.tb226_course.setReadOnly(True)
+                self.tb227_course.setReadOnly(True)
+                self.cb214_course.setDisabled(True)
+                self.tb228_course.setReadOnly(True)
+                self.tb229_course.setReadOnly(True)
+                self.cb215_course.setDisabled(True)
+                self.tb230_course.setReadOnly(True)
+    
+            else:
+                QMessageBox.information(self, "Info", "No course schedule available.")
+        
+#################################################################################################################   
+    def view_lesson_attendance(self):
+            self.tabWidget.setCurrentIndex(3)
+            attendance = load_attendance()
+            student_attendance = attendance.get(self.email, {})  
+                
+            self.tb21_course_2.setText(student_attendance.get('date_lesson_1', ''))
+            self.cb21_course_2.setCurrentText(student_attendance.get('time_slot_lesson_1', ''))
+            self.cb22_t_50.setCurrentText(student_attendance.get('status_lesson_1', ''))
+            self.tb23_course_2.setText(student_attendance.get('date_lesson_2', ''))
+            self.cb22_course_2.setCurrentText(student_attendance.get('time_slot_lesson_2', ''))
+            self.cb22_t_51.setCurrentText(student_attendance.get('status_lesson_2', ''))
+            self.tb25_course_2.setText(student_attendance.get('date_lesson_3', ''))
+            self.cb23_course_2.setCurrentText(student_attendance.get('time_slot_lesson_3', ''))
+            self.cb22_t_52.setCurrentText(student_attendance.get('status_lesson_3', ''))
+            self.tb27_course_2.setText(student_attendance.get('date_lesson_4', ''))
+            self.cb24_course_2.setCurrentText(student_attendance.get('time_slot_lesson_4', ''))
+            self.cb22_t_53.setCurrentText(student_attendance.get('status_lesson_4', ''))
+            self.tb29_course_2.setText(student_attendance.get('date_lesson_5', ''))
+            self.cb25_course_2.setCurrentText(student_attendance.get('time_slot_lesson_5', ''))
+            self.cb22_t_54.setCurrentText(student_attendance.get('status_lesson_5', ''))
+            self.tb211_course_2.setText(student_attendance.get('date_lesson_6', ''))
+            self.cb26_course_2.setCurrentText(student_attendance.get('time_slot_lesson_6', ''))
+            self.cb22_t_55.setCurrentText(student_attendance.get('status_lesson_6', ''))
+            self.tb213_course_2.setText(student_attendance.get('date_lesson_7', ''))
+            self.cb27_course_2.setCurrentText(student_attendance.get('time_slot_lesson_7', ''))
+            self.cb22_t_56.setCurrentText(student_attendance.get('status_lesson_7', ''))
+            self.tb215_course_2.setText(student_attendance.get('date_lesson_8', ''))
+            self.cb28_course_2.setCurrentText(student_attendance.get('time_slot_lesson_8', ''))
+            self.cb22_t_57.setCurrentText(student_attendance.get('status_lesson_8', ''))
+            self.tb217_course_2.setText(student_attendance.get('date_lesson_9', ''))
+            self.cb29_course_2.setCurrentText(student_attendance.get('time_slot_lesson_9', ''))
+            self.cb22_t_58.setCurrentText(student_attendance.get('status_lesson_9', ''))
+            self.tb219_course_2.setText(student_attendance.get('date_lesson_10', ''))
+            self.cb210_course_2.setCurrentText(student_attendance.get('time_slot_lesson_10', ''))
+            self.cb22_t_59.setCurrentText(student_attendance.get('status_lesson_10', ''))
+            self.tb221_course_2.setText(student_attendance.get('date_lesson_11', ''))
+            self.cb211_course_2.setCurrentText(student_attendance.get('time_slot_lesson_11', ''))
+            self.cb22_t_60.setCurrentText(student_attendance.get('status_lesson_11', ''))
+            self.tb223_course_2.setText(student_attendance.get('date_lesson_12', ''))
+            self.cb212_course_2.setCurrentText(student_attendance.get('time_slot_lesson_12', ''))
+            self.cb22_t_61.setCurrentText(student_attendance.get('status_lesson_12', ''))
+            self.tb225_course_2.setText(student_attendance.get('date_lesson_13', ''))
+            self.cb213_course_2.setCurrentText(student_attendance.get('time_slot_lesson_13', ''))
+            self.cb22_t_62.setCurrentText(student_attendance.get('  status_lesson_13', ''))
+            self.tb227_course_2.setText(student_attendance.get('date_lesson_14', ''))
+            self.cb214_course_2.setCurrentText(student_attendance.get('time_slot_lesson_14', ''))
+            self.cb22_t_63.setCurrentText(student_attendance.get('status_lesson_14', ''))
+            self.tb229_course_2.setText(student_attendance.get('date_lesson_15', ''))
+            self.cb215_course_2.setCurrentText(student_attendance.get('time_slot_lesson_15', ''))
+            self.cb22_t_64.setCurrentText(student_attendance.get('status_lesson_15', ''))
+            
+            
+            self.tb21_course_2.setReadOnly(True)
+            self.cb21_course_2.setDisabled(True)
+            self.cb22_t_50.setDisabled(True)
+            self.tb23_course_2.setReadOnly(True)
+            self.cb22_course_2.setDisabled(True)
+            self.cb22_t_51.setDisabled(True)
+            self.tb25_course_2.setReadOnly(True)
+            self.cb23_course_2.setDisabled(True)
+            self.cb22_t_52.setDisabled(True)
+            self.tb27_course_2.setReadOnly(True)
+            self.cb24_course_2.setDisabled(True)
+            self.cb22_t_53.setDisabled(True)
+            self.tb29_course_2.setReadOnly(True)
+            self.cb25_course_2.setDisabled(True)
+            self.cb22_t_54.setDisabled(True)
+            self.tb211_course_2.setReadOnly(True)
+            self.cb26_course_2.setDisabled(True)
+            self.cb22_t_55.setDisabled(True)
+            self.tb213_course_2.setReadOnly(True)
+            self.cb27_course_2.setDisabled(True)
+            self.cb22_t_56.setDisabled(True)
+            self.tb215_course_2.setReadOnly(True)
+            self.cb28_course_2.setDisabled(True)
+            self.cb22_t_57.setDisabled(True)
+            self.tb217_course_2.setReadOnly(True)
+            self.cb29_course_2.setDisabled(True)
+            self.cb22_t_58.setDisabled(True)
+            self.tb219_course_2.setReadOnly(True)
+            self.cb210_course_2.setDisabled(True)
+            self.cb22_t_59.setDisabled(True)
+            self.tb221_course_2.setReadOnly(True)
+            self.cb211_course_2.setDisabled(True)
+            self.cb22_t_60.setDisabled(True)
+            self.tb223_course_2.setReadOnly(True)
+            self.cb212_course_2.setDisabled(True)
+            self.cb22_t_61.setDisabled(True)
+            self.tb225_course_2.setReadOnly(True)
+            self.cb213_course_2.setDisabled(True)
+            self.cb22_t_62.setDisabled(True)
+            self.tb227_course_2.setReadOnly(True)
+            self.cb214_course_2.setDisabled(True)
+            self.cb22_t_63.setDisabled(True)
+            self.tb229_course_2.setReadOnly(True)
+            self.cb215_course_2.setDisabled(True)
+            self.cb22_t_64.setDisabled(True)
+
+
+            if not student_attendance:
+                self.loadCurrentSchedule
+                
+            
+            
+        
+    def loadCurrentSchedule(self):
+            lessons = load_lessons()
+            if not lessons:
+                QMessageBox.information(self, "Load Schedule", "No existing schedule found.")
+                return
+
+            current_schedule = lessons[0]
+
+            self.tb21_course_2.setText(current_schedule.get('date_lesson_1', ''))
+            self.cb21_course_2.setCurrentText(current_schedule.get('time_slot_lesson_1', ''))
+            self.tb23_course_2.setText(current_schedule.get('date_lesson_2', ''))
+            self.cb22_course_2.setCurrentText(current_schedule.get('time_slot_lesson_2', ''))
+            self.tb25_course_2.setText(current_schedule.get('date_lesson_3', ''))
+            self.cb23_course_2.setCurrentText(current_schedule.get('time_slot_lesson_3', ''))
+            self.tb27_course_2.setText(current_schedule.get('date_lesson_4', ''))
+            self.cb24_course_2.setCurrentText(current_schedule.get('time_slot_lesson_4', ''))
+            self.tb29_course_2.setText(current_schedule.get('date_lesson_5', ''))
+            self.cb25_course_2.setCurrentText(current_schedule.get('time_slot_lesson_5', ''))
+            self.tb211_course_2.setText(current_schedule.get('date_lesson_6', ''))
+            self.cb26_course_2.setCurrentText(current_schedule.get('time_slot_lesson_6', ''))
+            self.tb213_course_2.setText(current_schedule.get('date_lesson_7', ''))
+            self.cb27_course_2.setCurrentText(current_schedule.get('time_slot_lesson_7', ''))
+            self.tb215_course_2.setText(current_schedule.get('date_lesson_8', ''))
+            self.cb28_course_2.setCurrentText(current_schedule.get('time_slot_lesson_8', ''))
+            self.tb217_course_2.setText(current_schedule.get('date_lesson_9', ''))
+            self.cb29_course_2.setCurrentText(current_schedule.get('time_slot_lesson_9', ''))
+            self.tb219_course_2.setText(current_schedule.get('date_lesson_10', ''))
+            self.cb210_course_2.setCurrentText(current_schedule.get('time_slot_lesson_10', ''))
+            self.tb221_course_2.setText(current_schedule.get('date_lesson_11', ''))
+            self.cb211_course_2.setCurrentText(current_schedule.get('time_slot_lesson_11', ''))
+            self.tb223_course_2.setText(current_schedule.get('date_lesson_12', ''))
+            self.cb212_course_2.setCurrentText(current_schedule.get('time_slot_lesson_12', ''))
+            self.tb225_course_2.setText(current_schedule.get('date_lesson_13', ''))
+            self.cb213_course_2.setCurrentText(current_schedule.get('time_slot_lesson_13', ''))
+            self.tb227_course_2.setText(current_schedule.get('date_lesson_14', ''))
+            self.cb214_course_2.setCurrentText(current_schedule.get('time_slot_lesson_14', ''))
+            self.tb229_course_2.setText(current_schedule.get('date_lesson_15', ''))
+            self.cb215_course_2.setCurrentText(current_schedule.get('time_slot_lesson_15', ''))
+            
+            
+            self.tb21_course_2.setReadOnly(True)
+            self.cb21_course_2.setDisabled(True)
+            self.cb22_t_50.setDisabled(True)
+            self.tb23_course_2.setReadOnly(True)
+            self.cb22_course_2.setDisabled(True)
+            self.cb22_t_51.setDisabled(True)
+            self.tb25_course_2.setReadOnly(True)
+            self.cb23_course_2.setDisabled(True)
+            self.cb22_t_52.setDisabled(True)
+            self.tb27_course_2.setReadOnly(True)
+            self.cb24_course_2.setDisabled(True)
+            self.cb22_t_53.setDisabled(True)
+            self.tb29_course_2.setReadOnly(True)
+            self.cb25_course_2.setDisabled(True)
+            self.cb22_t_54.setDisabled(True)
+            self.tb211_course_2.setReadOnly(True)
+            self.cb26_course_2.setDisabled(True)
+            self.cb22_t_55.setDisabled(True)
+            self.tb213_course_2.setReadOnly(True)
+            self.cb27_course_2.setDisabled(True)
+            self.cb22_t_56.setDisabled(True)
+            self.tb215_course_2.setReadOnly(True)
+            self.cb28_course_2.setDisabled(True)
+            self.cb22_t_57.setDisabled(True)
+            self.tb217_course_2.setReadOnly(True)
+            self.cb29_course_2.setDisabled(True)
+            self.cb22_t_58.setDisabled(True)
+            self.tb219_course_2.setReadOnly(True)
+            self.cb210_course_2.setDisabled(True)
+            self.cb22_t_59.setDisabled(True)
+            self.tb221_course_2.setReadOnly(True)
+            self.cb211_course_2.setDisabled(True)
+            self.cb22_t_60.setDisabled(True)
+            self.tb223_course_2.setReadOnly(True)
+            self.cb212_course_2.setDisabled(True)
+            self.cb22_t_61.setDisabled(True)
+            self.tb225_course_2.setReadOnly(True)
+            self.cb213_course_2.setDisabled(True)
+            self.cb22_t_62.setDisabled(True)
+            self.tb227_course_2.setReadOnly(True)
+            self.cb214_course_2.setDisabled(True)
+            self.cb22_t_63.setDisabled(True)
+            self.tb229_course_2.setReadOnly(True)
+            self.cb215_course_2.setDisabled(True)
+            self.cb22_t_64.setDisabled(True)
+
+        
+        
+        
+
+
+
+
+
+
+
+
+
+#################################################################################################################
 # Main Application Setup
 if __name__ == "__main__":
     app = QApplication(sys.argv)
