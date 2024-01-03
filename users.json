@@ -44,10 +44,10 @@
         "teacherId": "2",
         "email": "mark@alone.com",
         "password": "Infotech1+",
-        "name": "zzz",
-        "surname": "zzz",
+        "name": "Mark",
+        "surname": "Alone",
         "gender": "Male",
-        "date_of_birth": "01012007",
+        "date_of_birth": "01-01-1978",
         "phone": "+31623644423",
         "type": "teacher"
     },
@@ -72,5 +72,16 @@
         "date_of_birth": "112314124",
         "phone": "+3163234456",
         "type": "teacher"
+    },
+    {
+        "studentId": "4",
+        "email": "tony@alone.com",
+        "password": "Infotech1+",
+        "name": "Tony",
+        "surname": "Alone",
+        "gender": "Male",
+        "date_of_birth": "01/01/1990",
+        "phone": "+3164545655",
+        "type": "student"
     }
 ]

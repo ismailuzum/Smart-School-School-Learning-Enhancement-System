@@ -59,7 +59,7 @@ background-color: rgb(40, 41, 44);</string>
      <string notr="true">background-color: rgb(40, 41, 44);</string>
     </property>
     <property name="currentIndex">
-     <number>5</number>
+     <number>3</number>
     </property>
     <widget class="QWidget" name="tab_3">
      <attribute name="title">
@@ -1762,7 +1762,7 @@ font: 10pt &quot;MS Shell Dlg 2&quot;;
      <widget class="QLabel" name="label_60">
       <property name="geometry">
        <rect>
-        <x>30</x>
+        <x>20</x>
         <y>100</y>
         <width>81</width>
         <height>20</height>
@@ -1826,9 +1826,9 @@ font: 10pt &quot;MS Shell Dlg 2&quot;;
      <widget class="QLabel" name="label_59">
       <property name="geometry">
        <rect>
-        <x>30</x>
+        <x>20</x>
         <y>150</y>
-        <width>71</width>
+        <width>111</width>
         <height>20</height>
        </rect>
       </property>
@@ -1841,7 +1841,7 @@ font: 10pt &quot;MS Shell Dlg 2&quot;;
        <string notr="true">color: rgb(255, 255, 255);</string>
       </property>
       <property name="text">
-       <string>Student ID</string>
+       <string>Name Surname</string>
       </property>
      </widget>
      <widget class="QLineEdit" name="tb24_3">
@@ -1860,7 +1860,7 @@ font: 10pt &quot;MS Shell Dlg 2&quot;;
      <widget class="QLabel" name="label_61">
       <property name="geometry">
        <rect>
-        <x>30</x>
+        <x>20</x>
         <y>200</y>
         <width>91</width>
         <height>20</height>
@@ -5785,7 +5785,7 @@ font: 10pt &quot;MS Shell Dlg 2&quot;;
        <rect>
         <x>10</x>
         <y>150</y>
-        <width>71</width>
+        <width>121</width>
         <height>20</height>
        </rect>
       </property>
@@ -5798,7 +5798,7 @@ font: 10pt &quot;MS Shell Dlg 2&quot;;
        <string notr="true">color: rgb(255, 255, 255);</string>
       </property>
       <property name="text">
-       <string>Student ID</string>
+       <string>Name Surname</string>
       </property>
      </widget>
      <widget class="QLineEdit" name="tb213_course_4">
