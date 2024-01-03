@@ -43,7 +43,7 @@ background-color: rgb(40, 41, 44);</string>
     <property name="geometry">
      <rect>
       <x>0</x>
-      <y>60</y>
+      <y>50</y>
       <width>1091</width>
       <height>851</height>
      </rect>
@@ -59,7 +59,7 @@ background-color: rgb(40, 41, 44);</string>
      <string notr="true">background-color: rgb(40, 41, 44);</string>
     </property>
     <property name="currentIndex">
-     <number>6</number>
+     <number>7</number>
     </property>
     <widget class="QWidget" name="tab_3">
      <attribute name="title">
@@ -7017,6 +7017,117 @@ color: rgb(255, 255, 255);</string>
       </property>
       <property name="text">
        <string>Announcement</string>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="tab_5">
+     <attribute name="title">
+      <string>To Do List</string>
+     </attribute>
+     <widget class="QLineEdit" name="line_edit">
+      <property name="geometry">
+       <rect>
+        <x>260</x>
+        <y>140</y>
+        <width>581</width>
+        <height>51</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <weight>75</weight>
+        <italic>true</italic>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: rgb(255, 255, 255);</string>
+      </property>
+      <property name="placeholderText">
+       <string>Please Type Here</string>
+      </property>
+     </widget>
+     <widget class="QListView" name="list_view">
+      <property name="geometry">
+       <rect>
+        <x>260</x>
+        <y>280</y>
+        <width>581</width>
+        <height>341</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: rgb(255, 255, 255);</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_108">
+      <property name="geometry">
+       <rect>
+        <x>260</x>
+        <y>70</y>
+        <width>591</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>14</pointsize>
+        <weight>75</weight>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: rgb(255, 191, 16);</string>
+      </property>
+      <property name="text">
+       <string>To Do List</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="remove_button">
+      <property name="geometry">
+       <rect>
+        <x>260</x>
+        <y>630</y>
+        <width>581</width>
+        <height>51</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>11</pointsize>
+        <weight>75</weight>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: rgb(170, 0, 0);
+color: rgb(255, 255, 255);</string>
+      </property>
+      <property name="text">
+       <string>Delete</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="add_button">
+      <property name="geometry">
+       <rect>
+        <x>260</x>
+        <y>210</y>
+        <width>581</width>
+        <height>51</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>11</pointsize>
+        <weight>75</weight>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: rgb(255, 191, 16);</string>
+      </property>
+      <property name="text">
+       <string>Add</string>
       </property>
      </widget>
     </widget>

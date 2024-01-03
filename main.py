@@ -2,6 +2,7 @@ import sys
 import json
 import re
 from PyQt5 import QtWidgets
+from PyQt5.QtGui import QStandardItemModel, QStandardItem
 from PyQt5.QtWidgets import QComboBox, QPushButton, QDialog, QApplication, QMessageBox, QMainWindow, QVBoxLayout, QWidget, QLabel, QHBoxLayout
 from PyQt5.uic import loadUi
 
@@ -113,6 +114,19 @@ def save_announcements(announcements):
     with open('announcements.json', 'w') as file:
         json.dump(announcements, file, indent=4)
 
+###############################################################################################################
+def load_todolist():
+    try:
+        with open('todolist.json', 'r') as todolist_file:
+            return json.load(todolist_file)
+    except FileNotFoundError:
+        return []
+
+def save_todolist(todolists):
+    with open('todolist.json', 'w') as todolist_file:
+        json.dump(todolists, todolist_file, indent=4)
+
+            
 ###############################################################################################################
 
 def is_valid_email(email):
@@ -296,6 +310,7 @@ class TeacherApp(QMainWindow):
         super(TeacherApp, self).__init__()
         loadUi("teacher.ui", self)
         self.email = email
+        self.model = QStandardItemModel()
         self.tabWidget.setCurrentIndex(0)
         self.tabWidget.tabBar().setVisible(False)
         self.menu11_t.triggered.connect(self.edit_profile_tab)
@@ -326,8 +341,58 @@ class TeacherApp(QMainWindow):
         self.deleteButton.clicked.connect(self.delete_announcement)
         self.comboBox.currentIndexChanged.connect(self.itemSelected)
         self.load_announcements_from_json()
+        
+        self.menu41_t.triggered.connect(self.add_todolist_tab)
+        self.add_button.clicked.connect(self.add_checkbox)
+        self.remove_button.clicked.connect(self.remove_checkbox)
+        self.load_todolist_from_json()
+          
+
+        
+        
 ###############################################################################################################   
+    def add_todolist_tab(self):
+        self.tabWidget.setCurrentIndex(7)
     
+    def add_checkbox(self):
+        text = self.line_edit.text()
+        if text:
+            item = QStandardItem(text)
+            self.model.appendRow(item)
+            self.save_todolist_to_json()
+
+    def remove_checkbox(self):
+        indexes = self.list_view.selectedIndexes()
+        for index in sorted(indexes, reverse=True):
+            self.model.removeRow(index.row())
+        self.list_view.setModel(self.model)
+        self.save_todolist_to_json()
+    
+    def load_todolist_from_json(self):
+        try:
+            with open('todolist.json', 'r') as todolist_file:
+                checkbox_dict = json.load(todolist_file)
+                for key, value in checkbox_dict.items():
+                    item = QStandardItem(value)
+                    self.model.appendRow(item)
+                    self.list_view.setModel(self.model)
+        except (FileNotFoundError, json.decoder.JSONDecodeError):
+            pass
+
+
+
+    def save_todolist_to_json(self):
+        checkbox_dict = {}
+        for i in range(self.model.rowCount()):
+            checkbox_dict[i + 1] = self.model.item(i).text()
+            self.list_view.setModel(self.model)
+        with open('todolist.json', 'w') as todolist_file:
+            json.dump(checkbox_dict, todolist_file, indent=4)
+
+        
+    
+
+###############################################################################################################    
     def add_announcement(self):
         
         text = self.textEdit.toPlainText()  
