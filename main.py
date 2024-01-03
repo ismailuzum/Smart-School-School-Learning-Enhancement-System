@@ -854,13 +854,15 @@ class TeacherApp(QMainWindow):
     def studentSelectedForLesson(self, index):
         if index == -1:  # No selection or the combo box is being cleared
             return
+        
+        # Clear attendance data fields here
+        self.clearLessonAttendanceData()
 
         student_data = self.cb22_t_49.itemData(index)
 
         if student_data:
             
-            # Clear existing attendance data fields
-            # self.clearAttendanceDataFields()
+           
             
             student_name = student_name = f"{student_data.get('name', '')} {student_data.get('surname', '')}"
             student_email = student_data.get('email', '')
@@ -1118,6 +1120,9 @@ class TeacherApp(QMainWindow):
         if index == -1:  # No selection or the combo box is being cleared
             return
 
+        # Clear attendance data fields here
+        self.clearMeetingAttendanceData()
+        
         student_data = self.cb22_t_76.itemData(index)
         if student_data:
             student_name = student_name = f"{student_data.get('name', '')} {student_data.get('surname', '')}"
@@ -1128,6 +1133,54 @@ class TeacherApp(QMainWindow):
         else:
             QMessageBox.warning(self, "Error", "Student data is not in the expected format.")
 
+
+    def clearMeetingAttendanceData(self):
+        # Clearing all the attendance data fields
+        self.tb21_course_4.clear()
+        self.cb21_course_4.setCurrentIndex(0)
+        self.cb22_t_71.setCurrentIndex(0)
+        self.tb23_course_4.clear()
+        self.cb22_course_4.setCurrentIndex(0)
+        self.cb22_t_67.setCurrentIndex(0)
+        self.tb25_course_4.clear()
+        self.cb23_course_4.setCurrentIndex(0)
+        self.cb22_t_74.setCurrentIndex(0)
+        self.tb27_course_4.clear()
+        self.cb24_course_4.setCurrentIndex(0)
+        self.cb22_t_65.setCurrentIndex(0)
+        self.tb29_course_4.clear()
+        self.cb25_course_4.setCurrentIndex(0)
+        self.cb22_t_73.setCurrentIndex(0)
+        self.tb211_course_4.clear()
+        self.cb26_course_4.setCurrentIndex(0)
+        self.cb22_t_75.setCurrentIndex(0)
+        self.tb213_course_4.clear()
+        self.cb27_course_4.setCurrentIndex(0)
+        self.cb22_t_79.setCurrentIndex(0)
+        self.tb215_course_4.clear()
+        self.cb28_course_4.setCurrentIndex(0)
+        self.cb22_t_80.setCurrentIndex(0)
+        self.tb217_course_4.clear()
+        self.cb29_course_4.setCurrentIndex(0)
+        self.cb22_t_69.setCurrentIndex(0)
+        self.tb219_course_4.clear()
+        self.cb210_course_4.setCurrentIndex(0)
+        self.cb22_t_78.setCurrentIndex(0)
+        self.tb221_course_4.clear()
+        self.cb211_course_4.setCurrentIndex(0)
+        self.cb22_t_66.setCurrentIndex(0)
+        self.tb223_course_4.clear()
+        self.cb212_course_4.setCurrentIndex(0)
+        self.cb22_t_68.setCurrentIndex(0)
+        self.tb225_course_4.clear()
+        self.cb213_course_4.setCurrentIndex(0)
+        self.cb22_t_77.setCurrentIndex(0)
+        self.tb227_course_4.clear()
+        self.cb214_course_4.setCurrentIndex(0)
+        self.cb22_t_70.setCurrentIndex(0)
+        self.tb229_course_4.clear()
+        self.cb215_course_4.setCurrentIndex(0)
+        self.cb22_t_72.setCurrentIndex(0)     
 
     def loadMeetingAttendanceData(self, student_email):
          # Load the attendance data for the selected student
