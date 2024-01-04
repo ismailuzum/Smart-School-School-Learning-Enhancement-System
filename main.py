@@ -3,7 +3,7 @@ import json
 import re
 from PyQt5 import QtWidgets
 from PyQt5.QtGui import QStandardItemModel, QStandardItem
-from PyQt5.QtWidgets import QComboBox, QPushButton, QDialog, QApplication, QMessageBox, QMainWindow, QVBoxLayout, QWidget, QLabel, QHBoxLayout
+from PyQt5.QtWidgets import QComboBox, QPushButton, QDialog, QApplication, QMessageBox, QMainWindow, QVBoxLayout, QWidget, QLabel, QHBoxLayout, QListWidgetItem
 from PyQt5.uic import loadUi
 
 #############################################################################################################
@@ -346,10 +346,105 @@ class TeacherApp(QMainWindow):
         self.add_button.clicked.connect(self.add_checkbox)
         self.remove_button.clicked.connect(self.remove_checkbox)
         self.load_todolist_from_json()
-          
+        
+        
+        self.menu51_t.triggered.connect(self.add_message_tab)
+        self.messages = dict()
+        self.getMessages()
+        self.load_users()
+        self.sendButton.clicked.connect(self.send_message)
+        self.comboBox_2.currentIndexChanged.connect(self.messageSelected)
+###############################################################################################################
+    def add_message_tab(self):
+        self.tabWidget.setCurrentIndex(8)
+    
+    def getMessages(self):
+            try:
+                with open('messages.json', "r") as messageFile:
+                    data = json.load(messageFile)
+                    self.messages = data
+                
+            except (json.JSONDecodeError, FileNotFoundError):
+                pass
+    def load_users(self):
+        try:
+            with open('users.json', 'r') as file:
+                users = json.load(file)
+                for user in users:
+                    self.comboBox_2.addItem(user['email'])
+        except FileNotFoundError:
+            print("users.json dosyası bulunamadı.")
+        except json.JSONDecodeError:
+            print("users.json dosyası doğru biçimde değil.")
 
+
+    def send_message(self):
+        selected_email = self.comboBox_2.currentText()
+        sender = self.email
+        message_text = self.LineEdit_2.text()
+
+
+        message_id1 = sender+selected_email
+        message_id2 = selected_email+sender
+
+
+    
+        if message_id1 in self.messages:
+            msg_list = self.messages[message_id1]
+            saved_message = f"{sender}: {message_text}"
+            msg_list.append(saved_message)
+            self.message_display = msg_list
+            self.messages[message_id1] = msg_list
+            with open("messages.json", "w") as messageFile:
+                json.dump(self.messages, messageFile, indent=2)
+
+        elif message_id2 in self.messages:
+            msg_list = self.messages[message_id2]
+            saved_message = f"{sender}: {message_text}"
+            msg_list.append(saved_message)
+            self.messages[message_id2]= msg_list
+            self.message_display = msg_list
+            with open("messages.json", "w") as messageFile:
+                json.dump(self.messages, messageFile, indent=2)
+        else:
+            saved_message = f"{sender}: {message_text}"
+            self.messages[message_id1] = [saved_message]
+            self.message_display = self.messages[message_id1]
+            with open("messages.json", "w") as messageFile:
+                json.dump(self.messages, messageFile, indent=2)
+        self.messageSelected()
+
+
+
+
+        if message_text and selected_email:
+            # self.message_display.append(f"Sen: {message_text}")  # Gönderilen mesajı ekrana ekler
+            # self.message_display.append(f"Gönderilen: {selected_email}")  # Gönderilen e-postayı ekrana ekler
+            msg_box = QMessageBox()
+            msg_box.setWindowTitle("Mesaj Gönderildi!")
+            msg_box.setText(f"Mesajınız '{message_text}' adresine gönderildi: {selected_email}")
+            msg_box.exec()
+    
+    def messageSelected(self):
+        self.model = QStandardItemModel()
+        self.list_view_2.setModel(self.model)
+        message_receiver = self.comboBox_2.currentText()
         
+        id1 = self.email + message_receiver
+        id2 = message_receiver + self.email
         
+        msg_list = []
+        
+        if id1 in self.messages:
+            msg_list = self.messages[id1]
+    
+        elif id2 in self.messages:
+            msg_list = self.messages[id2]
+        
+        for message in msg_list:
+            item = QStandardItem(message)  
+            self.model.appendRow(item)
+        self.list_view_2.setModel(self.model)
 ###############################################################################################################   
     def add_todolist_tab(self):
         self.tabWidget.setCurrentIndex(7)
