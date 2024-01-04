@@ -1,4 +1,4 @@
-Smart School > School Learning Enhancement System
+Student Registration Project
 -------------------------
 This project has been developed using Python programming language and PyQt5 library, culminating in an executable application. The application allows users to register or log in using their email and password.
 

@@ -2,6 +2,7 @@ import sys
 import json
 import re
 from PyQt5 import QtWidgets
+from PyQt5.QtGui import QStandardItemModel, QStandardItem, QColor
 from PyQt5.QtWidgets import QComboBox, QPushButton, QDialog, QApplication, QMessageBox, QMainWindow, QVBoxLayout, QWidget, QLabel, QHBoxLayout
 from PyQt5.uic import loadUi
 
@@ -100,7 +101,28 @@ def save_meeting_attendance(meeting_attendance_data):
         except Exception as e:
             print(f"Error saving to meeting_attendance.json: {e}")
 
+###############################################################################################################
+def load_announcements():
+    try:
+        with open('announcements.json', 'r') as file:
+            return json.load(file)
+    except FileNotFoundError:
+        return []
 
+def save_announcements(announcements):
+    with open('announcements.json', 'w') as file:
+        json.dump(announcements, file, indent=4)
+###############################################################################################################
+def load_todolist():
+    try:
+        with open('todolist.json', 'r') as todolist_file:
+            return json.load(todolist_file)
+    except FileNotFoundError:
+        return []
+
+def save_todolist(todolists):
+    with open('todolist.json', 'w') as todolist_file:
+        json.dump(todolists, todolist_file, indent=4)
 ###############################################################################################################
 
 def is_valid_email(email):
@@ -129,6 +151,8 @@ class AdminApp(QMainWindow):
     def __init__(self):
         super(AdminApp, self).__init__()
         loadUi("admin.ui", self)
+        self.model = QStandardItemModel()
+        self.email = email
         self.tabWidget.setCurrentIndex(0)
         self.tabWidget.tabBar().setVisible(False)
         self.menu11.triggered.connect(self.add_teacher_tab)
@@ -136,6 +160,15 @@ class AdminApp(QMainWindow):
         self.menu71.triggered.connect(self.close)  # Logout from admin menu
         self.b5.clicked.connect(self.handle_teacher_registration)
         self.cb21.currentIndexChanged.connect(self.on_teacher_selected)
+
+        self.menu61_a.triggered.connect(self.add_message_tab)
+        self.messages = dict()
+        self.getMessages()
+        self.load_users()
+        self.sendButton1.clicked.connect(self.send_message)
+        #self.comboBox_a.currentIndexChanged.connect(self.messageSelected)
+        self.listView_4_a.clicked.connect(self.read_message)
+
 
     def add_teacher_tab(self):
         self.tabWidget.setCurrentIndex(1)
@@ -277,7 +310,172 @@ class AdminApp(QMainWindow):
         save_users(users)
         QMessageBox.information(self, "Deletion Success", "Teacher details deleted successfully.")
         self.load_teachers_into_combobox()  # Refresh the teacher list
+###############################################################################################################
+    def add_message_tab(self):
+        self.tabWidget.setCurrentIndex(3)
+    
+    def getMessages(self):
+            try:
+                with open('messages.json', "r") as messageFile:
+                    data = json.load(messageFile)
+                    self.messages = data
+                
+            except (json.JSONDecodeError, FileNotFoundError):
+                pass
+    def load_users(self):
+        self.model2 = QStandardItemModel()
+        self.listView_4_a.setModel(self.model2)
+        try:
+            with open('users.json', 'r') as file:
+                users = json.load(file)
+                for user in users:
+                    if user["email"] != self.email:
+                        item = QStandardItem(user['email'])
+                        self.model2.appendRow(item)
+                        #self.comboBox_a.addItem(user['email'])
+                        for key in self.messages.keys():
+                            if user['email'] in key:
+                                if self.email in key:
+                                    if self.messages[key]["unread-messages"] == True:
+                                        item.setBackground(QColor('green'))
+                                        pass
+                                        #change background
+        except FileNotFoundError:
+            print("users.json dosyası bulunamadı.")
+        except json.JSONDecodeError:
+            print("users.json dosyası doğru biçimde değil.")
 
+
+    def send_message(self):
+        selected_email = ""
+        selected_indexes = self.listView_4_a.selectedIndexes()
+        for index in selected_indexes:
+            item = self.model2.itemFromIndex(index)
+            selected_email = item.text()
+        sender = self.email
+        message_text = self.LineEdit_3_a.text()
+
+
+        message_id1 = sender+selected_email
+        message_id2 = selected_email+sender
+
+        msg_list = []
+    
+        if message_id1 in self.messages:
+            msg_list = self.messages[message_id1]["messages"]
+            saved_message = f"{sender}: {message_text}"
+            msg_list.append(saved_message)
+            self.message_display = msg_list
+            self.messages[message_id1] = {
+                "unread-messages": True,
+                "messages":msg_list
+                }
+            with open("messages.json", "w") as messageFile:
+                json.dump(self.messages, messageFile, indent=2)
+
+        elif message_id2 in self.messages:
+            msg_list = self.messages[message_id2]["messages"]
+            saved_message = f"{sender}: {message_text}"
+            msg_list.append(saved_message)
+            self.messages[message_id2] = {
+                "unread-messages": True,
+                "messages":msg_list
+                }
+            self.message_display = msg_list
+            with open("messages.json", "w") as messageFile:
+                json.dump(self.messages, messageFile, indent=2)
+        else:
+            saved_message = f"{sender}: {message_text}"
+            self.messages[message_id1] = {
+                "unread-messages": True,
+                "messages": [saved_message]
+            }
+            self.message_display = self.messages[message_id1]
+            with open("messages.json", "w") as messageFile:
+                json.dump(self.messages, messageFile, indent=2)
+        # self.messageSelected()
+        # self.read_message()
+                
+        self.model = QStandardItemModel()
+        self.list_view_3_a.setModel(self.model)
+        for message in msg_list:
+            item = QStandardItem(message)  
+            self.model.appendRow(item)
+
+        self.list_view_3_a.setModel(self.model)
+
+
+
+
+        if message_text and selected_email:
+            # self.message_display.append(f"Sen: {message_text}")  # Gönderilen mesajı ekrana ekler
+            # self.message_display.append(f"Gönderilen: {selected_email}")  # Gönderilen e-postayı ekrana ekler
+            msg_box = QMessageBox()
+            msg_box.setWindowTitle("Mesaj Gönderildi!")
+            msg_box.setText(f"Mesajınız '{message_text}' adresine gönderildi: {selected_email}")
+            msg_box.exec()
+    
+    def messageSelected(self):
+        self.model = QStandardItemModel()
+        self.list_view_3_a.setModel(self.model)
+        #message_receiver = self.comboBox_a.currentText()
+        message_receiver =""
+        
+        id1 = self.email + message_receiver
+        id2 = message_receiver + self.email
+        
+        msg_list = []
+        
+        if id1 in self.messages:
+            msg_list = self.messages[id1]
+    
+        elif id2 in self.messages:
+            msg_list = self.messages[id2]
+        
+        for message in msg_list:
+            item = QStandardItem(message)  
+            self.model.appendRow(item)
+        self.list_view_3_a.setModel(self.model) 
+
+    def read_message(self):
+        self.model = QStandardItemModel()
+        self.list_view_3_a.setModel(self.model)
+
+        selected_indexes = self.listView_4_a.selectedIndexes()
+        message_receiver = ""
+        for index in selected_indexes:
+            item = self.model2.itemFromIndex(index)
+            item.setBackground(QColor("white"))
+        for key in self.messages.keys():
+                if self.email and item.text() in key:
+                    self.messages[key]["unread-messages"] = False
+                    message_receiver = item.text()
+
+        
+        # message_receiver = self.comboBox_3.currentText()
+        
+        id1 = self.email + message_receiver
+        id2 = message_receiver + self.email
+        
+        msg_list = []
+        
+        if id1 in self.messages:
+            msg_list = self.messages[id1]["messages"]
+            with open("messages.json", "w") as messageFile:
+                json.dump(self.messages, messageFile, indent=2)
+                    
+        elif id2 in self.messages:
+            msg_list = self.messages[id2]["messages"]
+            with open("messages.json", "w") as messageFile:
+                json.dump(self.messages, messageFile, indent=2)
+
+
+        for message in msg_list:
+            item = QStandardItem(message)  
+            self.model.appendRow(item)
+
+        self.list_view_3_a.setModel(self.model)
+ 
 #############################################################################################################
 
 ## Part 1: Initialization and UI Setup ##
@@ -288,6 +486,19 @@ class TeacherApp(QMainWindow):
         loadUi("teacher.ui", self)
         self.email = email
         self.initializeUI()
+        
+        self.messages = dict()
+        self.getMessages()
+        self.load_users()
+
+        self.listView_t.clicked.connect(self.read_message)
+        self.model = QStandardItemModel()
+        
+        
+
+        
+        load_todolist()
+        load_announcements()
 
     def initializeUI(self):
         self.tabWidget.setCurrentIndex(0)
@@ -303,7 +514,9 @@ class TeacherApp(QMainWindow):
         self.menu22_t.triggered.connect(self.showLessonAttendanceTab)
         self.menu32_t_2.triggered.connect(self.showMeetingAttendanceTab)
         self.menu71_t.triggered.connect(self.close)  # Logout from teacher menu
-
+        self.announcementMenu.triggered.connect(self.add_announce_tab)
+        self.menu41_t.triggered.connect(self.add_todolist_tab)
+        self.menu51_t.triggered.connect(self.add_message_tab)
     def setupButtonActions(self):
         self.b6.clicked.connect(self.updateTeacherDetails)  
         self.b6_t.clicked.connect(self.saveCourseSchedule)
@@ -312,14 +525,20 @@ class TeacherApp(QMainWindow):
         self.b7_t_4.clicked.connect(self.clearMeetingScheduleForm)  
         self.b6_4_att.clicked.connect(self.saveLessonAttendanceDetails)
         self.b6_4_att_2.clicked.connect(self.saveMeetingAttendanceDetails)
-
+        self.addButton.clicked.connect(self.add_announcement)
+        self.editButton.clicked.connect(self.edit_announcement)
+        self.deleteButton.clicked.connect(self.delete_announcement)
+        self.add_button.clicked.connect(self.add_checkbox)
+        self.remove_button.clicked.connect(self.remove_checkbox)
+        self.sendButton3_t.clicked.connect(self.send_message)
     def setupComboBoxActions(self):
         self.cb22_t_49.currentIndexChanged.connect(self.studentSelectedForLesson)
         self.cb22_t_49.currentIndexChanged.connect(lambda: self.loadLessonAttendanceData(self.cb22_t_49.itemData(self.cb22_t_49.currentIndex()).get('email')))
         self.cb22_t_76.currentIndexChanged.connect(self.studentSelectedForMeeting)
         self.cb22_t_76.currentIndexChanged.connect(lambda: self.loadMeetingAttendanceData(self.cb22_t_76.itemData(self.cb22_t_76.currentIndex()).get('email')))
-
-
+        #self.comboBox_t.currentIndexChanged.connect(self.messageSelected)
+        #self.comboBox.currentIndexChanged.connect(self.itemSelected)
+        self.comboBox.currentIndexChanged.connect(self.view_announcements)
  #############################################################################################################
  ## Part 2: Tab Display Methods ##
  
@@ -339,6 +558,9 @@ class TeacherApp(QMainWindow):
         self.tabWidget.setCurrentIndex(3)
         self.loadStudentListForLesson()
         self.loadCurrentCourseSchedule()
+    
+    def add_message_tab(self):
+        self.tabWidget.setCurrentIndex(8)
 
     def showMeetingAttendanceTab(self):
         print("Opening Meeting Attendance Tab")
@@ -1350,7 +1572,331 @@ class TeacherApp(QMainWindow):
             QMessageBox.information(self, "Success", "meeting attendance saved/updated successfully.")
         except Exception as e:
             QMessageBox.critical(self, "Save Error", f"An error occurred: {e}")
+    ###################################################################################################################################
+    ## Part 8: Announcement Methods ##
+    def add_announce_tab(self):
+        self.tabWidget.setCurrentIndex(6)
+        self.load_announcements_from_json()
+    def add_announcement(self):
+        text = self.textEdit.toPlainText()
+        title = self.LineEdit.text()
 
+        # Yeni duyuruyu oluştur
+        new_announcement = {"title": title, "text": text}
+
+        # Önceki duyuruları yükle
+        saved_announcements = load_announcements()
+
+        # Yeni duyuruyu ekle
+        saved_announcements.append(new_announcement)
+
+        # Yeni duyuruyu JSON dosyasına kaydet
+        save_announcements(saved_announcements)
+
+        # ComboBox'a ekle
+        self.comboBox.addItem(f"{title}: {text}")
+
+        # Temizleme işlemleri
+        self.textEdit.clear()
+        self.LineEdit.clear()
+
+        QMessageBox.information(self, "Saved", "Announcement saved successfully.")
+
+    
+    
+    def load_announcements_from_json(self):
+        self.comboBox.clear()  # Önceki duyuruları temizle
+        announcements = load_announcements()
+        for announcement in announcements:
+            title = announcement.get('title')
+            text = announcement.get('text')
+            if title and text:
+                self.comboBox.addItem(f"{title}: {text}")
+    
+        
+    def view_announcements(self):
+        self.comboBox.clear()  # Önceki duyuruları temizle
+        self.load_announcements_from_json(self)  # Mevcut duyuruları yükle    
+        
+    def delete_announcement(self):
+        index = self.comboBox.currentIndex()  # Seçilen öğenin indeksini al
+        if index != -1:
+            msg = QMessageBox.question(self, 'Delete Item', 'Are you sure you want to delete this announcement?',
+                                QMessageBox.Yes | QMessageBox.No, QMessageBox.No)
+            if msg == QMessageBox.Yes:
+                announcements = load_announcements()  
+                announcements.pop(index)  
+                save_announcements(announcements)  
+
+            # ComboBox ve TextBrowser'ı temizle
+                self.comboBox.removeItem(index)
+                self.textBrowser.clear()
+
+                QMessageBox.information(self, "Deleted", "Announcement deleted successfully.")
+
+
+    def edit_announcement(self):
+        index = self.comboBox.currentIndex()  
+        if index != -1:
+            saved_announcements = load_announcements()  
+            msg = QMessageBox.question(self, 'Edit Item', 'Are you sure you want to edit this announcement?',
+                                    QMessageBox.Yes | QMessageBox.No, QMessageBox.No)
+            if msg == QMessageBox.Yes:
+                text = self.textEdit.toPlainText()  
+                title = self.LineEdit.text()  
+                if text and title:  
+                    saved_announcements[index]["text"] = text  
+                    saved_announcements[index]["title"] = title  
+                    save_announcements(saved_announcements)  
+                    self.comboBox.setItemText(index, f"{title}: {text}")  
+                    self.textBrowser.clear()  
+                    self.textBrowser.append(f"{title}: {text}")  
+                    self.textEdit.clear()  
+                    self.LineEdit.clear()
+                    QMessageBox.information(self, "Edited", "Announcement edited successfully.")
+
+    def itemSelected(self, index):
+        text = self.comboBox.currentText()
+        self.textBrowser.clear()
+        self.textBrowser.append(text)
+        title, content = text.split(": ", 1)  # ':' işaretine göre bölüp title ve content'ı ayır
+        self.LineEdit.setText(content)
+
+    def view_announcements(self):
+        index = self.comboBox.currentIndex()  
+        if index != -1:
+            saved_announcements = load_announcements()
+            text = self.textEdit.toPlainText()  
+            title = self.LineEdit.text()
+            if text and title:  
+                    saved_announcements[index]["text"] = text  
+                    saved_announcements[index]["title"] = title  
+                    save_announcements(saved_announcements)  
+                    self.comboBox.setItemText(index, f"{title}: {text}")  
+                    self.textBrowser.clear()  
+                    self.textBrowser.append(f"{title}: {text}")  
+                    self.textEdit.clear()  
+                    self.LineEdit.clear()
+                
+    
+###################################################################################################################################
+## Part 9: Message Box Methods ##
+
+    def add_message_tab(self):
+        self.tabWidget.setCurrentIndex(8)
+    
+    def getMessages(self):
+            try:
+                with open('messages.json', "r") as messageFile:
+                    data = json.load(messageFile)
+                    self.messages = data
+                
+            except (json.JSONDecodeError, FileNotFoundError):
+                pass
+    def load_users(self):
+        self.model2 = QStandardItemModel()
+        self.listView_t.setModel(self.model2)
+        try:
+            with open('users.json', 'r') as file:
+                users = json.load(file)
+                for user in users:
+                    if user["email"] != self.email:
+                        item = QStandardItem(user['email'])
+                        self.model2.appendRow(item)
+                        #self.comboBox_t.addItem(user['email'])
+                        for key in self.messages.keys():
+                            if user['email'] in key:
+                                if self.email in key:
+                                    if self.messages[key]["unread-messages"] == True:
+                                        item.setBackground(QColor('green'))
+                                        pass
+                                        #change background
+        except FileNotFoundError:
+            print("users.json dosyası bulunamadı.")
+        except json.JSONDecodeError:
+            print("users.json dosyası doğru biçimde değil.")
+
+
+    def send_message(self):
+        selected_email = ""
+        selected_indexes = self.listView_t.selectedIndexes()
+        for index in selected_indexes:
+            item = self.model2.itemFromIndex(index)
+            selected_email = item.text()
+        sender = self.email
+        message_text = self.LineEdit_3_t.text()
+
+
+        message_id1 = sender+selected_email
+        message_id2 = selected_email+sender
+
+        msg_list = []
+    
+        if message_id1 in self.messages:
+            msg_list = self.messages[message_id1]["messages"]
+            saved_message = f"{sender}: {message_text}"
+            msg_list.append(saved_message)
+            self.message_display = msg_list
+            self.messages[message_id1] = {
+                "unread-messages": True,
+                "messages":msg_list
+                }
+            with open("messages.json", "w") as messageFile:
+                json.dump(self.messages, messageFile, indent=2)
+
+        elif message_id2 in self.messages:
+            msg_list = self.messages[message_id2]["messages"]
+            saved_message = f"{sender}: {message_text}"
+            msg_list.append(saved_message)
+            self.messages[message_id2] = {
+                "unread-messages": True,
+                "messages":msg_list
+                }
+            self.message_display = msg_list
+            with open("messages.json", "w") as messageFile:
+                json.dump(self.messages, messageFile, indent=2)
+        else:
+            saved_message = f"{sender}: {message_text}"
+            self.messages[message_id1] = {
+                "unread-messages": True,
+                "messages": [saved_message]
+            }
+            self.message_display = self.messages[message_id1]
+            with open("messages.json", "w") as messageFile:
+                json.dump(self.messages, messageFile, indent=2)
+        # self.messageSelected()
+        # self.read_message()
+
+        self.model = QStandardItemModel()
+        self.list_view_3_a.setModel(self.model)
+        for message in msg_list:
+            item = QStandardItem(message)  
+            self.model.appendRow(item)
+
+        self.list_view_3_t.setModel(self.model)
+
+
+
+
+        if message_text and selected_email:
+            # self.message_display.append(f"Sen: {message_text}")  # Gönderilen mesajı ekrana ekler
+            # self.message_display.append(f"Gönderilen: {selected_email}")  # Gönderilen e-postayı ekrana ekler
+            msg_box = QMessageBox()
+            msg_box.setWindowTitle("Mesaj Gönderildi!")
+            msg_box.setText(f"Mesajınız '{message_text}' adresine gönderildi: {selected_email}")
+            msg_box.exec()
+    
+    def messageSelected(self):
+        self.model = QStandardItemModel()
+        self.list_view_3_t.setModel(self.model)
+        #message_receiver = self.comboBox_t.currentText()
+        message_receiver=""
+        
+        id1 = self.email + message_receiver
+        id2 = message_receiver + self.email
+        
+        msg_list = []
+        
+        if id1 in self.messages:
+            msg_list = self.messages[id1]
+    
+        elif id2 in self.messages:
+            msg_list = self.messages[id2]
+        
+        for message in msg_list:
+            item = QStandardItem(message)  
+            self.model.appendRow(item)
+        self.list_view_3_t.setModel(self.model) 
+
+    def read_message(self):
+        self.model = QStandardItemModel()
+        self.list_view_3_t.setModel(self.model)
+
+        selected_indexes = self.listView_t.selectedIndexes()
+        message_receiver = ""
+        for index in selected_indexes:
+            item = self.model2.itemFromIndex(index)
+            item.setBackground(QColor("white"))
+        for key in self.messages.keys():
+                if self.email and item.text() in key:
+                    self.messages[key]["unread-messages"] = False
+                    message_receiver = item.text()
+
+        
+        # message_receiver = self.comboBox_3.currentText()
+        
+        id1 = self.email + message_receiver
+        id2 = message_receiver + self.email
+        
+        msg_list = []
+        
+        if id1 in self.messages:
+            msg_list = self.messages[id1]["messages"]
+            with open("messages.json", "w") as messageFile:
+                json.dump(self.messages, messageFile, indent=2)
+                    
+        elif id2 in self.messages:
+            msg_list = self.messages[id2]["messages"]
+            with open("messages.json", "w") as messageFile:
+                json.dump(self.messages, messageFile, indent=2)
+
+
+        for message in msg_list:
+            item = QStandardItem(message)  
+            self.model.appendRow(item)
+
+        self.list_view_3_t.setModel(self.model)
+
+
+###################################################################################################################################
+## Part 10: To Do List Methods ##
+    def add_todolist_tab(self):
+        self.tabWidget.setCurrentIndex(7)
+        self.view_todolist()
+    
+    def add_checkbox(self):
+        text = self.line_edit.text()
+        if text:
+            item = QStandardItem(text)
+            self.model.appendRow(item)
+            self.save_todolist_to_json()
+
+    def remove_checkbox(self):
+        indexes = self.list_view.selectedIndexes()
+        for index in sorted(indexes, reverse=True):
+            self.model.removeRow(index.row())
+        self.list_view.setModel(self.model)
+        self.save_todolist_to_json()
+    
+    def load_todolist_from_json(self):
+        try:
+            with open('todolist.json', 'r') as todolist_file:
+                checkbox_dict = json.load(todolist_file)
+                for key, value in checkbox_dict.items():
+                    item = QStandardItem(value)
+                    self.model.appendRow(item)
+                    self.list_view.setModel(self.model)
+        except (FileNotFoundError, json.decoder.JSONDecodeError):
+            pass
+
+
+
+    def save_todolist_to_json(self):
+        checkbox_dict = {}
+        for i in range(self.model.rowCount()):
+            checkbox_dict[i + 1] = self.model.item(i).text()
+            self.list_view.setModel(self.model)
+        with open('todolist.json', 'w') as todolist_file:
+            json.dump(checkbox_dict, todolist_file, indent=4)
+            
+    def view_todolist(self):
+        self.model = QStandardItemModel()
+        self.list_view.setModel(self.model)
+        
+        todolist_data = load_todolist()
+        for key, value in todolist_data.items():
+            item = QStandardItem(f"{key}: {value}")
+            self.model.appendRow(item)
 
 ###################################################################################################################################
         
@@ -1368,6 +1914,7 @@ class LoginApp(QDialog):
         users = load_users()
         user = next((user for user in users if user['email'] == email and user['password'] == password), None)
         if user:
+            widget.close()
             if is_admin(user):
                 self.admin_app = AdminApp()
                 self.admin_app.show()
@@ -1459,6 +2006,7 @@ class StudentApp(QMainWindow):
         super(StudentApp, self).__init__()
         loadUi("student.ui", self)
         self.email = email
+        self.model = QStandardItemModel()
         self.tabWidget.setCurrentIndex(0)
         self.tabWidget.tabBar().setVisible(False)
         self.menu11.triggered.connect(self.edit_profile_tab)
@@ -1466,10 +2014,21 @@ class StudentApp(QMainWindow):
         self.menu22_2.triggered.connect(self.view_lesson_attendance)
         self.menu31_2.triggered.connect(self.view_meeting_schedule)
         self.menu32.triggered.connect(self.view_meeting_attendance)
-        self.menu71.triggered.connect(self.close)  # Logout from student menu
+        self.announcements_s.triggered.connect(self.view_announcements_tab)
+        self.menu51_a.triggered.connect(self.view_todolist_tab)
+        self.menu61_2.triggered.connect(self.add_message_tab)
+        self.menu71.triggered.connect(self.close)
+        # Logout from student menu
 
         self.b6.clicked.connect(self.update_student_details)  
         
+        
+        self.messages = dict()
+        self.getMessages()
+        self.load_users()
+        self.sendButton3.clicked.connect(self.send_message)
+        # self.comboBox_3.currentIndexChanged.connect(self.messageSelected)
+        self.listView_4.clicked.connect(self.read_message)
         
         # Load initial data
         self.load_student_details()
@@ -1477,9 +2036,38 @@ class StudentApp(QMainWindow):
         self.view_lesson_attendance()
         self.view_meeting_schedule()
         self.view_meeting_attendance()
+        self.view_meeting_attendance()
+        self.view_announcements()
+        self.view_todolist()
         self.tabWidget.setCurrentIndex(0)
- #################################################################################################################       
-         
+#################################################################################################################       
+    def view_announcements_tab(self):
+        self.tabWidget.setCurrentIndex(6)
+        load_announcements()
+        
+    def view_announcements(self):
+        self.tabWidget.setCurrentIndex
+        self.textBrowser.clear()
+        announcements = load_announcements()
+        for announcement in announcements:
+            title = announcement.get('title')
+            text = announcement.get('text')
+            if title and text:
+                self.textBrowser.append(f"Title: {title}\n{text}\n\n")
+#################################################################################################################
+    def view_todolist_tab(self):
+        self.tabWidget.setCurrentIndex(7)
+        load_todolist()
+        
+    def view_todolist(self):
+        self.model = QStandardItemModel()
+        self.list_view.setModel(self.model)
+        
+        todolist_data = load_todolist()
+        for key, value in todolist_data.items():
+            item = QStandardItem(f"{key}: {value}")
+            self.model.appendRow(item)
+
         
 
    
@@ -2120,11 +2708,173 @@ class StudentApp(QMainWindow):
             self.tb229_course_12.setReadOnly(True)
             self.cb215_course_12.setDisabled(True)
             self.cb22_t_134.setDisabled(True)
- #################################################################################################################
+#################################################################################################################
+    def add_message_tab(self):
+        self.tabWidget.setCurrentIndex(8)
+    
+    def getMessages(self):
+            try:
+                with open('messages.json', "r") as messageFile:
+                    data = json.load(messageFile)
+                    self.messages = data
+                
+            except (json.JSONDecodeError, FileNotFoundError):
+                pass
+    def load_users(self):
+        self.model2 = QStandardItemModel()
+        self.listView_4.setModel(self.model2)
+        try:
+            with open('users.json', 'r') as file:
+                users = json.load(file)
+                for user in users:
+                    if user["email"] != self.email:
+                        item = QStandardItem(user['email'])
+                        self.model2.appendRow(item)
+                        #self.comboBox_3.addItem(user['email'])
+                        for key in self.messages.keys():
+                            if user['email'] in key:
+                                if self.email in key:
+                                    if self.messages[key]["unread-messages"] == True:
+                                        item.setBackground(QColor('green'))
+                                        pass
+                                    #change background
+        except FileNotFoundError:
+            print("users.json dosyası bulunamadı.")
+        except json.JSONDecodeError:
+            print("users.json dosyası doğru biçimde değil.")
+
+
+    def send_message(self):
+        selected_email = ""
+        selected_indexes = self.listView_4.selectedIndexes()
+        for index in selected_indexes:
+            item = self.model2.itemFromIndex(index)
+            selected_email = item.text()
+        sender = self.email
+        message_text = self.LineEdit_3.text()
+
+
+        message_id1 = sender+selected_email
+        message_id2 = selected_email+sender
+
+        msg_list = []
+
+    
+        if message_id1 in self.messages:
+            msg_list = self.messages[message_id1]["messages"]
+            saved_message = f"{sender}: {message_text}"
+            msg_list.append(saved_message)
+            self.message_display = msg_list
+            self.messages[message_id1] = {
+                "unread-messages": True,
+                "messages":msg_list
+                }
+            with open("messages.json", "w") as messageFile:
+                json.dump(self.messages, messageFile, indent=2)
+
+        elif message_id2 in self.messages:
+            msg_list = self.messages[message_id2]["messages"]
+            saved_message = f"{sender}: {message_text}"
+            msg_list.append(saved_message)
+            self.messages[message_id2] = {
+                "unread-messages": True,
+                "messages":msg_list
+                }
+            self.message_display = msg_list
+            with open("messages.json", "w") as messageFile:
+                json.dump(self.messages, messageFile, indent=2)
+        else:
+            saved_message = f"{sender}: {message_text}"
+            self.messages[message_id1] = {
+                "unread-messages": True,
+                "messages": [saved_message]
+            }
+            self.message_display = self.messages[message_id1]
+            with open("messages.json", "w") as messageFile:
+                json.dump(self.messages, messageFile, indent=2)
+        # self.messageSelected()
+        # self.read_message()
+                
+        
+        self.model = QStandardItemModel()
+        self.list_view_3.setModel(self.model)
+        for message in msg_list:
+            item = QStandardItem(message)  
+            self.model.appendRow(item)
+
+        self.list_view_3_a.setModel(self.model)
 
 
 
 
+        if message_text and selected_email:
+            # self.message_display.append(f"Sen: {message_text}")  # Gönderilen mesajı ekrana ekler
+            # self.message_display.append(f"Gönderilen: {selected_email}")  # Gönderilen e-postayı ekrana ekler
+            msg_box = QMessageBox()
+            msg_box.setWindowTitle("Mesaj Gönderildi!")
+            msg_box.setText(f"Mesajınız '{message_text}' adresine gönderildi: {selected_email}")
+            msg_box.exec()
+    
+    def messageSelected(self):
+        self.model = QStandardItemModel()
+        self.list_view_3.setModel(self.model)
+        #message_receiver = self.comboBox_3.currentText()
+        message_receiver =""
+        
+        id1 = self.email + message_receiver
+        id2 = message_receiver + self.email
+        
+        msg_list = []
+        
+        if id1 in self.messages:
+            msg_list = self.messages[id1]
+    
+        elif id2 in self.messages:
+            msg_list = self.messages[id2]
+        
+        for message in msg_list:
+            item = QStandardItem(message)  
+            self.model.appendRow(item)
+        self.list_view_3.setModel(self.model) 
+
+    def read_message(self):
+        self.model = QStandardItemModel()
+        self.list_view_3.setModel(self.model)
+
+        selected_indexes = self.listView_4.selectedIndexes()
+        message_receiver = ""
+        for index in selected_indexes:
+            item = self.model2.itemFromIndex(index)
+            item.setBackground(QColor("white"))
+        for key in self.messages.keys():
+                if self.email and item.text() in key:
+                    self.messages[key]["unread-messages"] = False
+                    message_receiver = item.text()
+
+        
+        # message_receiver = self.comboBox_3.currentText()
+        
+        id1 = self.email + message_receiver
+        id2 = message_receiver + self.email
+        
+        msg_list = []
+        
+        if id1 in self.messages:
+            msg_list = self.messages[id1]["messages"]
+            with open("messages.json", "w") as messageFile:
+                json.dump(self.messages, messageFile, indent=2)
+                    
+        elif id2 in self.messages:
+            msg_list = self.messages[id2]["messages"]
+            with open("messages.json", "w") as messageFile:
+                json.dump(self.messages, messageFile, indent=2)
+
+
+        for message in msg_list:
+            item = QStandardItem(message)  
+            self.model.appendRow(item)
+
+        self.list_view_3.setModel(self.model)
 
 
 
@@ -2154,7 +2904,7 @@ if __name__ == "__main__":
     widget = QtWidgets.QStackedWidget()
     login_form = LoginApp()
     registration_form = RegApp()
-    email = ""
+    email = "admin@admin.com"
     student_form = StudentApp(email)
     teacher_form = TeacherApp(email)
     

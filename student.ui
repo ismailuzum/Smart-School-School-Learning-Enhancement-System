@@ -42,7 +42,7 @@ background-color: rgb(40, 41, 44);</string>
    <widget class="QTabWidget" name="tabWidget">
     <property name="geometry">
      <rect>
-      <x>-10</x>
+      <x>0</x>
       <y>40</y>
       <width>1161</width>
       <height>711</height>
@@ -59,7 +59,7 @@ background-color: rgb(40, 41, 44);</string>
      <string notr="true">background-color: rgb(40, 41, 44);</string>
     </property>
     <property name="currentIndex">
-     <number>5</number>
+     <number>8</number>
     </property>
     <widget class="QWidget" name="tab_1">
      <attribute name="title">
@@ -68,9 +68,9 @@ background-color: rgb(40, 41, 44);</string>
      <widget class="QLabel" name="label_13">
       <property name="geometry">
        <rect>
-        <x>20</x>
-        <y>20</y>
-        <width>661</width>
+        <x>110</x>
+        <y>190</y>
+        <width>981</width>
         <height>41</height>
        </rect>
       </property>
@@ -93,10 +93,10 @@ background-color: rgb(40, 41, 44);</string>
      <widget class="QLabel" name="label_14">
       <property name="geometry">
        <rect>
-        <x>280</x>
-        <y>90</y>
-        <width>181</width>
-        <height>20</height>
+        <x>440</x>
+        <y>320</y>
+        <width>321</width>
+        <height>91</height>
        </rect>
       </property>
       <property name="font">
@@ -122,9 +122,9 @@ background-color: rgb(40, 41, 44);</string>
      <widget class="QLabel" name="label_2">
       <property name="geometry">
        <rect>
-        <x>260</x>
+        <x>200</x>
         <y>10</y>
-        <width>121</width>
+        <width>211</width>
         <height>21</height>
        </rect>
       </property>
@@ -320,7 +320,7 @@ font: 10pt &quot;MS Shell Dlg 2&quot;;
       <property name="sizeAdjustPolicy">
        <enum>QComboBox::AdjustToContentsOnFirstShow</enum>
       </property>
-      <property name="placeholderText">
+      <property name="placeholderText" stdset="0">
        <string>Add/Select Teacher</string>
       </property>
       <item>
@@ -470,7 +470,7 @@ font: 10pt &quot;MS Shell Dlg 2&quot;;
        <rect>
         <x>490</x>
         <y>340</y>
-        <width>111</width>
+        <width>141</width>
         <height>20</height>
        </rect>
       </property>
@@ -533,7 +533,7 @@ font: 10pt &quot;MS Shell Dlg 2&quot;;
       <property name="sizeAdjustPolicy">
        <enum>QComboBox::AdjustToContentsOnFirstShow</enum>
       </property>
-      <property name="placeholderText">
+      <property name="placeholderText" stdset="0">
        <string>Add/Select Teacher</string>
       </property>
       <item>
@@ -578,7 +578,7 @@ font: 10pt &quot;MS Shell Dlg 2&quot;;
       <property name="sizeAdjustPolicy">
        <enum>QComboBox::AdjustToContentsOnFirstShow</enum>
       </property>
-      <property name="placeholderText">
+      <property name="placeholderText" stdset="0">
        <string>Add/Select Teacher</string>
       </property>
       <item>
@@ -639,7 +639,7 @@ font: 10pt &quot;MS Shell Dlg 2&quot;;
       <property name="sizeAdjustPolicy">
        <enum>QComboBox::AdjustToContentsOnFirstShow</enum>
       </property>
-      <property name="placeholderText">
+      <property name="placeholderText" stdset="0">
        <string>Add/Select Teacher</string>
       </property>
       <item>
@@ -700,7 +700,7 @@ font: 10pt &quot;MS Shell Dlg 2&quot;;
       <property name="sizeAdjustPolicy">
        <enum>QComboBox::AdjustToContentsOnFirstShow</enum>
       </property>
-      <property name="placeholderText">
+      <property name="placeholderText" stdset="0">
        <string>Add/Select Teacher</string>
       </property>
       <item>
@@ -841,7 +841,7 @@ font: 10pt &quot;MS Shell Dlg 2&quot;;
       <property name="sizeAdjustPolicy">
        <enum>QComboBox::AdjustToContentsOnFirstShow</enum>
       </property>
-      <property name="placeholderText">
+      <property name="placeholderText" stdset="0">
        <string>Add/Select Teacher</string>
       </property>
       <item>
@@ -902,7 +902,7 @@ font: 10pt &quot;MS Shell Dlg 2&quot;;
       <property name="sizeAdjustPolicy">
        <enum>QComboBox::AdjustToContentsOnFirstShow</enum>
       </property>
-      <property name="placeholderText">
+      <property name="placeholderText" stdset="0">
        <string>Add/Select Teacher</string>
       </property>
       <item>
@@ -1050,7 +1050,7 @@ font: 10pt &quot;MS Shell Dlg 2&quot;;
       <property name="sizeAdjustPolicy">
        <enum>QComboBox::AdjustToContentsOnFirstShow</enum>
       </property>
-      <property name="placeholderText">
+      <property name="placeholderText" stdset="0">
        <string>Add/Select Teacher</string>
       </property>
       <item>
@@ -1127,7 +1127,7 @@ font: 10pt &quot;MS Shell Dlg 2&quot;;
       <property name="sizeAdjustPolicy">
        <enum>QComboBox::AdjustToContentsOnFirstShow</enum>
       </property>
-      <property name="placeholderText">
+      <property name="placeholderText" stdset="0">
        <string>Add/Select Teacher</string>
       </property>
       <item>
@@ -1172,7 +1172,7 @@ font: 10pt &quot;MS Shell Dlg 2&quot;;
       <property name="sizeAdjustPolicy">
        <enum>QComboBox::AdjustToContentsOnFirstShow</enum>
       </property>
-      <property name="placeholderText">
+      <property name="placeholderText" stdset="0">
        <string>Add/Select Teacher</string>
       </property>
       <item>
@@ -1329,7 +1329,7 @@ font: 10pt &quot;MS Shell Dlg 2&quot;;
       <property name="sizeAdjustPolicy">
        <enum>QComboBox::AdjustToContentsOnFirstShow</enum>
       </property>
-      <property name="placeholderText">
+      <property name="placeholderText" stdset="0">
        <string>Add/Select Teacher</string>
       </property>
       <item>
@@ -1374,7 +1374,7 @@ font: 10pt &quot;MS Shell Dlg 2&quot;;
       <property name="sizeAdjustPolicy">
        <enum>QComboBox::AdjustToContentsOnFirstShow</enum>
       </property>
-      <property name="placeholderText">
+      <property name="placeholderText" stdset="0">
        <string>Add/Select Teacher</string>
       </property>
       <item>
@@ -1467,7 +1467,7 @@ font: 10pt &quot;MS Shell Dlg 2&quot;;
       <property name="sizeAdjustPolicy">
        <enum>QComboBox::AdjustToContentsOnFirstShow</enum>
       </property>
-      <property name="placeholderText">
+      <property name="placeholderText" stdset="0">
        <string>Add/Select Teacher</string>
       </property>
       <item>
@@ -1528,7 +1528,7 @@ font: 10pt &quot;MS Shell Dlg 2&quot;;
       <property name="sizeAdjustPolicy">
        <enum>QComboBox::AdjustToContentsOnFirstShow</enum>
       </property>
-      <property name="placeholderText">
+      <property name="placeholderText" stdset="0">
        <string>Add/Select Teacher</string>
       </property>
       <item>
@@ -1573,7 +1573,7 @@ font: 10pt &quot;MS Shell Dlg 2&quot;;
       <property name="sizeAdjustPolicy">
        <enum>QComboBox::AdjustToContentsOnFirstShow</enum>
       </property>
-      <property name="placeholderText">
+      <property name="placeholderText" stdset="0">
        <string>Add/Select Teacher</string>
       </property>
       <item>
@@ -1634,7 +1634,7 @@ font: 10pt &quot;MS Shell Dlg 2&quot;;
       <property name="sizeAdjustPolicy">
        <enum>QComboBox::AdjustToContentsOnFirstShow</enum>
       </property>
-      <property name="placeholderText">
+      <property name="placeholderText" stdset="0">
        <string>Add/Select Teacher</string>
       </property>
       <item>
@@ -1716,7 +1716,7 @@ font: 10pt &quot;MS Shell Dlg 2&quot;;
       <property name="sizeAdjustPolicy">
        <enum>QComboBox::AdjustToContentsOnFirstShow</enum>
       </property>
-      <property name="placeholderText">
+      <property name="placeholderText" stdset="0">
        <string>Add/Select Teacher</string>
       </property>
       <item>
@@ -1761,7 +1761,7 @@ font: 10pt &quot;MS Shell Dlg 2&quot;;
       <property name="sizeAdjustPolicy">
        <enum>QComboBox::AdjustToContentsOnFirstShow</enum>
       </property>
-      <property name="placeholderText">
+      <property name="placeholderText" stdset="0">
        <string>Add/Select Teacher</string>
       </property>
       <item>
@@ -1801,7 +1801,7 @@ font: 10pt &quot;MS Shell Dlg 2&quot;;
       <property name="sizeAdjustPolicy">
        <enum>QComboBox::AdjustToContentsOnFirstShow</enum>
       </property>
-      <property name="placeholderText">
+      <property name="placeholderText" stdset="0">
        <string>Add/Select Teacher</string>
       </property>
       <item>
@@ -1846,7 +1846,7 @@ font: 10pt &quot;MS Shell Dlg 2&quot;;
       <property name="sizeAdjustPolicy">
        <enum>QComboBox::AdjustToContentsOnFirstShow</enum>
       </property>
-      <property name="placeholderText">
+      <property name="placeholderText" stdset="0">
        <string>Add/Select Teacher</string>
       </property>
       <item>
@@ -1902,7 +1902,7 @@ font: 10pt &quot;MS Shell Dlg 2&quot;;
       <property name="sizeAdjustPolicy">
        <enum>QComboBox::AdjustToContentsOnFirstShow</enum>
       </property>
-      <property name="placeholderText">
+      <property name="placeholderText" stdset="0">
        <string>Add/Select Teacher</string>
       </property>
       <item>
@@ -1963,7 +1963,7 @@ font: 10pt &quot;MS Shell Dlg 2&quot;;
       <property name="sizeAdjustPolicy">
        <enum>QComboBox::AdjustToContentsOnFirstShow</enum>
       </property>
-      <property name="placeholderText">
+      <property name="placeholderText" stdset="0">
        <string>Add/Select Teacher</string>
       </property>
       <item>
@@ -1982,7 +1982,7 @@ font: 10pt &quot;MS Shell Dlg 2&quot;;
        <rect>
         <x>30</x>
         <y>20</y>
-        <width>271</width>
+        <width>371</width>
         <height>21</height>
        </rect>
       </property>
@@ -2042,7 +2042,7 @@ font: 10pt &quot;MS Shell Dlg 2&quot;;
       <property name="sizeAdjustPolicy">
        <enum>QComboBox::AdjustToContentsOnFirstShow</enum>
       </property>
-      <property name="placeholderText">
+      <property name="placeholderText" stdset="0">
        <string>Add/Select Teacher</string>
       </property>
       <item>
@@ -2087,7 +2087,7 @@ font: 10pt &quot;MS Shell Dlg 2&quot;;
       <property name="sizeAdjustPolicy">
        <enum>QComboBox::AdjustToContentsOnFirstShow</enum>
       </property>
-      <property name="placeholderText">
+      <property name="placeholderText" stdset="0">
        <string>Add/Select Teacher</string>
       </property>
       <item>
@@ -2132,7 +2132,7 @@ font: 10pt &quot;MS Shell Dlg 2&quot;;
       <property name="sizeAdjustPolicy">
        <enum>QComboBox::AdjustToContentsOnFirstShow</enum>
       </property>
-      <property name="placeholderText">
+      <property name="placeholderText" stdset="0">
        <string>Add/Select Teacher</string>
       </property>
       <item>
@@ -2177,7 +2177,7 @@ font: 10pt &quot;MS Shell Dlg 2&quot;;
       <property name="sizeAdjustPolicy">
        <enum>QComboBox::AdjustToContentsOnFirstShow</enum>
       </property>
-      <property name="placeholderText">
+      <property name="placeholderText" stdset="0">
        <string>Add/Select Teacher</string>
       </property>
       <item>
@@ -2240,7 +2240,7 @@ font: 10pt &quot;MS Shell Dlg 2&quot;;
       <property name="sizeAdjustPolicy">
        <enum>QComboBox::AdjustToContentsOnFirstShow</enum>
       </property>
-      <property name="placeholderText">
+      <property name="placeholderText" stdset="0">
        <string>Add/Select Teacher</string>
       </property>
       <item>
@@ -2280,7 +2280,7 @@ font: 10pt &quot;MS Shell Dlg 2&quot;;
       <property name="sizeAdjustPolicy">
        <enum>QComboBox::AdjustToContentsOnFirstShow</enum>
       </property>
-      <property name="placeholderText">
+      <property name="placeholderText" stdset="0">
        <string>Add/Select Teacher</string>
       </property>
       <item>
@@ -2320,7 +2320,7 @@ font: 10pt &quot;MS Shell Dlg 2&quot;;
       <property name="sizeAdjustPolicy">
        <enum>QComboBox::AdjustToContentsOnFirstShow</enum>
       </property>
-      <property name="placeholderText">
+      <property name="placeholderText" stdset="0">
        <string>Add/Select Teacher</string>
       </property>
       <item>
@@ -2365,7 +2365,7 @@ font: 10pt &quot;MS Shell Dlg 2&quot;;
       <property name="sizeAdjustPolicy">
        <enum>QComboBox::AdjustToContentsOnFirstShow</enum>
       </property>
-      <property name="placeholderText">
+      <property name="placeholderText" stdset="0">
        <string>Add/Select Teacher</string>
       </property>
       <item>
@@ -2410,7 +2410,7 @@ font: 10pt &quot;MS Shell Dlg 2&quot;;
       <property name="sizeAdjustPolicy">
        <enum>QComboBox::AdjustToContentsOnFirstShow</enum>
       </property>
-      <property name="placeholderText">
+      <property name="placeholderText" stdset="0">
        <string>Add/Select Teacher</string>
       </property>
       <item>
@@ -2482,7 +2482,7 @@ font: 10pt &quot;MS Shell Dlg 2&quot;;
       <property name="sizeAdjustPolicy">
        <enum>QComboBox::AdjustToContentsOnFirstShow</enum>
       </property>
-      <property name="placeholderText">
+      <property name="placeholderText" stdset="0">
        <string>Add/Select Teacher</string>
       </property>
       <item>
@@ -2570,7 +2570,7 @@ font: 10pt &quot;MS Shell Dlg 2&quot;;
       <property name="sizeAdjustPolicy">
        <enum>QComboBox::AdjustToContentsOnFirstShow</enum>
       </property>
-      <property name="placeholderText">
+      <property name="placeholderText" stdset="0">
        <string>Add/Select Teacher</string>
       </property>
       <item>
@@ -2610,7 +2610,7 @@ font: 10pt &quot;MS Shell Dlg 2&quot;;
       <property name="sizeAdjustPolicy">
        <enum>QComboBox::AdjustToContentsOnFirstShow</enum>
       </property>
-      <property name="placeholderText">
+      <property name="placeholderText" stdset="0">
        <string>Add/Select Teacher</string>
       </property>
       <item>
@@ -2671,7 +2671,7 @@ font: 10pt &quot;MS Shell Dlg 2&quot;;
       <property name="sizeAdjustPolicy">
        <enum>QComboBox::AdjustToContentsOnFirstShow</enum>
       </property>
-      <property name="placeholderText">
+      <property name="placeholderText" stdset="0">
        <string>Add/Select Teacher</string>
       </property>
       <item>
@@ -2732,7 +2732,7 @@ font: 10pt &quot;MS Shell Dlg 2&quot;;
       <property name="sizeAdjustPolicy">
        <enum>QComboBox::AdjustToContentsOnFirstShow</enum>
       </property>
-      <property name="placeholderText">
+      <property name="placeholderText" stdset="0">
        <string>Add/Select Teacher</string>
       </property>
       <item>
@@ -2777,7 +2777,7 @@ font: 10pt &quot;MS Shell Dlg 2&quot;;
       <property name="sizeAdjustPolicy">
        <enum>QComboBox::AdjustToContentsOnFirstShow</enum>
       </property>
-      <property name="placeholderText">
+      <property name="placeholderText" stdset="0">
        <string>Add/Select Teacher</string>
       </property>
       <item>
@@ -2817,7 +2817,7 @@ font: 10pt &quot;MS Shell Dlg 2&quot;;
       <property name="sizeAdjustPolicy">
        <enum>QComboBox::AdjustToContentsOnFirstShow</enum>
       </property>
-      <property name="placeholderText">
+      <property name="placeholderText" stdset="0">
        <string>Add/Select Teacher</string>
       </property>
       <item>
@@ -2862,7 +2862,7 @@ font: 10pt &quot;MS Shell Dlg 2&quot;;
       <property name="sizeAdjustPolicy">
        <enum>QComboBox::AdjustToContentsOnFirstShow</enum>
       </property>
-      <property name="placeholderText">
+      <property name="placeholderText" stdset="0">
        <string>Add/Select Teacher</string>
       </property>
       <item>
@@ -2902,7 +2902,7 @@ font: 10pt &quot;MS Shell Dlg 2&quot;;
       <property name="sizeAdjustPolicy">
        <enum>QComboBox::AdjustToContentsOnFirstShow</enum>
       </property>
-      <property name="placeholderText">
+      <property name="placeholderText" stdset="0">
        <string>Add/Select Teacher</string>
       </property>
       <item>
@@ -2979,7 +2979,7 @@ font: 10pt &quot;MS Shell Dlg 2&quot;;
       <property name="sizeAdjustPolicy">
        <enum>QComboBox::AdjustToContentsOnFirstShow</enum>
       </property>
-      <property name="placeholderText">
+      <property name="placeholderText" stdset="0">
        <string>Add/Select Teacher</string>
       </property>
       <item>
@@ -3035,7 +3035,7 @@ font: 10pt &quot;MS Shell Dlg 2&quot;;
       <property name="sizeAdjustPolicy">
        <enum>QComboBox::AdjustToContentsOnFirstShow</enum>
       </property>
-      <property name="placeholderText">
+      <property name="placeholderText" stdset="0">
        <string>Add/Select Teacher</string>
       </property>
       <item>
@@ -3098,7 +3098,7 @@ font: 10pt &quot;MS Shell Dlg 2&quot;;
       <property name="sizeAdjustPolicy">
        <enum>QComboBox::AdjustToContentsOnFirstShow</enum>
       </property>
-      <property name="placeholderText">
+      <property name="placeholderText" stdset="0">
        <string>Add/Select Teacher</string>
       </property>
       <item>
@@ -3143,7 +3143,7 @@ font: 10pt &quot;MS Shell Dlg 2&quot;;
       <property name="sizeAdjustPolicy">
        <enum>QComboBox::AdjustToContentsOnFirstShow</enum>
       </property>
-      <property name="placeholderText">
+      <property name="placeholderText" stdset="0">
        <string>Add/Select Teacher</string>
       </property>
       <item>
@@ -3220,7 +3220,7 @@ font: 10pt &quot;MS Shell Dlg 2&quot;;
       <property name="sizeAdjustPolicy">
        <enum>QComboBox::AdjustToContentsOnFirstShow</enum>
       </property>
-      <property name="placeholderText">
+      <property name="placeholderText" stdset="0">
        <string>Add/Select Teacher</string>
       </property>
       <item>
@@ -3260,7 +3260,7 @@ font: 10pt &quot;MS Shell Dlg 2&quot;;
       <property name="sizeAdjustPolicy">
        <enum>QComboBox::AdjustToContentsOnFirstShow</enum>
       </property>
-      <property name="placeholderText">
+      <property name="placeholderText" stdset="0">
        <string>Add/Select Teacher</string>
       </property>
       <item>
@@ -3328,7 +3328,7 @@ font: 10pt &quot;MS Shell Dlg 2&quot;;
       <property name="sizeAdjustPolicy">
        <enum>QComboBox::AdjustToContentsOnFirstShow</enum>
       </property>
-      <property name="placeholderText">
+      <property name="placeholderText" stdset="0">
        <string>Add/Select Teacher</string>
       </property>
       <item>
@@ -3378,7 +3378,7 @@ font: 10pt &quot;MS Shell Dlg 2&quot;;
       <property name="sizeAdjustPolicy">
        <enum>QComboBox::AdjustToContentsOnFirstShow</enum>
       </property>
-      <property name="placeholderText">
+      <property name="placeholderText" stdset="0">
        <string>Add/Select Teacher</string>
       </property>
       <item>
@@ -3476,7 +3476,7 @@ font: 10pt &quot;MS Shell Dlg 2&quot;;
       <property name="sizeAdjustPolicy">
        <enum>QComboBox::AdjustToContentsOnFirstShow</enum>
       </property>
-      <property name="placeholderText">
+      <property name="placeholderText" stdset="0">
        <string>Add/Select Teacher</string>
       </property>
       <item>
@@ -3521,7 +3521,7 @@ font: 10pt &quot;MS Shell Dlg 2&quot;;
        <rect>
         <x>50</x>
         <y>30</y>
-        <width>241</width>
+        <width>221</width>
         <height>21</height>
        </rect>
       </property>
@@ -3565,7 +3565,7 @@ font: 10pt &quot;MS Shell Dlg 2&quot;;
       <property name="sizeAdjustPolicy">
        <enum>QComboBox::AdjustToContentsOnFirstShow</enum>
       </property>
-      <property name="placeholderText">
+      <property name="placeholderText" stdset="0">
        <string>Add/Select Teacher</string>
       </property>
       <item>
@@ -3663,7 +3663,7 @@ font: 10pt &quot;MS Shell Dlg 2&quot;;
       <property name="sizeAdjustPolicy">
        <enum>QComboBox::AdjustToContentsOnFirstShow</enum>
       </property>
-      <property name="placeholderText">
+      <property name="placeholderText" stdset="0">
        <string>Add/Select Teacher</string>
       </property>
       <item>
@@ -3713,7 +3713,7 @@ font: 10pt &quot;MS Shell Dlg 2&quot;;
       <property name="sizeAdjustPolicy">
        <enum>QComboBox::AdjustToContentsOnFirstShow</enum>
       </property>
-      <property name="placeholderText">
+      <property name="placeholderText" stdset="0">
        <string>Add/Select Teacher</string>
       </property>
       <item>
@@ -3779,7 +3779,7 @@ font: 10pt &quot;MS Shell Dlg 2&quot;;
       <property name="sizeAdjustPolicy">
        <enum>QComboBox::AdjustToContentsOnFirstShow</enum>
       </property>
-      <property name="placeholderText">
+      <property name="placeholderText" stdset="0">
        <string>Add/Select Teacher</string>
       </property>
       <item>
@@ -3829,7 +3829,7 @@ font: 10pt &quot;MS Shell Dlg 2&quot;;
       <property name="sizeAdjustPolicy">
        <enum>QComboBox::AdjustToContentsOnFirstShow</enum>
       </property>
-      <property name="placeholderText">
+      <property name="placeholderText" stdset="0">
        <string>Add/Select Teacher</string>
       </property>
       <item>
@@ -3927,7 +3927,7 @@ font: 10pt &quot;MS Shell Dlg 2&quot;;
       <property name="sizeAdjustPolicy">
        <enum>QComboBox::AdjustToContentsOnFirstShow</enum>
       </property>
-      <property name="placeholderText">
+      <property name="placeholderText" stdset="0">
        <string>Add/Select Teacher</string>
       </property>
       <item>
@@ -3977,7 +3977,7 @@ font: 10pt &quot;MS Shell Dlg 2&quot;;
       <property name="sizeAdjustPolicy">
        <enum>QComboBox::AdjustToContentsOnFirstShow</enum>
       </property>
-      <property name="placeholderText">
+      <property name="placeholderText" stdset="0">
        <string>Add/Select Teacher</string>
       </property>
       <item>
@@ -4155,7 +4155,7 @@ font: 10pt &quot;MS Shell Dlg 2&quot;;
       <property name="sizeAdjustPolicy">
        <enum>QComboBox::AdjustToContentsOnFirstShow</enum>
       </property>
-      <property name="placeholderText">
+      <property name="placeholderText" stdset="0">
        <string>Add/Select Teacher</string>
       </property>
       <item>
@@ -4317,7 +4317,7 @@ font: 10pt &quot;MS Shell Dlg 2&quot;;
       <property name="sizeAdjustPolicy">
        <enum>QComboBox::AdjustToContentsOnFirstShow</enum>
       </property>
-      <property name="placeholderText">
+      <property name="placeholderText" stdset="0">
        <string>Add/Select Teacher</string>
       </property>
       <item>
@@ -4383,7 +4383,7 @@ font: 10pt &quot;MS Shell Dlg 2&quot;;
       <property name="sizeAdjustPolicy">
        <enum>QComboBox::AdjustToContentsOnFirstShow</enum>
       </property>
-      <property name="placeholderText">
+      <property name="placeholderText" stdset="0">
        <string>Add/Select Teacher</string>
       </property>
       <item>
@@ -4449,7 +4449,7 @@ font: 10pt &quot;MS Shell Dlg 2&quot;;
       <property name="sizeAdjustPolicy">
        <enum>QComboBox::AdjustToContentsOnFirstShow</enum>
       </property>
-      <property name="placeholderText">
+      <property name="placeholderText" stdset="0">
        <string>Add/Select Teacher</string>
       </property>
       <item>
@@ -4531,7 +4531,7 @@ font: 10pt &quot;MS Shell Dlg 2&quot;;
       <property name="sizeAdjustPolicy">
        <enum>QComboBox::AdjustToContentsOnFirstShow</enum>
       </property>
-      <property name="placeholderText">
+      <property name="placeholderText" stdset="0">
        <string>Add/Select Teacher</string>
       </property>
       <item>
@@ -4565,7 +4565,7 @@ font: 10pt &quot;MS Shell Dlg 2&quot;;
        <rect>
         <x>30</x>
         <y>40</y>
-        <width>281</width>
+        <width>411</width>
         <height>21</height>
        </rect>
       </property>
@@ -4632,7 +4632,7 @@ font: 10pt &quot;MS Shell Dlg 2&quot;;
       <property name="sizeAdjustPolicy">
        <enum>QComboBox::AdjustToContentsOnFirstShow</enum>
       </property>
-      <property name="placeholderText">
+      <property name="placeholderText" stdset="0">
        <string>Add/Select Teacher</string>
       </property>
       <item>
@@ -4692,7 +4692,7 @@ font: 10pt &quot;MS Shell Dlg 2&quot;;
       <property name="sizeAdjustPolicy">
        <enum>QComboBox::AdjustToContentsOnFirstShow</enum>
       </property>
-      <property name="placeholderText">
+      <property name="placeholderText" stdset="0">
        <string>Add/Select Teacher</string>
       </property>
       <item>
@@ -4732,7 +4732,7 @@ font: 10pt &quot;MS Shell Dlg 2&quot;;
       <property name="sizeAdjustPolicy">
        <enum>QComboBox::AdjustToContentsOnFirstShow</enum>
       </property>
-      <property name="placeholderText">
+      <property name="placeholderText" stdset="0">
        <string>Add/Select Teacher</string>
       </property>
       <item>
@@ -4772,7 +4772,7 @@ font: 10pt &quot;MS Shell Dlg 2&quot;;
       <property name="sizeAdjustPolicy">
        <enum>QComboBox::AdjustToContentsOnFirstShow</enum>
       </property>
-      <property name="placeholderText">
+      <property name="placeholderText" stdset="0">
        <string>Add/Select Teacher</string>
       </property>
       <item>
@@ -4848,7 +4848,7 @@ font: 10pt &quot;MS Shell Dlg 2&quot;;
       <property name="sizeAdjustPolicy">
        <enum>QComboBox::AdjustToContentsOnFirstShow</enum>
       </property>
-      <property name="placeholderText">
+      <property name="placeholderText" stdset="0">
        <string>Add/Select Teacher</string>
       </property>
       <item>
@@ -4908,7 +4908,7 @@ font: 10pt &quot;MS Shell Dlg 2&quot;;
       <property name="sizeAdjustPolicy">
        <enum>QComboBox::AdjustToContentsOnFirstShow</enum>
       </property>
-      <property name="placeholderText">
+      <property name="placeholderText" stdset="0">
        <string>Add/Select Teacher</string>
       </property>
       <item>
@@ -4948,7 +4948,7 @@ font: 10pt &quot;MS Shell Dlg 2&quot;;
       <property name="sizeAdjustPolicy">
        <enum>QComboBox::AdjustToContentsOnFirstShow</enum>
       </property>
-      <property name="placeholderText">
+      <property name="placeholderText" stdset="0">
        <string>Add/Select Teacher</string>
       </property>
       <item>
@@ -4988,7 +4988,7 @@ font: 10pt &quot;MS Shell Dlg 2&quot;;
       <property name="sizeAdjustPolicy">
        <enum>QComboBox::AdjustToContentsOnFirstShow</enum>
       </property>
-      <property name="placeholderText">
+      <property name="placeholderText" stdset="0">
        <string>Add/Select Teacher</string>
       </property>
       <item>
@@ -5048,7 +5048,7 @@ font: 10pt &quot;MS Shell Dlg 2&quot;;
       <property name="sizeAdjustPolicy">
        <enum>QComboBox::AdjustToContentsOnFirstShow</enum>
       </property>
-      <property name="placeholderText">
+      <property name="placeholderText" stdset="0">
        <string>Add/Select Teacher</string>
       </property>
       <item>
@@ -5163,7 +5163,7 @@ font: 10pt &quot;MS Shell Dlg 2&quot;;
       <property name="sizeAdjustPolicy">
        <enum>QComboBox::AdjustToContentsOnFirstShow</enum>
       </property>
-      <property name="placeholderText">
+      <property name="placeholderText" stdset="0">
        <string>Add/Select Teacher</string>
       </property>
       <item>
@@ -5203,7 +5203,7 @@ font: 10pt &quot;MS Shell Dlg 2&quot;;
       <property name="sizeAdjustPolicy">
        <enum>QComboBox::AdjustToContentsOnFirstShow</enum>
       </property>
-      <property name="placeholderText">
+      <property name="placeholderText" stdset="0">
        <string>Add/Select Teacher</string>
       </property>
       <item>
@@ -5259,7 +5259,7 @@ font: 10pt &quot;MS Shell Dlg 2&quot;;
       <property name="sizeAdjustPolicy">
        <enum>QComboBox::AdjustToContentsOnFirstShow</enum>
       </property>
-      <property name="placeholderText">
+      <property name="placeholderText" stdset="0">
        <string>Add/Select Teacher</string>
       </property>
       <item>
@@ -5335,7 +5335,7 @@ font: 10pt &quot;MS Shell Dlg 2&quot;;
       <property name="sizeAdjustPolicy">
        <enum>QComboBox::AdjustToContentsOnFirstShow</enum>
       </property>
-      <property name="placeholderText">
+      <property name="placeholderText" stdset="0">
        <string>Add/Select Teacher</string>
       </property>
       <item>
@@ -5466,7 +5466,7 @@ font: 10pt &quot;MS Shell Dlg 2&quot;;
       <property name="sizeAdjustPolicy">
        <enum>QComboBox::AdjustToContentsOnFirstShow</enum>
       </property>
-      <property name="placeholderText">
+      <property name="placeholderText" stdset="0">
        <string>Add/Select Teacher</string>
       </property>
       <item>
@@ -5506,7 +5506,7 @@ font: 10pt &quot;MS Shell Dlg 2&quot;;
       <property name="sizeAdjustPolicy">
        <enum>QComboBox::AdjustToContentsOnFirstShow</enum>
       </property>
-      <property name="placeholderText">
+      <property name="placeholderText" stdset="0">
        <string>Add/Select Teacher</string>
       </property>
       <item>
@@ -5546,7 +5546,7 @@ font: 10pt &quot;MS Shell Dlg 2&quot;;
       <property name="sizeAdjustPolicy">
        <enum>QComboBox::AdjustToContentsOnFirstShow</enum>
       </property>
-      <property name="placeholderText">
+      <property name="placeholderText" stdset="0">
        <string>Add/Select Teacher</string>
       </property>
       <item>
@@ -5606,7 +5606,7 @@ font: 10pt &quot;MS Shell Dlg 2&quot;;
       <property name="sizeAdjustPolicy">
        <enum>QComboBox::AdjustToContentsOnFirstShow</enum>
       </property>
-      <property name="placeholderText">
+      <property name="placeholderText" stdset="0">
        <string>Add/Select Teacher</string>
       </property>
       <item>
@@ -5730,7 +5730,7 @@ font: 10pt &quot;MS Shell Dlg 2&quot;;
       <property name="sizeAdjustPolicy">
        <enum>QComboBox::AdjustToContentsOnFirstShow</enum>
       </property>
-      <property name="placeholderText">
+      <property name="placeholderText" stdset="0">
        <string>Add/Select Teacher</string>
       </property>
       <item>
@@ -5770,7 +5770,7 @@ font: 10pt &quot;MS Shell Dlg 2&quot;;
       <property name="sizeAdjustPolicy">
        <enum>QComboBox::AdjustToContentsOnFirstShow</enum>
       </property>
-      <property name="placeholderText">
+      <property name="placeholderText" stdset="0">
        <string>Add/Select Teacher</string>
       </property>
       <item>
@@ -5810,7 +5810,7 @@ font: 10pt &quot;MS Shell Dlg 2&quot;;
       <property name="sizeAdjustPolicy">
        <enum>QComboBox::AdjustToContentsOnFirstShow</enum>
       </property>
-      <property name="placeholderText">
+      <property name="placeholderText" stdset="0">
        <string>Add/Select Teacher</string>
       </property>
       <item>
@@ -5850,7 +5850,7 @@ font: 10pt &quot;MS Shell Dlg 2&quot;;
       <property name="sizeAdjustPolicy">
        <enum>QComboBox::AdjustToContentsOnFirstShow</enum>
       </property>
-      <property name="placeholderText">
+      <property name="placeholderText" stdset="0">
        <string>Add/Select Teacher</string>
       </property>
       <item>
@@ -5910,7 +5910,7 @@ font: 10pt &quot;MS Shell Dlg 2&quot;;
       <property name="sizeAdjustPolicy">
        <enum>QComboBox::AdjustToContentsOnFirstShow</enum>
       </property>
-      <property name="placeholderText">
+      <property name="placeholderText" stdset="0">
        <string>Add/Select Teacher</string>
       </property>
       <item>
@@ -5950,7 +5950,7 @@ font: 10pt &quot;MS Shell Dlg 2&quot;;
       <property name="sizeAdjustPolicy">
        <enum>QComboBox::AdjustToContentsOnFirstShow</enum>
       </property>
-      <property name="placeholderText">
+      <property name="placeholderText" stdset="0">
        <string>Add/Select Teacher</string>
       </property>
       <item>
@@ -6010,7 +6010,7 @@ font: 10pt &quot;MS Shell Dlg 2&quot;;
       <property name="sizeAdjustPolicy">
        <enum>QComboBox::AdjustToContentsOnFirstShow</enum>
       </property>
-      <property name="placeholderText">
+      <property name="placeholderText" stdset="0">
        <string>Add/Select Teacher</string>
       </property>
       <item>
@@ -6050,7 +6050,7 @@ font: 10pt &quot;MS Shell Dlg 2&quot;;
       <property name="sizeAdjustPolicy">
        <enum>QComboBox::AdjustToContentsOnFirstShow</enum>
       </property>
-      <property name="placeholderText">
+      <property name="placeholderText" stdset="0">
        <string>Add/Select Teacher</string>
       </property>
       <item>
@@ -6090,7 +6090,7 @@ font: 10pt &quot;MS Shell Dlg 2&quot;;
       <property name="sizeAdjustPolicy">
        <enum>QComboBox::AdjustToContentsOnFirstShow</enum>
       </property>
-      <property name="placeholderText">
+      <property name="placeholderText" stdset="0">
        <string>Add/Select Teacher</string>
       </property>
       <item>
@@ -6146,7 +6146,7 @@ font: 10pt &quot;MS Shell Dlg 2&quot;;
       <property name="sizeAdjustPolicy">
        <enum>QComboBox::AdjustToContentsOnFirstShow</enum>
       </property>
-      <property name="placeholderText">
+      <property name="placeholderText" stdset="0">
        <string>Add/Select Teacher</string>
       </property>
       <item>
@@ -6222,7 +6222,7 @@ font: 10pt &quot;MS Shell Dlg 2&quot;;
       <property name="sizeAdjustPolicy">
        <enum>QComboBox::AdjustToContentsOnFirstShow</enum>
       </property>
-      <property name="placeholderText">
+      <property name="placeholderText" stdset="0">
        <string>Add/Select Teacher</string>
       </property>
       <item>
@@ -6298,7 +6298,7 @@ font: 10pt &quot;MS Shell Dlg 2&quot;;
       <property name="sizeAdjustPolicy">
        <enum>QComboBox::AdjustToContentsOnFirstShow</enum>
       </property>
-      <property name="placeholderText">
+      <property name="placeholderText" stdset="0">
        <string>Add/Select Teacher</string>
       </property>
       <item>
@@ -6358,7 +6358,7 @@ font: 10pt &quot;MS Shell Dlg 2&quot;;
       <property name="sizeAdjustPolicy">
        <enum>QComboBox::AdjustToContentsOnFirstShow</enum>
       </property>
-      <property name="placeholderText">
+      <property name="placeholderText" stdset="0">
        <string>Add/Select Teacher</string>
       </property>
       <item>
@@ -6393,6 +6393,200 @@ font: 10pt &quot;MS Shell Dlg 2&quot;;
       </item>
      </widget>
     </widget>
+    <widget class="QWidget" name="tab">
+     <attribute name="title">
+      <string>view_announcement</string>
+     </attribute>
+     <widget class="QTextBrowser" name="textBrowser">
+      <property name="geometry">
+       <rect>
+        <x>60</x>
+        <y>140</y>
+        <width>1031</width>
+        <height>411</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>10</pointsize>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: rgb(255, 255, 255);</string>
+      </property>
+      <property name="html">
+       <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'MS Shell Dlg 2'; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:7.8pt;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_122">
+      <property name="geometry">
+       <rect>
+        <x>500</x>
+        <y>70</y>
+        <width>201</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>14</pointsize>
+        <weight>75</weight>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: rgb(255, 191, 16);</string>
+      </property>
+      <property name="text">
+       <string>Announcements</string>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="tab_7">
+     <attribute name="title">
+      <string>view_todolist</string>
+     </attribute>
+     <widget class="QListView" name="list_view">
+      <property name="geometry">
+       <rect>
+        <x>230</x>
+        <y>190</y>
+        <width>691</width>
+        <height>341</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: rgb(255, 255, 255);</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_108">
+      <property name="geometry">
+       <rect>
+        <x>510</x>
+        <y>130</y>
+        <width>141</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>14</pointsize>
+        <weight>75</weight>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: rgb(255, 191, 16);</string>
+      </property>
+      <property name="text">
+       <string>To Do List</string>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="tab_8">
+     <attribute name="title">
+      <string>message_box</string>
+     </attribute>
+     <widget class="QPushButton" name="sendButton3">
+      <property name="geometry">
+       <rect>
+        <x>810</x>
+        <y>610</y>
+        <width>201</width>
+        <height>51</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>11</pointsize>
+        <weight>75</weight>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: rgb(255, 191, 16);</string>
+      </property>
+      <property name="text">
+       <string>Send</string>
+      </property>
+     </widget>
+     <widget class="QListView" name="list_view_3">
+      <property name="geometry">
+       <rect>
+        <x>550</x>
+        <y>90</y>
+        <width>461</width>
+        <height>411</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: rgb(255, 255, 255);</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="LineEdit_3">
+      <property name="geometry">
+       <rect>
+        <x>550</x>
+        <y>510</y>
+        <width>461</width>
+        <height>71</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <weight>75</weight>
+        <italic>true</italic>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: rgb(255, 255, 255);</string>
+      </property>
+      <property name="placeholderText">
+       <string>Please Type Here</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_105">
+      <property name="geometry">
+       <rect>
+        <x>190</x>
+        <y>110</y>
+        <width>281</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>12</pointsize>
+        <weight>75</weight>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: rgb(255, 191, 16);</string>
+      </property>
+      <property name="text">
+       <string>Select  Person</string>
+      </property>
+     </widget>
+     <widget class="QListView" name="listView_4">
+      <property name="geometry">
+       <rect>
+        <x>80</x>
+        <y>160</y>
+        <width>401</width>
+        <height>421</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: rgb(255, 255, 255);</string>
+      </property>
+     </widget>
+    </widget>
    </widget>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
@@ -6402,7 +6596,7 @@ font: 10pt &quot;MS Shell Dlg 2&quot;;
      <x>0</x>
      <y>0</y>
      <width>1146</width>
-     <height>25</height>
+     <height>30</height>
     </rect>
    </property>
    <property name="styleSheet">
@@ -6434,14 +6628,13 @@ font: 12pt &quot;MS Shell Dlg 2&quot;;</string>
     <property name="title">
      <string>To Do List</string>
     </property>
-    <addaction name="menu51"/>
+    <addaction name="menu51_a"/>
    </widget>
    <widget class="QMenu" name="menuMessage_Box">
     <property name="title">
      <string>Message Box</string>
     </property>
-    <addaction name="actionDSADADAD"/>
-    <addaction name="menu61"/>
+    <addaction name="menu61_2"/>
    </widget>
    <widget class="QMenu" name="menuExit">
     <property name="title">
@@ -6453,7 +6646,7 @@ font: 12pt &quot;MS Shell Dlg 2&quot;;</string>
     <property name="title">
      <string>Announcements</string>
     </property>
-    <addaction name="actionView_Announcements"/>
+    <addaction name="announcements_s"/>
    </widget>
    <addaction name="menuStudent"/>
    <addaction name="menuCourses"/>
@@ -6508,14 +6701,14 @@ font: 12pt &quot;MS Shell Dlg 2&quot;;</string>
     <string>View Course Attandance</string>
    </property>
   </action>
-  <action name="menu51">
+  <action name="menu51_a">
    <property name="text">
     <string>View/React To Do List</string>
    </property>
   </action>
-  <action name="menu61">
+  <action name="menu61_2">
    <property name="text">
-    <string>Send Message</string>
+    <string>View /Send Message</string>
    </property>
   </action>
   <action name="menu71">
@@ -6528,7 +6721,7 @@ font: 12pt &quot;MS Shell Dlg 2&quot;;</string>
     <string>View Messages</string>
    </property>
   </action>
-  <action name="actionView_Announcements">
+  <action name="announcements_s">
    <property name="text">
     <string>View Announcements</string>
    </property>

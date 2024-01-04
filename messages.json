@@ -1,0 +1,55 @@
+{
+  "mark@alone.comkhan@alone.com": {
+    "unread-messages": true,
+    "messages": [
+      "mark@alone.com: MERHABA",
+      "mark@alone.com: NASILSIN",
+      "khan@alone.com: Merhaba",
+      "khan@alone.com: Iyi sen",
+      "khan@alone.com: Iyi bende",
+      "khan@alone.com: Iyi bende ayni",
+      "khan@alone.com: nABER",
+      "khan@alone.com: Send",
+      "mark@alone.com: H\u0130 Khan!!"
+    ]
+  },
+  "mark@alone.comsean@alone.com": {
+    "unread-messages": true,
+    "messages": [
+      "khan@alone.com: Bu ilk mesaj"
+    ]
+  },
+  "mark@alone.comadmin@admin.com": {
+    "unread-messages": true,
+    "messages": [
+      "sean@alone.com: Hi Admin! ",
+      "admin@admin.com: Hi Marks Im Admin"
+    ]
+  },
+  "admin@admin.comsean@alone.com": {
+    "unread-messages": true,
+    "messages": [
+      "admin@admin.com: Hi Sean Im Admin"
+    ]
+  },
+  "admin@admin.comkhan@alone.com": {
+    "unread-messages": true,
+    "messages": [
+      "admin@admin.com: Hi Khan Im Admin"
+    ]
+  },
+  "admin@admin.comadad@dfsdfsf.com": {
+    "unread-messages": true,
+    "messages": [
+      "admin@admin.com: Hi Aadsadas Im Admin"
+    ]
+  },
+  "admin@admin.comjack@alone.com": {
+    "unread-messages": true,
+    "messages": [
+      "admin@admin.com: Hi Jack Im Admin",
+      "admin@admin.com: Hi, Admin again",
+      "admin@admin.com: Nice to meet you Jack"
+    ]
+  }
+}

@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>647</width>
-    <height>588</height>
+    <width>1143</width>
+    <height>803</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -19,7 +19,7 @@
      <rect>
       <x>0</x>
       <y>0</y>
-      <width>651</width>
+      <width>1101</width>
       <height>51</height>
      </rect>
     </property>
@@ -42,10 +42,10 @@ background-color: rgb(40, 41, 44);</string>
    <widget class="QTabWidget" name="tabWidget">
     <property name="geometry">
      <rect>
-      <x>-10</x>
-      <y>40</y>
-      <width>661</width>
-      <height>501</height>
+      <x>0</x>
+      <y>50</y>
+      <width>1141</width>
+      <height>741</height>
      </rect>
     </property>
     <property name="font">
@@ -59,43 +59,18 @@ background-color: rgb(40, 41, 44);</string>
      <string notr="true">background-color: rgb(40, 41, 44);</string>
     </property>
     <property name="currentIndex">
-     <number>1</number>
+     <number>3</number>
     </property>
     <widget class="QWidget" name="tab_3">
      <attribute name="title">
       <string>Home</string>
      </attribute>
-     <widget class="QLabel" name="label_13">
-      <property name="geometry">
-       <rect>
-        <x>130</x>
-        <y>10</y>
-        <width>381</width>
-        <height>41</height>
-       </rect>
-      </property>
-      <property name="font">
-       <font>
-        <pointsize>14</pointsize>
-        <weight>75</weight>
-        <bold>true</bold>
-        <strikeout>false</strikeout>
-       </font>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">color: rgb(253, 189, 16);
-background-color: rgb(40, 41, 44);</string>
-      </property>
-      <property name="text">
-       <string>    WELCOME TO SMART SCHOOL </string>
-      </property>
-     </widget>
      <widget class="QLabel" name="label_14">
       <property name="geometry">
        <rect>
-        <x>240</x>
-        <y>50</y>
-        <width>161</width>
+        <x>460</x>
+        <y>290</y>
+        <width>231</width>
         <height>20</height>
        </rect>
       </property>
@@ -114,6 +89,31 @@ background-color: rgb(40, 41, 44);</string>
        <string>You login as admin !!!</string>
       </property>
      </widget>
+     <widget class="QLabel" name="label_13">
+      <property name="geometry">
+       <rect>
+        <x>140</x>
+        <y>170</y>
+        <width>981</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>26</pointsize>
+        <weight>75</weight>
+        <bold>true</bold>
+        <strikeout>false</strikeout>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: rgb(253, 189, 16);
+background-color: rgb(40, 41, 44);</string>
+      </property>
+      <property name="text">
+       <string>    WELCOME TO SMART SCHOOL </string>
+      </property>
+     </widget>
     </widget>
     <widget class="QWidget" name="tab">
      <attribute name="title">
@@ -124,7 +124,7 @@ background-color: rgb(40, 41, 44);</string>
        <rect>
         <x>250</x>
         <y>10</y>
-        <width>171</width>
+        <width>251</width>
         <height>21</height>
        </rect>
       </property>
@@ -380,7 +380,7 @@ font: 10pt &quot;MS Shell Dlg 2&quot;;
       <property name="sizeAdjustPolicy">
        <enum>QComboBox::AdjustToContentsOnFirstShow</enum>
       </property>
-      <property name="placeholderText">
+      <property name="placeholderText" stdset="0">
        <string>Add/Select Teacher</string>
       </property>
       <item>
@@ -512,7 +512,7 @@ font: 10pt &quot;MS Shell Dlg 2&quot;;
        <rect>
         <x>180</x>
         <y>30</y>
-        <width>221</width>
+        <width>291</width>
         <height>21</height>
        </rect>
       </property>
@@ -533,9 +533,9 @@ font: 10pt &quot;MS Shell Dlg 2&quot;;
      <widget class="QLabel" name="label_12">
       <property name="geometry">
        <rect>
-        <x>20</x>
+        <x>0</x>
         <y>100</y>
-        <width>121</width>
+        <width>201</width>
         <height>20</height>
        </rect>
       </property>
@@ -708,7 +708,7 @@ font: 10pt &quot;MS Shell Dlg 2&quot;;
       <property name="sizeAdjustPolicy">
        <enum>QComboBox::AdjustToContentsOnFirstShow</enum>
       </property>
-      <property name="placeholderText">
+      <property name="placeholderText" stdset="0">
        <string>Add/Select Teacher</string>
       </property>
       <item>
@@ -795,7 +795,7 @@ font: 10pt &quot;MS Shell Dlg 2&quot;;
        <rect>
         <x>20</x>
         <y>420</y>
-        <width>191</width>
+        <width>211</width>
         <height>41</height>
        </rect>
       </property>
@@ -843,9 +843,9 @@ font: 12pt &quot;MS Shell Dlg 2&quot;;</string>
      <widget class="QPushButton" name="b7">
       <property name="geometry">
        <rect>
-        <x>220</x>
+        <x>240</x>
         <y>420</y>
-        <width>191</width>
+        <width>221</width>
         <height>41</height>
        </rect>
       </property>
@@ -895,7 +895,7 @@ font: 12pt &quot;MS Shell Dlg 2&quot;;</string>
        <rect>
         <x>490</x>
         <y>340</y>
-        <width>111</width>
+        <width>161</width>
         <height>20</height>
        </rect>
       </property>
@@ -928,6 +928,106 @@ font: 12pt &quot;MS Shell Dlg 2&quot;;</string>
       </property>
      </widget>
     </widget>
+    <widget class="QWidget" name="tab_4">
+     <attribute name="title">
+      <string>Message_box</string>
+     </attribute>
+     <widget class="QPushButton" name="sendButton1">
+      <property name="geometry">
+       <rect>
+        <x>800</x>
+        <y>610</y>
+        <width>201</width>
+        <height>51</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>11</pointsize>
+        <weight>75</weight>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: rgb(255, 191, 16);</string>
+      </property>
+      <property name="text">
+       <string>Send</string>
+      </property>
+     </widget>
+     <widget class="QListView" name="listView_4_a">
+      <property name="geometry">
+       <rect>
+        <x>70</x>
+        <y>160</y>
+        <width>371</width>
+        <height>421</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: rgb(255, 255, 255);</string>
+      </property>
+     </widget>
+     <widget class="QListView" name="list_view_3_a">
+      <property name="geometry">
+       <rect>
+        <x>540</x>
+        <y>90</y>
+        <width>461</width>
+        <height>411</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: rgb(255, 255, 255);</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="LineEdit_3_a">
+      <property name="geometry">
+       <rect>
+        <x>540</x>
+        <y>510</y>
+        <width>461</width>
+        <height>71</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <weight>75</weight>
+        <italic>true</italic>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: rgb(255, 255, 255);</string>
+      </property>
+      <property name="placeholderText">
+       <string>Please Type Here</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_105">
+      <property name="geometry">
+       <rect>
+        <x>140</x>
+        <y>100</y>
+        <width>281</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>12</pointsize>
+        <weight>75</weight>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: rgb(255, 191, 16);</string>
+      </property>
+      <property name="text">
+       <string>Select  Person</string>
+      </property>
+     </widget>
+    </widget>
    </widget>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
@@ -936,8 +1036,8 @@ font: 12pt &quot;MS Shell Dlg 2&quot;;</string>
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>647</width>
-     <height>25</height>
+     <width>1143</width>
+     <height>30</height>
     </rect>
    </property>
    <property name="styleSheet">
@@ -952,40 +1052,11 @@ font: 12pt &quot;MS Shell Dlg 2&quot;;</string>
     <addaction name="menu11"/>
     <addaction name="menu12"/>
    </widget>
-   <widget class="QMenu" name="menuStudents">
-    <property name="title">
-     <string>Students</string>
-    </property>
-    <addaction name="separator"/>
-    <addaction name="menu21"/>
-    <addaction name="menu22"/>
-   </widget>
-   <widget class="QMenu" name="menuAttandance">
-    <property name="title">
-     <string>Courses</string>
-    </property>
-    <addaction name="menu31"/>
-    <addaction name="menu32"/>
-    <addaction name="menu33"/>
-   </widget>
-   <widget class="QMenu" name="menuMeetings">
-    <property name="title">
-     <string>Meetings</string>
-    </property>
-    <addaction name="menu41"/>
-    <addaction name="menu42"/>
-   </widget>
-   <widget class="QMenu" name="menuTo_Do_List">
-    <property name="title">
-     <string>To Do List</string>
-    </property>
-    <addaction name="menu51"/>
-   </widget>
    <widget class="QMenu" name="menuMessage_Box">
     <property name="title">
      <string>Message Box</string>
     </property>
-    <addaction name="menu61"/>
+    <addaction name="menu61_a"/>
    </widget>
    <widget class="QMenu" name="menuExit">
     <property name="title">
@@ -994,10 +1065,6 @@ font: 12pt &quot;MS Shell Dlg 2&quot;;</string>
     <addaction name="menu71"/>
    </widget>
    <addaction name="menuTeacher"/>
-   <addaction name="menuStudents"/>
-   <addaction name="menuAttandance"/>
-   <addaction name="menuMeetings"/>
-   <addaction name="menuTo_Do_List"/>
    <addaction name="menuMessage_Box"/>
    <addaction name="menuExit"/>
   </widget>
@@ -1051,7 +1118,7 @@ font: 12pt &quot;MS Shell Dlg 2&quot;;</string>
     <string>Add/Edit To Do List</string>
    </property>
   </action>
-  <action name="menu61">
+  <action name="menu61_a">
    <property name="text">
     <string>Add/Edit Message</string>
    </property>
