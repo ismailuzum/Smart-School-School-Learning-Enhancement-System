@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>647</width>
-    <height>588</height>
+    <width>1079</width>
+    <height>728</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -19,7 +19,7 @@
      <rect>
       <x>0</x>
       <y>0</y>
-      <width>651</width>
+      <width>1101</width>
       <height>51</height>
      </rect>
     </property>
@@ -44,8 +44,8 @@ background-color: rgb(40, 41, 44);</string>
      <rect>
       <x>-10</x>
       <y>40</y>
-      <width>661</width>
-      <height>501</height>
+      <width>1091</width>
+      <height>671</height>
      </rect>
     </property>
     <property name="font">
@@ -59,7 +59,7 @@ background-color: rgb(40, 41, 44);</string>
      <string notr="true">background-color: rgb(40, 41, 44);</string>
     </property>
     <property name="currentIndex">
-     <number>1</number>
+     <number>3</number>
     </property>
     <widget class="QWidget" name="tab_3">
      <attribute name="title">
@@ -380,7 +380,7 @@ font: 10pt &quot;MS Shell Dlg 2&quot;;
       <property name="sizeAdjustPolicy">
        <enum>QComboBox::AdjustToContentsOnFirstShow</enum>
       </property>
-      <property name="placeholderText">
+      <property name="placeholderText" stdset="0">
        <string>Add/Select Teacher</string>
       </property>
       <item>
@@ -708,7 +708,7 @@ font: 10pt &quot;MS Shell Dlg 2&quot;;
       <property name="sizeAdjustPolicy">
        <enum>QComboBox::AdjustToContentsOnFirstShow</enum>
       </property>
-      <property name="placeholderText">
+      <property name="placeholderText" stdset="0">
        <string>Add/Select Teacher</string>
       </property>
       <item>
@@ -928,6 +928,106 @@ font: 12pt &quot;MS Shell Dlg 2&quot;;</string>
       </property>
      </widget>
     </widget>
+    <widget class="QWidget" name="tab_4">
+     <attribute name="title">
+      <string>Message_box</string>
+     </attribute>
+     <widget class="QPushButton" name="sendButton1">
+      <property name="geometry">
+       <rect>
+        <x>240</x>
+        <y>390</y>
+        <width>201</width>
+        <height>51</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>11</pointsize>
+        <weight>75</weight>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: rgb(255, 191, 16);</string>
+      </property>
+      <property name="text">
+       <string>Send</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_105">
+      <property name="geometry">
+       <rect>
+        <x>80</x>
+        <y>70</y>
+        <width>281</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>12</pointsize>
+        <weight>75</weight>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: rgb(255, 191, 16);</string>
+      </property>
+      <property name="text">
+       <string>Select  Person</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="LineEdit_1">
+      <property name="geometry">
+       <rect>
+        <x>60</x>
+        <y>240</y>
+        <width>381</width>
+        <height>111</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <weight>75</weight>
+        <italic>true</italic>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: rgb(255, 255, 255);</string>
+      </property>
+      <property name="placeholderText">
+       <string>Please Type a Title</string>
+      </property>
+     </widget>
+     <widget class="QComboBox" name="comboBox_1">
+      <property name="geometry">
+       <rect>
+        <x>70</x>
+        <y>120</y>
+        <width>371</width>
+        <height>51</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: rgb(255, 255, 255);</string>
+      </property>
+     </widget>
+     <widget class="QListView" name="list_view_1">
+      <property name="geometry">
+       <rect>
+        <x>530</x>
+        <y>120</y>
+        <width>521</width>
+        <height>421</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: rgb(255, 255, 255);</string>
+      </property>
+     </widget>
+    </widget>
    </widget>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
@@ -936,8 +1036,8 @@ font: 12pt &quot;MS Shell Dlg 2&quot;;</string>
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>647</width>
-     <height>25</height>
+     <width>1079</width>
+     <height>30</height>
     </rect>
    </property>
    <property name="styleSheet">
@@ -985,7 +1085,7 @@ font: 12pt &quot;MS Shell Dlg 2&quot;;</string>
     <property name="title">
      <string>Message Box</string>
     </property>
-    <addaction name="menu61"/>
+    <addaction name="menu61_a"/>
    </widget>
    <widget class="QMenu" name="menuExit">
     <property name="title">
@@ -1051,7 +1151,7 @@ font: 12pt &quot;MS Shell Dlg 2&quot;;</string>
     <string>Add/Edit To Do List</string>
    </property>
   </action>
-  <action name="menu61">
+  <action name="menu61_a">
    <property name="text">
     <string>Add/Edit Message</string>
    </property>
