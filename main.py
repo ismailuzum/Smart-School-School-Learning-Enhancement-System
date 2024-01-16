@@ -1535,7 +1535,7 @@ class TeacherApp(QMainWindow):
                 announcements.pop(index)  
                 save_announcements(announcements)  
 
-            # ComboBox ve TextBrowser'ı temizle
+            
                 self.comboBox.removeItem(index)
                 self.textBrowser.clear()
 
@@ -1855,7 +1855,7 @@ class StudentApp(QMainWindow):
         self.load_student_details()
         self.view_course_schedule()
         self.view_lesson_attendance()
-        self.view_meeting_schedule()
+        #self.view_meeting_schedule()
         self.view_meeting_attendance()
         self.view_announcements()
         self.view_todolist()
